@@ -25,8 +25,8 @@
         </div>
         <!-- END STYLE CUSTOMIZER-->
         <h3 class="page-title">
-            Form Wizard
-            <small>form wizard sample</small>
+            @yield('page-title')
+            <small>@yield('page-subtitle')</small>
         </h3>
         <ul class="breadcrumb">
             {{--<li>--}}
