@@ -47,7 +47,9 @@ class MasterfileController extends Controller
 
     public function masterfiles(){
         $mfs = Masterfile::all();
-
+        return view('masterfiles.all', array(
+            'mfs' => $mfs
+        ));
     }
 
     public function update(Request $request){
