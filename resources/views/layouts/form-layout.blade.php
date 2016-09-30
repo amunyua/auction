@@ -10,29 +10,29 @@
     <meta content="" name="description" />
     <meta content="" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="{{ url('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('assets/plugins/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('assets/plugins/font-awesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('assets/css/style.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('assets/css/style-responsive.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ url('assets/css/themes/default.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
-    <link href="{{ url('assets/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/plugins/font-awesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/css/style.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/css/style-responsive.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ URL::asset('assets/css/themes/default.css') }}" rel="stylesheet" type="text/css" id="style_color"/>
+    <link href="{{ URL::asset('assets/plugins/uniform/css/uniform.default.css') }}" rel="stylesheet" type="text/css"/>
     <link href="#" rel="stylesheet" id="style_metro" />
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL STYLES -->
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/gritter/css/jquery.gritter.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/chosen-bootstrap/chosen/chosen.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/select2/select2.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/jquery-tags-input/jquery.tagsinput.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/clockface/css/clockface.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/bootstrap-datepicker/css/datepicker.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/bootstrap-timepicker/compiled/timepicker.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/bootstrap-colorpicker/css/colorpicker.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/plugins/bootstrap-daterangepicker/daterangepicker.css') }}" />
-@stack('css')
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/gritter/css/jquery.gritter.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/chosen-bootstrap/chosen/chosen.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/select2/select2.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/jquery-tags-input/jquery.tagsinput.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/clockface/css/clockface.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-datepicker/css/datepicker.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-timepicker/compiled/timepicker.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-colorpicker/css/colorpicker.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-toggle-buttons/static/stylesheets/bootstrap-toggle-buttons.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.css') }}" />
+    @stack('css')
     <!-- END PAGE LEVEL STYLES -->
 </head>
 <!-- END HEAD -->
@@ -1724,42 +1724,42 @@
 <!-- END FOOTER -->
 <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 <!-- BEGIN CORE PLUGINS -->
-<script src="{{ url('assets/plugins/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/plugins/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
 <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-<script src="{{ url('assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
-<script src="{{ url('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!--[if lt IE 9]>
-<script src="{{ url('assets/plugins/excanvas.js') }}"></script>
-<script src="{{ url('assets/plugins/respond.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/excanvas.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/respond.js') }}"></script>
 <![endif]-->
-<script src="{{ url('assets/plugins/breakpoints/breakpoints.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/plugins/breakpoints/breakpoints.js') }}" type="text/javascript"></script>
 <!-- IMPORTANT! jquery.slimscroll.min.js depends on jquery-ui-1.10.1.custom.min.js -->
-<script src="{{ url('assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
-<script src="{{ url('assets/plugins/jquery.blockui.js') }}" type="text/javascript"></script>
-<script src="{{ url('assets/plugins/jquery.cookie.js') }}" type="text/javascript"></script>
-<script src="{{ url('assets/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript" ></script>
+<script src="{{ URL::asset('assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/plugins/jquery.blockui.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/plugins/jquery.cookie.js') }}" type="text/javascript"></script>
+<script src="{{ URL::asset('assets/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript" ></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script type="text/javascript" src="{{ url('assets/plugins/ckeditor/ckeditor.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/select2/select2.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/clockface/js/clockface.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/bootstrap-daterangepicker/date.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js') }}"></script>
-<script type="text/javascript" src="{{ url('assets/plugins/jquery.input-ip-address-control-1.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/select2/select2.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-toggle-buttons/static/js/jquery.toggle.buttons.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/clockface/js/clockface.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/date.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('assets/plugins/jquery.input-ip-address-control-1.0.min.js') }}"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="{{ url('assets/scripts/app.js') }}"></script>
-<script src="{{ url('assets/scripts/form-components.js') }}"></script>
+<script src="{{ URL::asset('assets/scripts/app.js') }}"></script>
+<script src="{{ URL::asset('assets/scripts/form-components.js') }}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function() {
@@ -1768,6 +1768,7 @@
         FormComponents.init();
     });
 </script>
+@stack('js')
 </body>
 <!-- END BODY -->
 </html>
