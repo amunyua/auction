@@ -26,6 +26,18 @@
                 <li ><a href="{{ url('/all-mfs') }}">All Masterfiles</a></li>
             </ul>
         </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <i class="icon-user"></i>
+                <span class="title">Revenue Manager</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub">
+                <li ><a href="{{ url('/revenue-channels') }}">Manage Revenue Channels</a></li>
+                <li ><a href="{{ url('/service-channels') }}">Manage Service Channels</a></li>
+                <li ><a href="{{ url('/service-bills') }}">Manage Service Bills</a></li>
+            </ul>
+        </li>
     </ul>
     <!-- END SIDEBAR MENU -->
 </div>
