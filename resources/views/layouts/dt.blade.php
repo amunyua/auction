@@ -4,7 +4,6 @@
     <title>@yield('title')</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet" />
@@ -17,16 +16,15 @@
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="{{ URL::asset('/datatables/media/css/demo_table.css')  }}" rel="stylesheet" />
+    <link href="{{ URL::asset('src/datatables/media/css/demo_table.css')  }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/css/pages/profile.css')  }}" rel="stylesheet" type="text/css" />
-    <link href="{{ URL::asset('/datatables/extras/TableTools/media/css/TableTools.css')  }}" rel="stylesheet" />
+    <link href="{{ URL::asset('src/datatables/extras/TableTools/media/css/TableTools.css')  }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/chosen-bootstrap/chosen/chosen.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/select2/select2.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-datepicker/css/datepicker.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/jquery-tags-input/jquery.tagsinput.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css')  }}" />
-
     <!--	<link href="{{ URL::asset('/datatables/media/css/jquery.dataTables.css')  }}" rel="stylesheet"/>-->
     <!--	<link href="{{ URL::asset('/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>-->
     <!--	<link href="{{ URL::asset('/datatables/media/css/jquery.dataTables_themeroller.css')  }}" rel="stylesheet"/>-->
@@ -34,7 +32,7 @@
 <!-- END PAGE LEVEL PLUGINS -->
     <!-- Le fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="129x129" href="favicon-2.png">
-    <link rel="shortcut icon" href="favicon-2.png" />
+    {{--<link rel="shortcut icon" href="favicon-2.png" />--}}
 </head>
 <body class="fixed-top">
 
@@ -113,7 +111,6 @@
 <script href="{{ URL::asset('src/datatables/extras/TableTools/media/js/TableTools.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/jquery-validation/dist/additional-methods.min.js') }}"></script>
 <script href="{{ URL::asset('src/js/parking_sessions.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/date.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
