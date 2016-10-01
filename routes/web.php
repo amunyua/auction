@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MasterfileController@index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'DashboardController@index');
 
 #### Masterfile Module
 Route::get('/masterfile', 'MasterfileController@index');
