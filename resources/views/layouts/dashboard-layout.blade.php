@@ -61,7 +61,6 @@ Purchase: http://themeforest.net/item/conquer-responsive-admin-dashboard-templat
                 <!-- BEGIN TOP NAVIGATION MENU -->
                 <ul class="nav pull-right" id="top_menu">
                     @include('layouts.includes.top_drop_sections')
-                    <!-- END USER LOGIN DROPDOWN -->
                 </ul>
                 <!-- END TOP NAVIGATION MENU -->
             </div>
