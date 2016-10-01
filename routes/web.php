@@ -22,3 +22,4 @@ Route::get('/home', 'HomeController@index');
 #### Masterfile Module
 Route::get('/masterfile', 'MasterfileController@index');
 Route::get('/all-mfs', 'MasterfileController@masterfiles');
+Route::get('inventory','InventoryController@getIndex');
