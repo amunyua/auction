@@ -21,7 +21,13 @@ Route::get('/home', 'DashboardController@index');
 Route::get('/masterfile', 'MasterfileController@index');
 Route::get('/all-mfs', 'MasterfileController@masterfiles');
 
+
+#### Inventory Module
+Route::get('inventory','InventoryController@getIndex');
+
+
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
 Route::get('/service-channels', 'RevenueChannelController@serviceChannels');
 Route::get('/service-bills', 'RevenueChannelController@serviceBills');
+

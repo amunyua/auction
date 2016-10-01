@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>@yield('title')</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('title')</title>
-
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet" />
@@ -26,12 +25,10 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-datepicker/css/datepicker.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/jquery-tags-input/jquery.tagsinput.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css')  }}" />
-
-    <!--	<link href="src/datatables/media/css/jquery.dataTables.css')  }}" rel="stylesheet"/>-->
-    <!--	<link href="src/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>-->
-    <!--	<link href="src/datatables/media/css/jquery.dataTables_themeroller.css')  }}" rel="stylesheet"/>-->
+    <!--	<link href="{{ URL::asset('/datatables/media/css/jquery.dataTables.css')  }}" rel="stylesheet"/>-->
+    <!--	<link href="{{ URL::asset('/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>-->
+    <!--	<link href="{{ URL::asset('/datatables/media/css/jquery.dataTables_themeroller.css')  }}" rel="stylesheet"/>-->
     @stack('css')
-
 <!-- END PAGE LEVEL PLUGINS -->
     <!-- Le fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="129x129" href="favicon-2.png">
@@ -39,44 +36,48 @@
 </head>
 <body class="fixed-top">
 
-<!-- BEGIN TOP NAVIGATION BAR -->
+<!-- BEGIN HEADER -->
+<div id="header" class="navbar navbar-inverse navbar-fixed-top">
+    <!-- BEGIN TOP NAVIGATION BAR -->
 @include('layouts.includes.top_navigation')
 <!-- END TOP NAVIGATION BAR -->
-
+</div>
+<!-- END HEADER -->
 <!-- BEGIN CONTAINER -->
 <div id="container" class="row-fluid">
-
     <!-- BEGIN SIDEBAR -->
-    @include('layouts.includes.sidebar')
-    <!-- END SIDEBAR -->
-
+@include('layouts.includes.sidebar')
+<!-- END SIDEBAR -->
     <!-- BEGIN PAGE -->
     <div id="body" data-height="800" style="">
         <div class="container-fluid">
             <!-- BEGIN PAGE TITLE -->
-            <h3 class="page-title"> @yield('page-title') <small>@yield('page-subtitle')</small> </h3>
+            <h3 class="page-title"> @yield('page-title') <small>@yield('page-title-small')</small> </h3>
             <!-- END PAGE TITLE -->
+
             <!-- BEGIN BREADCRUMBS -->
-            <ul class="breadcrumb">
-                @yield('breadcrumb')
-            </ul>
-            <!-- END BREADCRUMBS -->
-
-            <!-- BEGIN PAGE CONTENT -->
-
+        @yield('breadcrumbs')
+        <!-- END BREADCRUMBS -->
+            <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
                 <div class="span12">
                     <div class="widget">
-                        <div class="widget-title"><h4>@yield('widget-title')</h4>
-                        @yield('actions')
+                        <div class="widget-title">
+                            <h4>
+                                <i class="icon-reorder"></i>
+                                @yield('widget-title')
+                                <span class="actions"> @yield('actions')</span>
+                            </h4>
                         </div>
-                        @yield('content')
+                        <div class="widget-body form">
+                            @yield('content')
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- END PAGE CONTENT -->
-
+            <!-- END PAGE CONTENT-->
         </div>
+        <!-- END PAGE CONTAINER-->
     </div>
     <!-- END PAGE -->
 </div>
@@ -106,16 +107,18 @@
 <script src="{{ URL::asset('assets/plugins/jquery-validation/dist/jquery.validate.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/jquery-validation/dist/additional-methods.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js') }}"></script>
-<script src="{{ URL::asset('src/datatables/media/js/jquery.dataTables.js') }}"></script>
-<script src="{{ URL::asset('src/datatables/extras/TableTools/media/js/TableTools.min.js') }}"></script>
+<script href="{{ URL::asset('src/datatables/media/js/jquery.dataTables.js') }}"></script>
+<script href="{{ URL::asset('src/datatables/extras/TableTools/media/js/TableTools.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/jquery-validation/dist/additional-methods.min.js') }}"></script>
-<script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+<script href="{{ URL::asset('src/js/parking_sessions.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/date.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/select2/select2.min.js') }}"></script>
 
 <script src="{{ URL::asset('assets/scripts/form-components.js') }}"></script>
+<script href="{{ URL::asset('src/js/disable_price.js') }}"></script>
+<script href="{{ URL::asset('src/js/delete.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
 <script>
     $(document).ready(function(){
