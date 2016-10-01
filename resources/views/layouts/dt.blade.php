@@ -12,7 +12,7 @@
     <link href="{{ URL::asset('assets/css/style-responsive.css')  }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/css/themes/default.css')  }}" rel="stylesheet" id="style_color" />
     <link href="{{ URL::asset('assets/plugins/uniform/css/uniform.default.css')  }}" rel="stylesheet" type="text/css" />
-    <link href="#" rel="stylesheet" id="style_metro" />
+    {{--<link href="#" rel="stylesheet" id="style_metro" />--}}
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -25,9 +25,9 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-datepicker/css/datepicker.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/jquery-tags-input/jquery.tagsinput.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css')  }}" />
-    <!--	<link href="{{ URL::asset('/datatables/media/css/jquery.dataTables.css')  }}" rel="stylesheet"/>-->
-    <!--	<link href="{{ URL::asset('/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>-->
-    <!--	<link href="{{ URL::asset('/datatables/media/css/jquery.dataTables_themeroller.css')  }}" rel="stylesheet"/>-->
+    {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables.css')  }}" rel="stylesheet"/>--}}
+    {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>--}}
+    {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables_themeroller.css')  }}" rel="stylesheet"/>--}}
     @stack('css')
 <!-- END PAGE LEVEL PLUGINS -->
     <!-- Le fav and touch icons -->
@@ -107,35 +107,26 @@
 <script src="{{ URL::asset('assets/plugins/jquery-validation/dist/jquery.validate.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/jquery-validation/dist/additional-methods.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/chosen-bootstrap/chosen/chosen.jquery.min.js') }}"></script>
-<script href="{{ URL::asset('src/datatables/media/js/jquery.dataTables.js') }}"></script>
-<script href="{{ URL::asset('src/datatables/extras/TableTools/media/js/TableTools.min.js') }}"></script>
+<script src="{{ URL::asset('src/datatables/media/js/jquery.dataTables.js') }}"></script>
+<script src="{{ URL::asset('src/datatables/extras/TableTools/media/js/TableTools.min.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/jquery-validation/dist/additional-methods.min.js') }}"></script>
-<script href="{{ URL::asset('src/js/parking_sessions.js') }}"></script>
+<script src="{{ URL::asset('src/js/parking_sessions.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/date.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('assets/plugins/select2/select2.min.js') }}"></script>
 
 <script src="{{ URL::asset('assets/scripts/form-components.js') }}"></script>
-<script href="{{ URL::asset('src/js/disable_price.js') }}"></script>
-<script href="{{ URL::asset('src/js/delete.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
 <script>
-    $(document).ready(function(){
-        $('ul ul').addClass('sub');
-        $('ul.sub .paro').hide();
-        $('li.active').parent().css('display','block').addClass('live-active');
-        $('.live-active').parent().addClass('active');
-        $('ul.sub:empty').hide();
-        FormComponents.init();
-    });
-</script>
-
-{{--initialize datatable--}}
-<script>
-    $(document).ready(function(){
-        $('#table1 .live_table').dataTable();
-    });
+//    $(document).ready(function(){
+//        $('ul ul').addClass('sub');
+//        $('ul.sub .paro').hide();
+//        $('li.active').parent().css('display','block').addClass('live-active');
+//        $('.live-active').parent().addClass('active');
+//        $('ul.sub:empty').hide();
+//        FormComponents.init();
+//    });
 </script>
 
 @stack('js')
