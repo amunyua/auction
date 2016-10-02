@@ -23,7 +23,13 @@ Route::get('/all-mfs', 'MasterfileController@masterfiles');
 
 
 #### Inventory Module
-Route::get('inventory','InventoryController@getIndex');
+Route::get('categories',array('uses'=>'InventoryController@getCategories','as'=>'category.store') );
+Route::get('sub-categories',array('uses'=>'InventoryController@getSubCategories','as'=>'sub_category.store') );
+Route::get('warehouses',array('uses'=>'InventoryController@getWarehouses','as'=>'warehouses.store'));
+Route::get('all-items','InventoryController@getIndex');
+Route::post('add-warehouse','InventoryController@addWarehouse');
+Route::post('add-category','InventoryController@addCategory');
+Route::post('add-subcategory','InventoryController@addSubCategory');
 
 
 #### Revenue Manager Module

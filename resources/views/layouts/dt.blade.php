@@ -56,7 +56,9 @@
             <!-- END PAGE TITLE -->
 
             <!-- BEGIN BREADCRUMBS -->
+            <ul class="breadcrumb">
         @yield('breadcrumbs')
+            </ul>
         <!-- END BREADCRUMBS -->
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
@@ -71,6 +73,7 @@
                         </div>
                         <div class="widget-body form">
                             @yield('content')
+                            @yield('modals')
                         </div>
                     </div>
                 </div>
@@ -135,6 +138,7 @@
 <script>
     $(document).ready(function(){
         $('#table1 .live_table').dataTable();
+
     });
 </script>
 

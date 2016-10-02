@@ -29,6 +29,19 @@
         <li class="has-sub">
             <a href="javascript:;">
                 <i class="icon-user"></i>
+                <span class="title">Inventory</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub">
+                <li ><a href="{{ url('/categories') }}">Manage Categories</a></li>
+                <li ><a href="{{ url('/sub-categories') }}">Manage Sub Categories</a></li>
+                <li ><a href="{{ url('/warehouses') }}">Manage Warehouses</a></li>
+                <li ><a href="{{ url('/all-items') }}">All Items</a></li>
+            </ul>
+        </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <i class="icon-user"></i>
                 <span class="title">Revenue Manager</span>
                 <span class="arrow "></span>
             </a>
