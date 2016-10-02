@@ -68,11 +68,13 @@
                             <h4>
                                 <i class="icon-reorder"></i>
                                 @yield('widget-title')
-                                <span class="actions"> @yield('actions')</span>
                             </h4>
+                                <span class="actions"> @yield('actions')</span>
+
                         </div>
                         <div class="widget-body form">
                             @yield('content')
+                            <div class="clearfix"></div>
                             @yield('modals')
                         </div>
                     </div>
