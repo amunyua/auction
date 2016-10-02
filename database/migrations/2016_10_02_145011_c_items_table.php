@@ -18,7 +18,7 @@ class CItemsTable extends Migration
             $table->string('item_name',255);
             $table->string('item_code',255);
             $table->integer('item_category');
-            $table->foreign('item_categoty')
+            $table->foreign('item_category')
                 ->references('id')
                 ->on('categories')
                 ->onUpdate('cascade')
