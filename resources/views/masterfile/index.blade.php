@@ -1,10 +1,11 @@
 @extends('layouts.wizard-layout')
 @section('title', 'Add New Masterfile')
+@section('page-title', 'Add Masterfile')
 
 @section('breadcrumb')
     <li>
         <i class="icon-home"></i>
-        <a href="{{ url('/') }}">Home</a>
+        <a href="{{ url('/home') }}">Home</a>
         <span class="icon-angle-right"></span>
     </li>
     <li>
