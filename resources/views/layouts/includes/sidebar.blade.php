@@ -51,6 +51,17 @@
                 <li ><a href="{{ url('/service-bills') }}">Manage Service Bills</a></li>
             </ul>
         </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <i class="icon-user"></i>
+                <span class="title">User Management</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub">
+                <li ><a href="{{ url('/users') }}">All Users</a></li>
+                <li ><a href="{{ url('/user-roles') }}">All User Roles</a></li>
+            </ul>
+        </li>
     </ul>
     <!-- END SIDEBAR MENU -->
 </div>

@@ -19,7 +19,6 @@ Route::get('/home', 'DashboardController@index');
 Route::get('/masterfile', 'MasterfileController@index');
 Route::get('/all-mfs', 'MasterfileController@masterfiles');
 
-
 #### Inventory Module
 Route::get('categories',array('uses'=>'InventoryController@getCategories','as'=>'category.index') );
 Route::get('sub-categories',array('uses'=>'InventoryController@getSubCategories','as'=>'sub_category.store') );
@@ -35,9 +34,13 @@ Route::delete('delete-category/{id}','InventoryController@destroyCategory');
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
 Route::post('/add-rev', 'RevenueChannelController@store');
+Route::post('/update-rev', 'RevenueChannelController@update');
+Route::delete('/delete-rev', 'RevenueChannelController@destroy');
 Route::get('/service-channels', 'ServiceChannelController@serviceChannels');
 Route::post('/add-sc', 'ServiceChannelController@store');
+Route::post('/update-sc', 'ServiceChannelController@update');
+Route::post('/delete-sc', 'ServiceChannelController@destroy');
 Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 
 ### User Management Module
-Route::get('/user_management', 'UserRoleController@index');
+Route::get('/users', 'UserController@index');
