@@ -44,7 +44,8 @@
                     {{ csrf_field() }}
                     <input type="submit" name="DELETE" value="Delete" class="btn btn-danger btn-small delete_category">
                     {{ method_field('DELETE') }}
-                </form></td>
+                </form>
+            </td>
         </tr>
             @endforeach
             @endif

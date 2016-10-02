@@ -25,20 +25,33 @@
         <thead>
             <tr>
                 <th>MF#</th>
+                <th>Created Date</th>
                 <th>Surname</th>
                 <th>Firstname</th>
+                <th>Customer Type</th>
+                <th>E-mail</th>
+                <th>Buss Role</th>
+                <th>Edit</th>
+                <th>Profile</th>
             </tr>
         </thead>
         <tbody>
-            @if(count($mfs))
-                @foreach($mfs as $mf)
-                    <tr>
-                        <td>{{ $mf->id }}</td>
-                        <td>{{ $mf->surname }}</td>
-                        <td>{{ $mf->firstname }}</td>
-                    </tr>
-                @endforeach
-            @endif
+        @if(count($mfs))
+            @foreach($mfs as $mf)
+                <tr>
+                    <td>{{ $mf->id }}</td>
+                    <td>{{ $mf->reg_date }}</td>
+                    <td>{{ $mf->surname }}</td>
+                    <td>{{ $mf->firstname }}</td>
+                    <td>{{ $mf->customer_type_id }}</td>
+                    <td>{{ $mf->email }}</td>
+                    <td>{{ $mf->b_role }}</td>
+                    <td><a href="" class="btn btn-mini"><i class="icon-edit"></i>Edit</a> </td>
+                    <td><a href="" class="btn btn-small btn-success edit_cat" >Profile</a> </td>
+
+                </tr>
+            @endforeach
+        @endif
         </tbody>
     </table>
 @endsection

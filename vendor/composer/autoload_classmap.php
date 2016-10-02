@@ -13,6 +13,8 @@ return array(
     'AddUserStatus' => $baseDir . '/database/migrations/2016_10_01_180412_add_user_status.php',
     'Categories' => $baseDir . '/database/migrations/2016_10_01_195538_categories.php',
     'CategoriesSeeder' => $baseDir . '/database/seeds/CategoriesSeeder.php',
+    'CreateAddressTypesTable' => $baseDir . '/database/migrations/2016_10_02_132938_create_address_types_table.php',
+    'CreateAddressesTable' => $baseDir . '/database/migrations/2016_10_02_133037_create_addresses_table.php',
     'CreateCustomerTypesTable' => $baseDir . '/database/migrations/2016_09_30_152245_create_customer_types_table.php',
     'CreateIfmisHeadcodesTable' => $baseDir . '/database/migrations/2016_10_01_173052_create_ifmis_headcodes_table.php',
     'CreateIfmisSubcodesTable' => $baseDir . '/database/migrations/2016_10_01_173107_create_ifmis_subcodes_table.php',
