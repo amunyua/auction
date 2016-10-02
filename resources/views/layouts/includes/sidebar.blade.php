@@ -23,7 +23,7 @@
             </a>
             <ul class="sub">
                 <li ><a href="{{ url('/masterfile') }}">Add Masterfile</a></li>
-                <li ><a href="{{ url('/all-mfs') }}">All Masterfiles</a></li>
+                <li ><a href="{{ url('/all_mfs') }}">All Masterfiles</a></li>
             </ul>
         </li>
         <li class="has-sub">
@@ -49,6 +49,18 @@
                 <li ><a href="{{ url('/revenue-channels') }}">Manage Revenue Channels</a></li>
                 <li ><a href="{{ url('/service-channels') }}">Manage Service Channels</a></li>
                 <li ><a href="{{ url('/service-bills') }}">Manage Service Bills</a></li>
+            </ul>
+        </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <i class="icon-user"></i>
+                <span class="title">User Management</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub">
+                <li ><a href="{{ url('/users') }}">All Users</a></li>
+                <li ><a href="{{ url('/add_user_role') }}">Manage User Role</a></li>
+                <li ><a href="{{ url('/audit_trail') }}">Audit Trail</a></li>
             </ul>
         </li>
     </ul>

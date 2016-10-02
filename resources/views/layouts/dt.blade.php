@@ -57,7 +57,7 @@
 
             <!-- BEGIN BREADCRUMBS -->
             <ul class="breadcrumb">
-        @yield('breadcrumbs')
+                @yield('breadcrumbs')
             </ul>
         <!-- END BREADCRUMBS -->
             <!-- BEGIN PAGE CONTENT-->
