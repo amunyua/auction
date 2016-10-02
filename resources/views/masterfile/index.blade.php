@@ -38,12 +38,12 @@
                                 <span class="desc"><i class="icon-ok"></i> Profile Setup</span>
                             </a>
                         </li>
-                        <li class="span3">
-                            <a href="#tab3" data-toggle="tab" class="step">
-                                <span class="number">3</span>
-                                <span class="desc"><i class="icon-ok"></i> Billing Setup</span>
-                            </a>
-                        </li>
+                        {{--<li class="span3">--}}
+                            {{--<a href="#tab3" data-toggle="tab" class="step">--}}
+                                {{--<span class="number">3</span>--}}
+                                {{--<span class="desc"><i class="icon-ok"></i> Billing Setup</span>--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
                     </ul>
                 </div>
             </div>
@@ -59,10 +59,10 @@
                     <h4>Provide your profile details</h4>
                     @include('masterfile.address_details')
                 </div>
-                <div class="tab-pane" id="tab3">
-                    <h4>Provide your billing and credit card details</h4>
-                    @include('masterfile.account')
-                </div>
+                {{--<div class="tab-pane" id="tab3">--}}
+                    {{--<h4>Provide your billing and credit card details</h4>--}}
+                    {{--@include('masterfile.account')--}}
+                {{--</div>--}}
             </div>
             <div class="form-actions clearfix">
                 <a href="javascript:;" class="btn button-previous">
