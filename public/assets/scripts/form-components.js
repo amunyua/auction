@@ -241,7 +241,7 @@ var FormComponents = function () {
 
     var handleSelec2 = function () {
 
-        $('#select2_sample1').select2({
+        $('#select2_sample1, .live_search').select2({
             placeholder: "Select an option",
             allowClear: true
         });

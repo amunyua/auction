@@ -34,7 +34,9 @@ Route::delete('delete-category/{id}','InventoryController@destroyCategory');
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
-Route::get('/service-channels', 'RevenueChannelController@serviceChannels');
+Route::post('/add-rev', 'RevenueChannelController@store');
+Route::get('/service-channels', 'ServiceChannelController@serviceChannels');
+Route::post('/add-sc', 'ServiceChannelController@store');
 Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 
 ### User Management Module
