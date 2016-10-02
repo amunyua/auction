@@ -119,8 +119,49 @@ class InventoryController extends Controller
         $subcategory->save();
 
         Session::flash('success','The sub category has been added');
-        return redirect()->route('sub_category.store');
+        return redirect()->route('sub_category.index');
 
+    }
+    public function getSubCatAilments($id){
+        $sub_cat = SubCategory::find($id);
+        return json_encode($sub_cat);
+    }
+
+    public function updateSubcategory(Request $request, $id){
+//        var_dump($_POST);
+        $sub_cat = SubCategory::find($id);
+        if($sub_cat->sub_category_name != $request->input('sub_category_name')) {
+            $this->validate($request, array(
+                'category_id' => 'required',
+                'sub_category_name' => 'required|unique:sub_categories,sub_category_name',
+                'sub_category_code' => 'required',
+                'sub_category_status' => 'required'
+            ));
+        }else{
+            $this->validate($request, array(
+                'category_id' => 'required',
+                'sub_category_name' => 'required',
+                'sub_category_code' => 'required',
+                'sub_category_status' => 'required'
+            ));
+        }
+        $sub_cat->category_id = $request->input('category_id');
+        $sub_cat->sub_category_name = $request->input('sub_category_name');
+        $sub_cat->sub_category_code = $request->input('sub_category_code');
+        $sub_cat->sub_category_status =$request->input('sub_category_status');
+
+        $sub_cat->save();
+
+        Session::flash('success','The sub category has been edited');
+        return redirect()->route('sub_category.index');
+    }
+
+    public function destroySubcategory($id){
+        $sub_cat = SubCategory::find($id);
+        $sub_cat->delete();
+
+        Session::flash('success','The sub category has been deleted');
+        return redirect()->route('sub_category.index');
     }
     public function getWarehouses(){
         $warehouses = Warehouse::all();
