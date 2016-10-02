@@ -31,9 +31,10 @@ Route::post('add-warehouse','InventoryController@addWarehouse');
 Route::post('add-category','InventoryController@addCategory');
 Route::post('add-subcategory','InventoryController@addSubCategory');
 
-
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
-Route::get('/service-channels', 'RevenueChannelController@serviceChannels');
+Route::post('/add-rev', 'RevenueChannelController@store');
+Route::get('/service-channels', 'ServiceChannelController@serviceChannels');
+Route::post('/add-sc', 'ServiceChannelController@store');
 Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 
