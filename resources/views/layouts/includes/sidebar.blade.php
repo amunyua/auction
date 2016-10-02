@@ -28,7 +28,7 @@
         </li>
         <li class="has-sub">
             <a href="javascript:;">
-                <i class="icon-user"></i>
+                <i class="icon-book"></i>
                 <span class="title">Inventory</span>
                 <span class="arrow "></span>
             </a>

@@ -27,6 +27,12 @@ class InventoryController extends Controller
 
     }
 
+    public function getAilments($id){
+        $ailments = Category::find($id);
+        return json_encode($ailments);
+    }
+
+
     public function addCategory(Request $request){
 //        var_dump($_POST);die;
         $this->validate($request, array(
@@ -44,9 +50,46 @@ class InventoryController extends Controller
         $category->save();
 
         Session::flash('success','The category has been added');
-        return redirect()->route('category.store');
+        return redirect()->route('category.index');
 
     }
+
+    public function updateCategory(Request $request ,$id){
+        //update category details
+        $category = Category::find($id);
+        //we start with validation
+        if($category->category_name != $request->input('category_name')) {
+            $this->validate($request, array(
+                'category_name' => 'required|unique:categories,category_name',
+                'category_code' => 'required',
+                'category_status' => 'required'
+            ));
+        }else{
+            $this->validate($request, array(
+                'category_name' => 'required',
+                'category_code' => 'required',
+                'category_status' => 'required'
+            ));
+        }
+        //define column names and values
+
+        $category->category_name = $request->input('category_name');
+        $category->category_code = $request->input('category_code');
+        $category->category_status =$request->input('category_status');
+
+        $category->save();
+
+        Session::flash('success','The category has been updated');
+        return redirect()->route('category.index');
+    }
+    public function destroyCategory($id){
+        $category = Category::find($id);
+        $category->delete();
+
+        Session::flash('success','The category has been deleted');
+        return redirect()->route('category.index');
+    }
+
 
     public function getSubCategories(){
         $subcategories = SubCategory::all();
