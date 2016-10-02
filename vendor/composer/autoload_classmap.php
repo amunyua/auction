@@ -20,6 +20,7 @@ return array(
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateRequestTypesTable' => $baseDir . '/database/migrations/2016_10_01_175305_create_request_types_table.php',
     'CreateRevenueChannelsTable' => $baseDir . '/database/migrations/2016_10_01_171017_create_revenue_channels_table.php',
+    'CreateRolesTable' => $baseDir . '/database/migrations/2016_10_02_085959_create_roles_table.php',
     'CreateServiceBillsTable' => $baseDir . '/database/migrations/2016_10_01_171051_create_service_bills_table.php',
     'CreateServiceChannelsTable' => $baseDir . '/database/migrations/2016_10_01_171038_create_service_channels_table.php',
     'CreateSubCategoriesTable' => $baseDir . '/database/migrations/2016_10_01_195611_create_sub_categories_table.php',
