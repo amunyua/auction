@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', 'MasterfileController@index');
-
 Auth::routes();
 
 Route::get('/home', 'DashboardController@index');
@@ -31,9 +29,10 @@ Route::post('add-warehouse','InventoryController@addWarehouse');
 Route::post('add-category','InventoryController@addCategory');
 Route::post('add-subcategory','InventoryController@addSubCategory');
 
-
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
 Route::get('/service-channels', 'RevenueChannelController@serviceChannels');
 Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 
+### User Management Module
+Route::get('/user_management', 'UserRoleController@index');

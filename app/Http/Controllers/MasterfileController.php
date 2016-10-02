@@ -17,10 +17,11 @@ class MasterfileController extends Controller
     }
 
     public function index(){
+        // fetch data for select list
         $ct = CustomerType::all();
 
         return view('masterfile.index', array(
-            'customer_types' => $ct
+            'customer_types' => $ct,
         ));
     }
 
@@ -29,16 +30,15 @@ class MasterfileController extends Controller
         $this->validate($request, array(
             'surname' => 'required|max:255',
             'firstname' => 'required',
-            'middlename' => 'required',
-            'email' => 'required|unique:masterfile',
-            'id_passport' => 'required|unique:masterfile',
-            'b_role' => 'required',
+            'id_passport' => 'required|unique:masterfiles',
             'gender' => 'required',
-            'user_role' => 'required',
+            'email' => 'required|unique:masterfiles',
+            'b_role' => 'required'
         ));
 
         DB::transaction(function(){
             // add to db
+            $role = Role::where('role_code', Input::get('role_code'))->first();
             $mf = Masterfile::create(array(
                 'surname' => Input::get('surname'),
                 'firstname' => Input::get('firstname'),
