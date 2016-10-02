@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
          $this->call(MasterfileSeeder::class);
          $this->call(UserLoginSeeder::class);
          $this->call(RequestTypesSeeder::class);
+         $this->call(transaction_categories_seeder::class);
+         $this->call(transaction_types_seeder::class);
     }
 }
