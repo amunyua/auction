@@ -11,6 +11,7 @@ return array(
     'AddRevenuechannelFks' => $baseDir . '/database/migrations/2016_10_01_174941_add_revenuechannel_fks.php',
     'AddServicesFks' => $baseDir . '/database/migrations/2016_10_01_175654_add_services_fks.php',
     'AddUserStatus' => $baseDir . '/database/migrations/2016_10_01_180412_add_user_status.php',
+
     'App\\Address' => $baseDir . '/app/Address.php',
     'App\\AddressType' => $baseDir . '/app/AddressType.php',
     'App\\Category' => $baseDir . '/app/Category.php',
@@ -50,6 +51,9 @@ return array(
     'App\\Warehouse' => $baseDir . '/app/Warehouse.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
+
+    'CItemsTable' => $baseDir . '/database/migrations/2016_10_02_145011_c_items_table.php',
+
     'Categories' => $baseDir . '/database/migrations/2016_10_01_195538_categories.php',
     'CategoriesSeeder' => $baseDir . '/database/seeds/CategoriesSeeder.php',
     'ClassPreloader\\ClassList' => $vendorDir . '/classpreloader/classpreloader/src/ClassList.php',
@@ -86,7 +90,10 @@ return array(
     'CreateRolesTable' => $baseDir . '/database/migrations/2016_10_02_085959_create_roles_table.php',
     'CreateServiceBillsTable' => $baseDir . '/database/migrations/2016_10_01_171051_create_service_bills_table.php',
     'CreateServiceChannelsTable' => $baseDir . '/database/migrations/2016_10_01_171038_create_service_channels_table.php',
+    'CreateStockTransactionsTable' => $baseDir . '/database/migrations/2016_10_02_153557_create_stock_transactions_table.php',
     'CreateSubCategoriesTable' => $baseDir . '/database/migrations/2016_10_01_195611_create_sub_categories_table.php',
+    'CreateTransactionCategoriesTable' => $baseDir . '/database/migrations/2016_10_02_153511_create_transaction_categories_table.php',
+    'CreateTransactionTypesTable' => $baseDir . '/database/migrations/2016_10_02_153448_create_transaction_types_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateWarehousesTable' => $baseDir . '/database/migrations/2016_10_01_213641_create_warehouses_table.php',
     'Cron\\AbstractField' => $vendorDir . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
@@ -3178,6 +3185,7 @@ return array(
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'UserLoginSeeder' => $baseDir . '/database/seeds/UserLoginSeeder.php',
+
     'Webmozart\\Assert\\Assert' => $vendorDir . '/webmozart/assert/src/Assert.php',
     'XdgBaseDir\\Xdg' => $vendorDir . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
     'phpDocumentor\\Reflection\\DocBlock' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
@@ -3241,4 +3249,8 @@ return array(
     'phpDocumentor\\Reflection\\Types\\String_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/String_.php',
     'phpDocumentor\\Reflection\\Types\\This' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/This.php',
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+
+    'transaction_categories_seeder' => $baseDir . '/database/seeds/transaction_categories_seeder.php',
+    'transaction_table_seeder' => $baseDir . '/database/seeds/transaction_table_seeder.php',
+    'transaction_types_seeder' => $baseDir . '/database/seeds/transaction_types_seeder.php',
 );
