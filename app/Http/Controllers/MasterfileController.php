@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Masterfile;
 use App\CustomerType;
+use App\AllMfs;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -23,6 +24,11 @@ class MasterfileController extends Controller
         return view('masterfile.index', array(
             'customer_types' => $ct,
         ));
+    }
+
+    public function getMfs(){
+        $mfs = AllMfs::all();
+        return view('masterfile.all_mfs')->withWarehouses($mfs);
     }
 
     public function store(Request $request){

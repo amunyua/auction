@@ -23,7 +23,7 @@
             </a>
             <ul class="sub">
                 <li ><a href="{{ url('/masterfile') }}">Add Masterfile</a></li>
-                <li ><a href="{{ url('/all-mfs') }}">All Masterfiles</a></li>
+                <li ><a href="{{ url('/all_mfs') }}">All Masterfiles</a></li>
             </ul>
         </li>
         <li class="has-sub">
@@ -59,7 +59,8 @@
             </a>
             <ul class="sub">
                 <li ><a href="{{ url('/users') }}">All Users</a></li>
-                <li ><a href="{{ url('/user-roles') }}">All User Roles</a></li>
+                <li ><a href="{{ url('/add_user_role') }}">Manage User Role</a></li>
+                <li ><a href="{{ url('/audit_trail') }}">Audit Trail</a></li>
             </ul>
         </li>
     </ul>
