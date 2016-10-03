@@ -13,37 +13,33 @@ class CItemsTable extends Migration
      */
     public function up()
     {
-        Schema::table('items', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('item_name',255);
             $table->string('item_code',255);
-            $table->integer('item_category');
-            $table->foreign('item_category')
+            $table->integer('category_id');
+            $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->integer('item_sub_category');
-            $table->foreign('item_sub_category')
+                ->onUpdate('cascade');
+            $table->integer('sub_category_id')->nullable();
+            $table->foreign('sub_category_id')
                 ->references('id')
-                ->on('subcategories')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->integer('supplier_mfid');
-            $table->foreign('supplier_mfid')
+                ->on('sub_categories')
+                ->onUpdate('cascade');
+            $table->integer('masterfile_id')->nullable();
+            $table->foreign('masterfile_id')
                 ->references('id')
                 ->on('masterfiles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
             $table->string('image_path',250);
             $table->double('purchase_price');
             $table->integer('initial_stock');
-            $table->integer('warehouse');
-            $table->foreign('warehouse')
+            $table->integer('warehouse_id');
+            $table->foreign('warehouse_id')
                 ->references('id')
                 ->on('warehouses')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
             $table->integer('stock_reorder_level');
 
         });

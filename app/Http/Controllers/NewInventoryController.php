@@ -45,5 +45,10 @@ class NewInventoryController extends Controller
 
         ));
 
+        DB::transaction(function (){
+           $item = new Item();
+
+        });
+
     }
 }
