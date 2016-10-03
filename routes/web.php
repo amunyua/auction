@@ -18,7 +18,6 @@ Route::get('/home', 'DashboardController@index');
 #### Masterfile Module
 Route::get('/masterfile', 'MasterfileController@index');
 Route::get('/all_mfs', 'MasterfileController@allMfs');
-Route::post('add_masterfile','MasterfileController@addMf');
 
 #### Inventory Module
 //routes for managing category details
@@ -28,7 +27,7 @@ Route::get('category-details/{id}','InventoryController@getAilments');
 Route::post('update-category/{id}',['uses'=>'InventoryController@updateCategory','as'=>'category.update']);
 Route::delete('delete-category/{id}','InventoryController@destroyCategory');
 
-stat
+
 #### Auction Module
 Route::get('auction-items', 'AuctionController@index');
 
