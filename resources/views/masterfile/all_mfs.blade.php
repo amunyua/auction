@@ -1,17 +1,18 @@
 @extends('layouts.dt')
-@section('title', 'Add New Masterfile')
-
-@section('breadcrumb')
-    <li>
+@section('title','All Masterfile')
+@section('page-title','Masterfile')
+@section('page-title-small', 'Masterfile Record')
+@section('breadcrumbs')
+    <li >
         <i class="icon-home"></i>
-        <a href="{{ url('/') }}">Home</a>
+        <a href="{{ url('/home') }}">Home</a>
         <span class="icon-angle-right"></span>
     </li>
     <li>
         <a href="#">Masterfile</a>
         <span class="icon-angle-right"></span>
     </li>
-    <li><a href="#">Add New Masterfile</a></li>
+    <li><a href="#">All Masterfile</a></li>
 @endsection
 
 @section('wizard-id', 'form_wizard_1')

@@ -37,9 +37,9 @@ class MasterfileController extends Controller
         ));
     }
 
-    public function getMfs(){
-        $mfs = AllMfs::all();
-        return view('masterfile.all_mfs')->withWarehouses($mfs);
+    public function allMfs(){
+        $mfs = Masterfile::all();
+        return view('masterfile.all_mfs')->withMfs($mfs);
     }
 
     public function addMf(Request $request){
