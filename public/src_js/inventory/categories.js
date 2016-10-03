@@ -28,7 +28,7 @@ $('.edit_cat').on('click',function () {
         $('#route-id').val(id);
         var e_id = $('#route-id').val();
         var action = $('#edit-cat-form').attr('action');
-        $('#edit-cat-form').attr('action',action+'/'+id);
+        $('#edit-cat-form').attr('action',action+'/'+e_id);
 
         $.ajax({
             url: 'category-details/' + id,

@@ -18,21 +18,33 @@ Route::get('/home', 'DashboardController@index');
 #### Masterfile Module
 Route::get('/masterfile', 'MasterfileController@index');
 Route::get('/all_mfs', 'MasterfileController@allMfs');
+Route::post('add_masterfile','MasterfileController@addMf');
 
 #### Inventory Module
+//routes for managing category details
 Route::get('categories',array('uses'=>'InventoryController@getCategories','as'=>'category.index') );
-Route::get('sub-categories',array('uses'=>'InventoryController@getSubCategories','as'=>'sub_category.store') );
-Route::get('warehouses',array('uses'=>'InventoryController@getWarehouses','as'=>'warehouses.store'));
-Route::get('all-items','InventoryController@getIndex');
-Route::post('add-warehouse','InventoryController@addWarehouse');
 Route::post('add-category','InventoryController@addCategory');
-Route::post('add-subcategory','InventoryController@addSubCategory');
 Route::get('category-details/{id}','InventoryController@getAilments');
 Route::post('update-category/{id}',['uses'=>'InventoryController@updateCategory','as'=>'category.update']);
 Route::delete('delete-category/{id}','InventoryController@destroyCategory');
 
+<<<<<<< HEAD
 #### Auction Module
 Route::get('auction-items', 'AuctionController@index');
+=======
+
+//routes for managing sub category details
+Route::get('sub-categories',array('uses'=>'InventoryController@getSubCategories','as'=>'sub_category.index') );
+Route::post('add-subcategory','InventoryController@addSubCategory');
+Route::get('get-subcategory-ailments/{id}','InventoryController@getSubCatAilments');
+Route::post('update-subcategory/{id}', 'InventoryController@updateSubcategory');
+Route::delete('delete-subcategory/{id}','InventoryController@destroySubcategory');
+
+Route::get('warehouses',array('uses'=>'InventoryController@getWarehouses','as'=>'warehouses.store'));
+Route::get('all-items','InventoryController@getIndex');
+Route::post('add-warehouse','InventoryController@addWarehouse');
+
+>>>>>>> 7f0c32105a7299a723ac44f531bf2b1446bc0a2c
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');

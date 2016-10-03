@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Masterfile;
+use App\Address;
+use App\Login;
 use App\CustomerType;
 use App\AllMfs;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +33,7 @@ class MasterfileController extends Controller
         return view('masterfile.all_mfs')->withWarehouses($mfs);
     }
 
-    public function store(Request $request){
+    public function addMf(Request $request){
         // validate
         $this->validate($request, array(
             'surname' => 'required|max:255',

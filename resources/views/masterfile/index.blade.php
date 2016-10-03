@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-    <form action="#" class="form-horizontal">
+    <form action="{{ url('/add_masterfile') }}" method="post" class="form-horizontal">
         <div class="form-wizard">
             <div class="navbar steps">
                 <div class="navbar-inner">
