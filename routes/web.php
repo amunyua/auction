@@ -28,7 +28,6 @@ Route::get('category-details/{id}','InventoryController@getAilments');
 Route::post('update-category/{id}',['uses'=>'InventoryController@updateCategory','as'=>'category.update']);
 Route::delete('delete-category/{id}','InventoryController@destroyCategory');
 
-stat
 #### Auction Module
 Route::get('auction-items', 'AuctionController@index');
 
