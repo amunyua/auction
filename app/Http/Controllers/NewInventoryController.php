@@ -86,6 +86,13 @@ class NewInventoryController extends Controller
     }
     public function stockTransactions(){
         $transactions = StockTransaction::all();
-        return view('inventory.stock-transactions')->withTransactions($transactions);
+        return view('inventory.stock-transactions',array(
+            'transactions'=>$transactions,
+            'items'=>Item::all(),
+            'transaction_types'=>TransactionType::all(),
+            'transaction_categories'=>TransactionCategory::all(),
+            'warehouse'=>Warehouse::all(),
+
+        ));
     }
 }

@@ -29,8 +29,8 @@
             <th>Sub Category</th>
             <th>Status</th>
             <th>Stock level</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            {{--<th>Edit</th>--}}
+            {{--<th>Delete</th>--}}
         </tr>
         </thead>
         <tbody>
@@ -47,13 +47,13 @@
                     <td>{{ $subcategory->sub_category_name }}</td>
                     <td>{{ ($item->status == 1) ? 'Active':'Inactive'  }}</td>
                     <td>{{ $item->stock_level }}</td>
-                    <td><a href="#edit_item" edit-id="{{ $item->id }}" class="btn btn-small btn-success edit_cat" data-toggle="modal">Edit</a> </td>
-                    <td><form method="post" action="">
-                            {{ csrf_field() }}
-                            <input type="submit" name="DELETE" value="Delete" class="btn btn-danger btn-small delete_category">
+                    {{--<td><a href="#edit_item" edit-id="{{ $item->id }}" class="btn btn-small btn-success edit_cat" data-toggle="modal">Edit</a> </td>--}}
+                    {{--<td><form method="post" action="">--}}
+                            {{--{{ csrf_field() }}--}}
+                            {{--<input type="submit" name="DELETE" value="Delete" class="btn btn-danger btn-small delete_category">--}}
                             {{--{{ method_field('DELETE') }}--}}
-                        </form>
-                    </td>
+                        {{--</form>--}}
+                    {{--</td>--}}
                 </tr>
             @endforeach
         @endif
