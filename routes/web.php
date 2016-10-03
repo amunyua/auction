@@ -31,6 +31,9 @@ Route::delete('delete-category/{id}','InventoryController@destroyCategory');
 
 #### Auction Module
 Route::get('auction-items', 'AuctionController@index');
+Route::get('add-auction-item', 'AuctionController@store');
+Route::get('edit-auction-item', 'AuctionController@update');
+Route::get('delete-auction-item', 'AuctionController@destroy');
 
 //routes for managing sub category details
 Route::get('sub-categories',array('uses'=>'InventoryController@getSubCategories','as'=>'sub_category.index') );

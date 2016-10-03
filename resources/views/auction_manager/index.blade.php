@@ -23,9 +23,9 @@
 @section('actions')
     <a href="#add_auction_item" class="btn btn-small btn-primary" data-toggle="modal" title="Add Auction Item">
         <i class="icon-plus"></i> Add</a>
-    <a href="#edit_auction_item" class="btn btn-small btn-warning" title="Update Auction Item">
+    <a href="#edit_auction_item" class="btn btn-small btn-warning" title="Update Auction Item" id="edit-auction-item">
         <i class="icon-edit"></i> Update</a>
-    <a href="#delete_auction_item" class="btn btn-small btn-danger" title="Delete Auction Item">
+    <a href="#delete_auction_item" class="btn btn-small btn-danger" title="Delete Auction Item" id="delete-auction-item">
         <i class="icon-trash"></i> Delete</a>
 @endsection
 
@@ -117,12 +117,20 @@
 
                 <div class="row-fluid">
                     <label for="buy_now_option">Buy Now Option:</label>
-                    <input type="number" min="0" name="buy_now_option" class="span12"/>
+                    <select name="buy_now_option" class="span12">
+                        <option value="">--Select--</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
                 </div>
 
                 <div class="row-fluid">
                     <label for="buy_now_price">Buy Now Price:</label>
-                    <input type="number" step="any" min="0" name="buy_now_price" class="span12"/>
+                    <select name="buy_now_price" class="span12">
+                        <option value="">--Select--</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
                 </div>
 
                 <div class="row-fluid">
