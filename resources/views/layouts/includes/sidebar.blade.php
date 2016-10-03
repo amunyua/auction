@@ -22,8 +22,8 @@
                 <span class="arrow "></span>
             </a>
             <ul class="sub">
-                <li ><a href="{{ url('/masterfile') }}">Add Masterfile</a></li>
-                <li ><a href="{{ url('/all_mfs') }}">All Masterfiles</a></li>
+                <li ><a href="{{ url('masterfile') }}">Add Masterfile</a></li>
+                <li ><a href="{{ url('all_mfs') }}">All Masterfiles</a></li>
             </ul>
         </li>
         <li class="has-sub">
