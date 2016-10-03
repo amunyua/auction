@@ -33,10 +33,26 @@
                 <span class="arrow "></span>
             </a>
             <ul class="sub">
+                <li ><a href="{{ url('/add-item') }}">Create Inventory</a></li>
                 <li ><a href="{{ url('/categories') }}">Manage Categories</a></li>
                 <li ><a href="{{ url('/sub-categories') }}">Manage Sub Categories</a></li>
                 <li ><a href="{{ url('/warehouses') }}">Manage Warehouses</a></li>
                 <li ><a href="{{ url('/all-items') }}">All Items</a></li>
+            </ul>
+        </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <i class="icon-th-list"></i>
+                <span class="title">Auction Manager</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub">
+                <li ><a href="{{ url('/auction-items') }}">Manage Auctions</a></li>
+                <li ><a href="{{ url('/auction-items') }}">Live Auction Items</a></li>
+                <li ><a href="{{ url('/service-channels') }}">Ended Auction Items</a></li>
+                <li ><a href="{{ url('/service-bills') }}">All Buy Now Purchases</a></li>
+                <li ><a href="{{ url('/service-bills') }}">All Bid Purchases</a></li>
+                <li ><a href="{{ url('/service-bills') }}">Bid Packages</a></li>
             </ul>
         </li>
         <li class="has-sub">
