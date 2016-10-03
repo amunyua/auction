@@ -40,7 +40,7 @@
                     <td>{{ $subcategory->sub_category_name }}</td>
                     <td></td>
                     <td>{{ $subcategory->sub_category_code }}</td>
-                    <td>{{ $subcategory->sub_category_status }}</td>
+                    <td>{{ ($subcategory->sub_category_status == 1) ? 'Active':'Inactive' }}</td>
                     <td><a href="#edit-subcategory" action="{{ url('update-subcategory/'.$subcategory->id ) }}" edit-id="{{ $subcategory->id }}" class="btn btn-success btn-small edit_subcat" data-toggle="modal">Edit</a> </td>
                     <td><a href="#delete-subcategory" data-toggle="modal" action="{{ url('delete-subcategory/'.$subcategory->id ) }}" delete-id="{{ $subcategory->id }}"class="btn btn-danger delete-sub-cat">Delete</a> </td>
                 </tr>

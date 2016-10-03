@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Session;
 
 class NewInventoryController extends Controller
 {
+    public function index(){
+        $items = Item::all();
+        return view('inventory.all-items')->withItems($items);
+
+}
     public function addItem(){
 
         return view('inventory.add-items',array(
@@ -60,6 +65,7 @@ class NewInventoryController extends Controller
             $item->initial_stock = Input::get('initial_stock');
             $item->warehouse_id = Input::get('warehouse_id');
             $item->stock_reorder_level = Input::get('stock_reorder_level');
+            $item->stock_level = Input::get('initial_stock');
 
             //save into the database
             $item->save();
@@ -70,12 +76,16 @@ class NewInventoryController extends Controller
             $stock_transaction->transaction_type_id =Input::get('transaction_type_id');
             $stock_transaction->transaction_category_id =Input::get('transaction_category_id');
             $stock_transaction->warehouse_id =Input::get('warehouse_id');
-            $stock_transaction->quantity =Input::get('quantity');
+            $stock_transaction->quantity =Input::get('initial_stock');
 
             $stock_transaction->save();
         });
         Session::flash('success','Inventory item has been created');
         return redirect()->route('add-items.index');
 
+    }
+    public function stockTransactions(){
+        $transactions = StockTransaction::all();
+        return view('inventory.stock-transactions')->withTransactions($transactions);
     }
 }
