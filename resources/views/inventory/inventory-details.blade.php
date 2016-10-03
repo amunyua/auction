@@ -6,7 +6,11 @@
                 <div class="controls">
                     <select name="supplier_mfid" class="span12" id="select2_sample79" >
                         <option value="">--Select supplier--</option>
-
+                        @if(count($suppliers))
+                            @foreach($suppliers as $supplier)
+                                <option value="{{ $supplier->id }}">{{ $supplier->surname.' '.$supplier->firstname }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
@@ -17,37 +21,18 @@
                 <div class="controls">
                     <select name="warehouse" class="span12" id="select2_sample79" >
                         <option value="">--Select warehouse--</option>
-
+                        @if(count($warehouses))
+                            @foreach($warehouses as $warehouse)
+                                <option value="{{ $warehouse->id }}">{{ $warehouse->warehouse_name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
         </div>
         </div>
 
-    <div class="row-fluid">
-    <div class="span6">
-        <div class="control-group">
-            <label for="county" class="control-label">Supplier</label>
-            <div class="controls">
-                <select name="supplier_mfid" class="span12" id="select2_sample79" >
-                    <option value="">--Select supplier--</option>
 
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="span6">
-        <div class="control-group">
-            <label for="warehouse" class="control-label">Warehouse</label>
-            <div class="controls">
-                <select name="warehouse" class="span12" id="select2_sample79" >
-                    <option value="">--Select warehouse--</option>
-
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
 
     <div class="row-fluid">
         <div class="span6">
@@ -56,7 +41,11 @@
                 <div class="controls">
                     <select name="transaction_type" class="span12" id="select2_sample79" >
                         <option value="">--Select transaction type--</option>
-
+                        @if(count($transaction_types))
+                            @foreach($transaction_types as $transaction_type)
+                                <option value="{{ $transaction_type->id }}">{{ $transaction_type->transaction_type_name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
@@ -67,7 +56,11 @@
                 <div class="controls">
                     <select name="transaction_category" class="span12" id="select2_sample79" >
                         <option value="">--Select transaction category--</option>
-
+                        @if(count($transaction_categories))
+                            @foreach($transaction_categories as $transaction_category)
+                                <option value="{{ $transaction_category->id }}">{{ $transaction_category->transaction_category_name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
@@ -81,4 +74,4 @@
 <script src="{{ URL::asset('assets/plugins/dropzone/dropzone.js') }}"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="{{ URL::asset('assets/scripts/app.js') }}"></script>
+{{--<script src="{{ URL::asset('assets/scripts/app.js') }}"></script>--}}

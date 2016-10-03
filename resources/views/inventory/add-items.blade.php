@@ -22,7 +22,9 @@
 @endsection
 
 @section('content')
-    <form action="#" class="form-horizontal">
+    {{--@include('layouts.includes._messages')--}}
+    <form action="{{ url('store-item') }}" method="post" class="form-horizontal">
+        {{ csrf_field() }}
         <div class="form-wizard">
             <div class="navbar steps">
                 <div class="navbar-inner">
@@ -52,6 +54,7 @@
                 <div class="bar"></div>
             </div>
             <div class="tab-content">
+                @include('layouts.includes._messages')
                 <div class="tab-pane active" id="tab1">
                     <h3>Provide inventory details</h3>
                     @include('inventory.item-details')
@@ -72,11 +75,13 @@
                 <a href="javascript:;" class="btn btn-primary blue button-next">
                     Continue <i class="icon-angle-right"></i>
                 </a>
-                <a href="javascript:;" class="btn btn-success button-submit">
+
+                <a href="javascript:;"  class="btn btn-success button-submit">
                     Submit <i class="icon-ok"></i>
                 </a>
             </div>
         </div>
+
     </form>
 @endsection
 
