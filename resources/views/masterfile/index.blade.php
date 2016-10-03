@@ -15,7 +15,7 @@
     <li><a href="#">Add New Masterfile</a></li>
 @endsection
 
-@section('wizard-id', 'form_wizard_1')
+@section('wizard-id', 'form_wizard_2')
 
 @section('wizard-title')
     <i class="icon-reorder"></i> Add New Masterfile - <span class="step-title">Step 1 of 2</span>
