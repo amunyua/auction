@@ -1,5 +1,5 @@
 <!-- BEGIN FORM -->
-<form name="form1" method="post" action="">
+
     <div class="row-fluid">
         <div class="span6">
             <div class="control-group">
@@ -93,5 +93,5 @@
             </div>
         </div>
     </div>
-</form>
+
 <!-- END FORM -->
