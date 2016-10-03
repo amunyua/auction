@@ -10,7 +10,13 @@ return array(
     'AddRevenuechannelFks' => $baseDir . '/database/migrations/2016_10_01_174941_add_revenuechannel_fks.php',
     'AddServicesFks' => $baseDir . '/database/migrations/2016_10_01_175654_add_services_fks.php',
     'AddUserStatus' => $baseDir . '/database/migrations/2016_10_01_180412_add_user_status.php',
+<<<<<<< HEAD
     'AddressTypeSeeder' => $baseDir . '/database/seeds/AddressTypeSeeder.php',
+=======
+
+    'AddressTypeSeeder' => $baseDir . '/database/seeds/AddressTypeSeeder.php',
+    'CItemsTable' => $baseDir . '/database/migrations/2016_10_02_145011_c_items_table.php',
+>>>>>>> c48bef4eb07fd42051673e65dc104c080d536252
     'App\\Address' => $baseDir . '/app/Address.php',
     'App\\AddressType' => $baseDir . '/app/AddressType.php',
     'App\\Auction' => $baseDir . '/app/Auction.php',
@@ -85,8 +91,14 @@ return array(
     'CountySeeder' => $baseDir . '/database/seeds/CountySeeder.php',
     'CreateAddressTypesTable' => $baseDir . '/database/migrations/2016_10_02_132938_create_address_types_table.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_10_02_133037_create_addresses_table.php',
+<<<<<<< HEAD
     'CreateAuctionsTable' => $baseDir . '/database/migrations/2016_10_02_154957_create_auctions_table.php',
     'CreateCountiesTable' => $baseDir . '/database/migrations/2016_10_03_073700_create_counties_table.php',
+=======
+    'CreateCountiesTable' => $baseDir . '/database/migrations/2016_10_03_073700_create_counties_table.php',
+
+    'CreateAuctionsTable' => $baseDir . '/database/migrations/2016_10_02_154957_create_auctions_table.php',
+>>>>>>> c48bef4eb07fd42051673e65dc104c080d536252
     'CreateCustomerTypesTable' => $baseDir . '/database/migrations/2016_09_30_152245_create_customer_types_table.php',
     'CreateIfmisHeadcodesTable' => $baseDir . '/database/migrations/2016_10_01_173052_create_ifmis_headcodes_table.php',
     'CreateIfmisSubcodesTable' => $baseDir . '/database/migrations/2016_10_01_173107_create_ifmis_subcodes_table.php',
