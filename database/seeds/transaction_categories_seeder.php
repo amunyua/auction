@@ -20,5 +20,13 @@ class transaction_categories_seeder extends Seeder
         $tc1->transaction_category_name = 'Reconciliation';
         $tc1->save();
 
+        $tc1 =new TransactionCategory();
+        $tc1->transaction_category_name = 'Buy Service';
+        $tc1->save();
+
+//        $tc1 =new TransactionCategory();
+//        $tc1->transaction_category_name = 'Reconciliation';
+//        $tc1->save();
+
     }
 }

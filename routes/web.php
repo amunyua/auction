@@ -56,7 +56,8 @@ Route::post('add-warehouse','InventoryController@addWarehouse');
 Route::get('add-item','NewInventoryController@addItem');
 Route::get('add-item',array( 'uses'=>'NewInventoryController@addItem','as'=>'add-items.index'));
 Route::post('store-item','NewInventoryController@StoreItem');
-
+Route::get('all-items',array('uses'=>'NewInventoryController@index','as'=>'all-items.index'));
+Route::get('stock-transactions','NewInventoryController@stockTransactions');
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');

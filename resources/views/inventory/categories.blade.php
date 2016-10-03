@@ -38,7 +38,7 @@
             <td>{{ $category->id }}</td>
             <td>{{ $category->category_name }}</td>
             <td>{{ $category->category_code }}</td>
-            <td>{{ $category->category_status }}</td>
+            <td>{{ ($category->category_status == 1) ? 'Active':'Inactive'  }}</td>
             <td><a href="#edit_category" edit-id="{{ $category->id }}" class="btn btn-small btn-success edit_cat" data-toggle="modal">Edit</a> </td>
             <td><form method="post" action="{{ url('/delete-category/'.$category->id) }}">
                     {{ csrf_field() }}

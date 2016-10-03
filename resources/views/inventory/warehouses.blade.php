@@ -16,7 +16,7 @@
 @endsection
 @section('widget-title', 'Manage Warehouses')
 @section('actions')
-    <a href="#add_warehouse" class="btn btn-primary" data-toggle="modal">Add Category</a>
+    <a href="#add_warehouse" class="btn btn-primary" data-toggle="modal">Add Warehouse</a>
 @endsection
 @section('content')
     @include('layouts.includes._messages')
@@ -36,7 +36,7 @@
                     <td>{{ $warehouse->id }}</td>
                     <td>{{ $warehouse->warehouse_name }}</td>
                     <td>{{ $warehouse->warehouse_code }}</td>
-                    <td>{{ $warehouse->warehouse_status }}</td>
+                    <td>{{ ($warehouse->warehouse_status == 1) ? 'Active':'Inactive'  }}</td>
                 </tr>
             @endforeach
         @endif
