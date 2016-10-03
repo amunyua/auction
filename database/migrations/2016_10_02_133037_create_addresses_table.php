@@ -26,6 +26,11 @@ class CreateAddressesTable extends Migration
             $table->string('building')->nullable();
             $table->bigInteger('phone');
             $table->timestamps();
+            $table->foreign('mf_id')
+                ->references('id')
+                ->on('masterfiles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

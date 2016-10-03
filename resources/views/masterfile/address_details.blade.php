@@ -86,9 +86,9 @@
 
         <div class="span6">
             <div class="control-group">
-                <label for="address_type_id" class="control-label">Address Type:<span>*</span></label>
+                <label for="address_type_name" class="control-label">Address Type:<span>*</span></label>
                 <div class="controls">
-                    <select name="address_type_id" id="address_type_id" class="span12">
+                    <select name="address_type_name" id="address_type_name" class="span12">
                         <option value="">--Choose Address type--</option>
                         @if(count($addresses))
                             @foreach($addresses as $address)

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Masterfile;
 use App\Address;
-use App\UserRoles;
+use App\Role;
 use App\CustomerType;
 use App\AddressType;
 use App\County;
@@ -24,7 +24,7 @@ class MasterfileController extends Controller
 
     public function index(){
         // fetch data for select list
-        $roles = UserRoles::all();
+        $roles = Role::all();
         $ct = CustomerType::all();
         $addresses = AddressType::all();
         $counties = County::all();
@@ -43,8 +43,10 @@ class MasterfileController extends Controller
     }
 
     public function addMf(Request $request){
+//        var_dump($_POST);exit;
         // validate
         $this->validate($request, array(
+//            'snkl'=>'required',
             'surname' => 'required|max:255',
             'firstname' => 'required',
             'id_passport' => 'required|unique:masterfiles',

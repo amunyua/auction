@@ -481,6 +481,7 @@ return array(
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'RequestTypesSeeder' => $baseDir . '/database/seeds/RequestTypesSeeder.php',
+    'RolesSeeder' => $baseDir . '/database/seeds/RolesSeeder.php',
     'SebastianBergmann\\CodeCoverage\\CodeCoverage' => $vendorDir . '/phpunit/php-code-coverage/src/CodeCoverage.php',
     'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
     'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/Driver.php',
@@ -563,7 +564,6 @@ return array(
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'UserLoginSeeder' => $baseDir . '/database/seeds/UserLoginSeeder.php',
-    'UserRolesSeeder' => $baseDir . '/database/seeds/UserRolesSeeder.php',
     'transaction_categories_seeder' => $baseDir . '/database/seeds/transaction_categories_seeder.php',
     'transaction_types_seeder' => $baseDir . '/database/seeds/transaction_types_seeder.php',
 );
