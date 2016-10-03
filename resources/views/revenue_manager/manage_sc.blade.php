@@ -21,7 +21,7 @@
 @endsection
 
 @section('actions')
-    <a href="#add_rc" class="btn btn-small btn-primary" title="Add Service Channel" data-toggle="modal">
+    <a href="#add_sc" class="btn btn-small btn-primary" title="Add Service Channel" data-toggle="modal">
         <i class="icon-plus"></i> Add
     </a>
     <a href="#edit_sc" class="btn btn-small btn-warning" title="Edit Service Channel" id="edit-sc">

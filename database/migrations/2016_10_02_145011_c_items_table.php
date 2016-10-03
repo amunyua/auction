@@ -42,6 +42,7 @@ class CItemsTable extends Migration
                 ->onUpdate('cascade');
             $table->integer('stock_reorder_level');
             $table->boolean('item_status')->default('1');
+            $table->bigInteger('stock_level');
             $table->timestamps();
 
         });

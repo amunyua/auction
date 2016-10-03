@@ -15,10 +15,15 @@ return array(
     'CItemsTable' => $baseDir . '/database/migrations/2016_10_02_145011_c_items_table.php',
     'Categories' => $baseDir . '/database/migrations/2016_10_01_195538_categories.php',
     'CategoriesSeeder' => $baseDir . '/database/seeds/CategoriesSeeder.php',
+<<<<<<< HEAD
+=======
+    'ChangeBooleantoVarchar' => $baseDir . '/database/migrations/2016_10_03_144332_change_booleanto_varchar.php',
+>>>>>>> d0fb582d917c4d7f038e3a64f4693f59dd4c50f7
     'CountySeeder' => $baseDir . '/database/seeds/CountySeeder.php',
     'CreateAddressTypesTable' => $baseDir . '/database/migrations/2016_10_02_132938_create_address_types_table.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_10_02_133037_create_addresses_table.php',
     'CreateAuctionsTable' => $baseDir . '/database/migrations/2016_10_02_154957_create_auctions_table.php',
+    'CreateBidPackagesTable' => $baseDir . '/database/migrations/2016_10_03_163040_create_bid_packages_table.php',
     'CreateCountiesTable' => $baseDir . '/database/migrations/2016_10_03_073700_create_counties_table.php',
     'CreateCustomerTypesTable' => $baseDir . '/database/migrations/2016_09_30_152245_create_customer_types_table.php',
     'CreateIfmisHeadcodesTable' => $baseDir . '/database/migrations/2016_10_01_173052_create_ifmis_headcodes_table.php',
