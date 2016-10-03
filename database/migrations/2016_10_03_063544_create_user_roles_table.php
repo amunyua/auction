@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressTypesTable extends Migration
+class CreateUserRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAddressTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('address_types', function (Blueprint $table) {
+        Schema::create('user_roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('address_type_name');
-            $table->string('address_type_code');
-            $table->boolean('address_type_status')->default(1);
+            $table->string('role_name');
+            $table->string('role_code');
+            $table->boolean('role_status')->default(1);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateAddressTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address_types');
+        Schema::dropIfExists('user_roles');
     }
 }

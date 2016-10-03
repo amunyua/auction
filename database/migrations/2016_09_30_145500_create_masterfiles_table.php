@@ -23,11 +23,8 @@ class CreateMasterfilesTable extends Migration
             $table->text('image_path')->nullable();
             $table->date('reg_date');
             $table->string('b_role', 50);
-            $table->date('dob')->nullable();
-            $table->integer('customer_type_id');
-            $table->string('email', 255)->nullable();
-            $table->bigInteger('company_name')->nullable();
-            $table->integer('phone')->nullable();
+            $table->string('user_role');
+            $table->string('email', 255);
             $table->timestamps();
         });
     }

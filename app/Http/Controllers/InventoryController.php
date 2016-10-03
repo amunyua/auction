@@ -22,9 +22,7 @@ class InventoryController extends Controller
 
     public function getCategories(){
         $categories = Category::all();
-
         return view('inventory.categories')->withCategories($categories);
-
     }
 
     public function getAilments($id){
