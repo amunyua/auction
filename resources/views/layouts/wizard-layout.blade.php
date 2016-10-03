@@ -118,7 +118,7 @@
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ URL::asset('assets/scripts/app.js') }}"></script>
-{{--<script src="{{ URL::asset('assets/scripts/form-wizard.js') }}"></script>--}}
+<script src="{{ URL::asset('assets/scripts/form-wizard.js') }}"></script>
 <script src="{{ URL::asset('assets/scripts/form-components.js') }}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>

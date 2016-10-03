@@ -44,6 +44,7 @@ Route::get('all-items','InventoryController@getIndex');
 Route::post('add-warehouse','InventoryController@addWarehouse');
 
 Route::get('add-item','NewInventoryController@addItem');
+Route::get('add-item',array( 'uses'=>'NewInventoryController@addItem','as'=>'add-items.index'));
 Route::post('store-item','NewInventoryController@StoreItem');
 
 
@@ -64,5 +65,5 @@ Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 Route::get('/users', 'UserController@index');
 Route::post('/update-user', 'UserController@update');
 Route::delete('/delete-user', 'UserController@destroy');
-Route::post('add_user_role','UserRoleController@addUserRole');
-Route::post('audit_trail','UserRoleController@auditTrail');
+//Route::post('add_user_role','UserRoleController@addUserRole');
+//Route::post('audit_trail','UserRoleController@auditTrail');
