@@ -15,16 +15,17 @@ class CreateMasterfilesTable extends Migration
     {
         Schema::create('masterfiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('surname', 255);
-            $table->string('firstname', 255);
-            $table->string('middlename', 255)->nullable();
-            $table->string('id_passport', 255);
-            $table->string('gender', 50);
+            $table->string('surname', 30);
+            $table->string('firstname', 30);
+            $table->string('middlename', 30)->nullable();
+            $table->string('id_passport', 20);
+            $table->string('gender', 10);
             $table->text('image_path')->nullable();
             $table->date('reg_date');
             $table->string('b_role', 50);
             $table->string('user_role');
-            $table->string('email', 255);
+            $table->string('email', 50);
+            $table->string('customer_type_name', 50);
             $table->timestamps();
         });
     }

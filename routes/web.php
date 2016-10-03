@@ -20,6 +20,7 @@ Route::get('/', 'DashboardController@index');
 Route::get('/masterfile', 'MasterfileController@index');
 Route::post('add_mf', 'MasterfileController@addMf');
 Route::get('all_mfs', 'MasterfileController@allMfs');
+Route::post('edit_mf/{id}',['uses'=>'MasterfileController@updateMf','as'=>'masterfile.update']);
 
 #### Inventory Module
 //routes for managing category details

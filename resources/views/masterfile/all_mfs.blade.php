@@ -44,11 +44,11 @@
                     <td>{{ $mf->reg_date }}</td>
                     <td>{{ $mf->surname }}</td>
                     <td>{{ $mf->firstname }}</td>
-                    <td>{{ $mf->customer_type_id }}</td>
+                    <td>{{ $mf->customer_type_name }}</td>
                     <td>{{ $mf->email }}</td>
                     <td>{{ $mf->b_role }}</td>
-                    <td><a href="" class="btn btn-mini"><i class="icon-edit"></i>Edit</a> </td>
-                    <td><a href="" class="btn btn-small btn-success edit_cat" >Profile</a> </td>
+                    <td><a href="{{ url('edit_mf/'.$mf->id) }}" class="btn btn-small edit_cat"><i class="icon-edit"></i> Edit</a> </td>
+                    <td><a href="{{ url('') }}" class="btn btn-small btn-info edit_cat" ><i class="icon-eye-open"></i> Profile</a> </td>
 
                 </tr>
             @endforeach
