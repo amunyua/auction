@@ -46,7 +46,6 @@ class MasterfileController extends Controller
 //        var_dump($_POST);exit;
         // validate
         $this->validate($request, array(
-//            'snkl'=>'required',
             'surname' => 'required|max:255',
             'firstname' => 'required',
             'id_passport' => 'required|unique:masterfiles',
@@ -73,11 +72,12 @@ class MasterfileController extends Controller
             $mf->save();
             $mf_id = $mf->id;
 
+
             // add address details
             $address = Address::create(array(
                 'county' => Input::get('county'),
                 'town' => Input::get('town'),
-                'mf_id' => $mf_id,
+                'masterfile_id' => $mf_id,
                 'ward' => Input::get('ward'),
                 'street' => Input::get('street'),
                 'building' => Input::get('building'),
@@ -91,14 +91,16 @@ class MasterfileController extends Controller
             // create user login account
             $password = sha1(123456);
             $login = User::create(array (
-                'mf_id' => $mf_id,
+                'masterfile_id' => $mf_id,
                 'email' => Input::get('email'),
                 'password' => $password
             ));
+//            var_dump($login);exit;
             $login->save();
         });
 
-        $request->session()->flash('status', 'The Masterfile has been added');
+        $request->session()->flash('success', 'The Masterfile has been added');
+        return redirect('/masterfile');
     }
 
     public function masterfile(){
