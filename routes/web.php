@@ -39,6 +39,8 @@ Route::get('warehouses',array('uses'=>'InventoryController@getWarehouses','as'=>
 Route::get('all-items','InventoryController@getIndex');
 Route::post('add-warehouse','InventoryController@addWarehouse');
 
+Route::get('add-item','NewInventoryController@addItem');
+
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
