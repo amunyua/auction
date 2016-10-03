@@ -48,11 +48,11 @@
             </a>
             <ul class="sub">
                 <li ><a href="{{ url('/auction-items') }}">Manage Auctions</a></li>
-                <li ><a href="{{ url('/auction-items') }}">Live Auction Items</a></li>
-                <li ><a href="{{ url('/service-channels') }}">Ended Auction Items</a></li>
+                <li ><a href="{{ url('/live-auction-items') }}">Live Auction Items</a></li>
+                <li ><a href="{{ url('/ended-auction-items') }}">Ended Auction Items</a></li>
                 <li ><a href="{{ url('/service-bills') }}">All Buy Now Purchases</a></li>
                 <li ><a href="{{ url('/service-bills') }}">All Bid Purchases</a></li>
-                <li ><a href="{{ url('/service-bills') }}">Bid Packages</a></li>
+                <li ><a href="{{ url('/bid-packages') }}">Bid Packages</a></li>
             </ul>
         </li>
         <li class="has-sub">

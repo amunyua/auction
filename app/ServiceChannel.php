@@ -18,4 +18,8 @@ class ServiceChannel extends Model
     public function requestType(){
         return $this->belongsTo('App\RequestType');
     }
+
+    public function bidPackages(){
+        return $this->hasMany('App\BidPackage');
+    }
 }
