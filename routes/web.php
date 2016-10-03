@@ -28,10 +28,9 @@ Route::get('category-details/{id}','InventoryController@getAilments');
 Route::post('update-category/{id}',['uses'=>'InventoryController@updateCategory','as'=>'category.update']);
 Route::delete('delete-category/{id}','InventoryController@destroyCategory');
 
-<<<<<<< HEAD
+
 #### Auction Module
 Route::get('auction-items', 'AuctionController@index');
-=======
 
 //routes for managing sub category details
 Route::get('sub-categories',array('uses'=>'InventoryController@getSubCategories','as'=>'sub_category.index') );
@@ -44,7 +43,9 @@ Route::get('warehouses',array('uses'=>'InventoryController@getWarehouses','as'=>
 Route::get('all-items','InventoryController@getIndex');
 Route::post('add-warehouse','InventoryController@addWarehouse');
 
->>>>>>> 7f0c32105a7299a723ac44f531bf2b1446bc0a2c
+Route::get('add-item','NewInventoryController@addItem');
+Route::post('store-item','NewInventoryController@StoreItem');
+
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
