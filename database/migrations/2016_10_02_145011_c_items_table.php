@@ -13,20 +13,20 @@ class CItemsTable extends Migration
      */
     public function up()
     {
-        Schema::table('items', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('item_name',255);
             $table->string('item_code',255);
-            $table->integer('item_category');
+            $table->integer('category_id');
             $table->foreign('item_category')
                 ->references('id')
                 ->on('categories')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->integer('item_sub_category');
+            $table->integer('item_sub_category_id');
             $table->foreign('item_sub_category')
                 ->references('id')
-                ->on('subcategories')
+                ->on('sub_categories')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->integer('supplier_mfid');
