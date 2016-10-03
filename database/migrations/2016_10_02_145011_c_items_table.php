@@ -18,13 +18,13 @@ class CItemsTable extends Migration
             $table->string('item_name',255);
             $table->string('item_code',255);
             $table->integer('category_id');
-            $table->foreign('item_category')
+            $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->integer('item_sub_category_id');
-            $table->foreign('item_sub_category')
+            $table->foreign('item_sub_category_id')
                 ->references('id')
                 ->on('sub_categories')
                 ->onUpdate('cascade')
