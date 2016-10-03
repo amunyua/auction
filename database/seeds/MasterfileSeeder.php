@@ -13,8 +13,6 @@ class MasterfileSeeder extends Seeder
      */
     public function run()
     {
-        $ct = CustomerType::where('customer_type_code', 'INDIVIDUAL')->first();
-
         $admin = new Masterfile();
         $admin->surname = 'Admin';
         $admin->firstname = 'Admin';
@@ -22,10 +20,8 @@ class MasterfileSeeder extends Seeder
         $admin->gender = 'Male';
         $admin->reg_date = date('Y-m-d');
         $admin->b_role = 'Staff';
-        $admin->customer_type_id = $ct->id;
+        $admin->user_role = 'System Admin';
         $admin->email = 'admin@admin.com';
-        $admin->phone = 070000000;
-
         $admin->save();
 
     }

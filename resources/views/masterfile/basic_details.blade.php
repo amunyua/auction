@@ -14,11 +14,11 @@
         </div>
         <div class="span6">
             <div class="control-group">
-                <label for="regdate_stamp" class="control-label">Start Date<span>*</span></label>
+                <label for="reg_date" class="control-label">Start Date<span>*</span></label>
                 <div class="controls">
-                    <input type="text" class="date-picker span12" name="regdate_stamp" value="<?php
-                    if(isset($_POST['regdate_stamp'])){
-                        echo $_POST['regdate_stamp'];
+                    <input type="text" class="date-picker span12" name="reg_date" value="<?php
+                    if(isset($_POST['reg_date'])){
+                        echo $_POST['reg_date'];
                     }else{
                         echo date('m-d-Y');
                     }
@@ -111,13 +111,13 @@
             <div class="control-group">
                 <label for="user_role" class="control-label">User Roles</label>
                 <div class="controls">
-                    <select name="user_role" class="span12" id="user_role">
+                    <select name="user_role" class="span12 live_search" id="user_role">
                         <option value="">--Select User Role--</option>
-                        {{--@if(count($roles))--}}
-                            {{--@foreach($roles as $role)--}}
-                                {{--<option value="{{ $role->role_code }}" {{ (old('role') == $role->role_code) ? 'selected': '' }}>{{ $role->role_name }}</option>--}}
-                            {{--@endforeach--}}
-                        {{--@endif--}}
+                        @if(count($roles))
+                            @foreach($roles as $role)
+                                <option value="{{ $role->role_code }}" {{ (old('role') == $role->role_code) ? 'selected': '' }}>{{ $role->role_name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>

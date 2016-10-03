@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Masterfile;
 use App\Address;
-use App\Login;
+use App\UserRoles;
 use App\CustomerType;
+use App\AddressType;
+use App\County;
+use App\User;
 use App\AllMfs;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -21,10 +24,16 @@ class MasterfileController extends Controller
 
     public function index(){
         // fetch data for select list
+        $roles = UserRoles::all();
         $ct = CustomerType::all();
+        $addresses = AddressType::all();
+        $counties = County::all();
 
         return view('masterfile.index', array(
             'customer_types' => $ct,
+            'roles' => $roles,
+            'addresses' => $addresses,
+            'counties' => $counties
         ));
     }
 
@@ -41,12 +50,12 @@ class MasterfileController extends Controller
             'id_passport' => 'required|unique:masterfiles',
             'gender' => 'required',
             'email' => 'required|unique:masterfiles',
-            'b_role' => 'required'
+            'b_role' => 'required',
+            'user_role' => 'required'
         ));
 
         DB::transaction(function(){
             // add to db
-            $role = Role::where('role_code', Input::get('role_code'))->first();
             $mf = Masterfile::create(array(
                 'surname' => Input::get('surname'),
                 'firstname' => Input::get('firstname'),
@@ -56,6 +65,7 @@ class MasterfileController extends Controller
                 'b_role' => Input::get('b_role'),
                 'gender' => Input::get('gender'),
                 'user_role' => Input::get('user_role'),
+                'reg_date' => Input::get('reg_date'),
                 'image_path' => Input::get('image_path')
             ));
             $mf->save();
@@ -65,22 +75,21 @@ class MasterfileController extends Controller
             $address = Address::create(array(
                 'county' => Input::get('county'),
                 'town' => Input::get('town'),
-                'masterfile_id' => $mf_id,
+                'mf_id' => $mf_id,
                 'ward' => Input::get('ward'),
                 'street' => Input::get('street'),
                 'building' => Input::get('building'),
                 'phone' => Input::get('phone'),
                 'postal_address' => Input::get('postal_address'),
                 'postal_code' => Input::get('postal_code'),
-                'address_type_id' => Input::get('address_type_id')
+                'address_type_name' => Input::get('address_type_name')
             ));
             $address->save();
 
             // create user login account
             $password = sha1(123456);
-            $login = Login::create(array (
+            $login = User::create(array (
                 'mf_id' => $mf_id,
-                'username' => Input::get('username'),
                 'email' => Input::get('email'),
                 'password' => $password
             ));

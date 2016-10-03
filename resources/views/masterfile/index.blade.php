@@ -18,11 +18,13 @@
 @section('wizard-id', 'form_wizard_1')
 
 @section('wizard-title')
-    <i class="icon-reorder"></i> Add New Masterfile - <span class="step-title">Step 1 of 4</span>
+    <i class="icon-reorder"></i> Add New Masterfile - <span class="step-title">Step 1 of 2</span>
 @endsection
 
 @section('content')
     <form action="{{ url('/add_masterfile') }}" method="post" class="form-horizontal">
+        {{--generating a token to prevent mismatch--}}
+        {{ csrf_field() }}
         <div class="form-wizard">
             <div class="navbar steps">
                 <div class="navbar-inner">
@@ -72,9 +74,9 @@
                 <a href="javascript:;" class="btn btn-primary blue button-next">
                     Continue <i class="icon-angle-right"></i>
                 </a>
-                <a href="javascript:;" class="btn btn-success button-submit">
+                <button id="submit_wizard_contents" class="btn btn-success button-submit">
                     Submit <i class="icon-ok"></i>
-                </a>
+                </button>
             </div>
         </div>
     </form>

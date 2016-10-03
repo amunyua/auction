@@ -28,12 +28,12 @@ var FormWizard = function () {
                     var current = index + 1;
 
                     // validate address details
-                    // if(current == 3){
-                    //     var valid2 = Masterfile2.validateMyWizard2();
-                    //     if(!valid2){
-                    //         return false;
-                    //     }
-                    // }
+                    if(current == 3){
+                        var valid2 = Masterfile2.validateMyWizard2();
+                        if(!valid2){
+                            return false;
+                        }
+                    }
 
                     // set wizard title
                     $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
@@ -138,6 +138,10 @@ var Masterfile = {
                     alert('You Must Provide Gender!');
                     $('#gender').focus();
                     return false;
+                }else if($('#user_role').val() == ''){
+                    alert('You Must Provide User Role!');
+                    $('#user_role').focus();
+                    return false;
                 }else{
                     return true;
                 }
@@ -172,6 +176,39 @@ var Masterfile = {
                     return true;
                 }
             break;
+        }
+    },
+}
+
+// masterfile address details validation
+var Masterfile2 = {
+    validateMyWizard2: function(){
+        if($('#county').val() == ''){
+            alert('You must provide County Name!');
+            $('#county').focus();
+            return false;
+        }else if($('#town').val() == ''){
+            alert('You must provide Town/City for the selected County!');
+            $('#town').focus();
+            return false;
+        }else if($('#phone').val() == ''){
+            alert('You must provide Provide Phone Number!');
+            $('#phone').focus();
+            return false;
+        }else if($('#box').val() == ''){
+            alert('You must provide Box Number!');
+            $('#box').focus();
+            return false;
+        }else if($('#postal_code').val() == ''){
+            alert('You must provide Postal Code!');
+            $('#postal_code').focus();
+            return false;
+        }else if($('#address_type_id').val() == ''){
+            alert('You must provide Address Type!');
+            $('#address_type_id').focus();
+            return false;
+        }else{
+            return true;
         }
     },
 }

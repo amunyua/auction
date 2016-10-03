@@ -1,13 +1,16 @@
 <!-- BEGIN FORM -->
-
     <div class="row-fluid">
         <div class="span6">
             <div class="control-group">
                 <label for="county" class="control-label">County:<span>*</span></label>
                 <div class="controls">
-                    <select name="county" class="span12" id="select2_sample79" >
+                    <select name="county" class="span12 live_search" id="county" >
                         <option value="">--Choose County--</option>
-
+                        @if(count($counties))
+                            @foreach($counties as $county)
+                                <option value="{{ $county->county_code }}" {{ (old('county') == $county->county_code) ? 'selected': '' }}>{{ $county->county_name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
@@ -87,11 +90,14 @@
                 <div class="controls">
                     <select name="address_type_id" id="address_type_id" class="span12">
                         <option value="">--Choose Address type--</option>
-
+                        @if(count($addresses))
+                            @foreach($addresses as $address)
+                                <option value="{{ $address->address_type_code }}" {{ (old('address') == $address->address_type_code) ? 'selected': '' }}>{{ $address->address_type_name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
             </div>
         </div>
     </div>
-
 <!-- END FORM -->
