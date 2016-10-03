@@ -24,9 +24,9 @@
     <a href="#add_rc" class="btn btn-small btn-primary" title="Add Revenue Channel" data-toggle="modal">
         <i class="icon-plus"></i> Add
     </a>
-    <a href="#edit_rc" class="btn btn-small btn-warning" title="Edit Revenue Channel">
+    <a href="#edit_rc" class="btn btn-small btn-warning" title="Edit Revenue Channel" id="edit-rc">
         <i class="icon-edit"></i> Edit</a>
-    <a href="#edit_rc" class="btn btn-small btn-danger" title="Edit Revenue Channel">
+    <a href="#del_rc" class="btn btn-small btn-danger" title="Edit Revenue Channel" id="del-rc">
         <i class="icon-trash"></i> Delete</a>
 @endsection
 
@@ -126,28 +126,28 @@
     </form>
 
     {{--Edit Modal--}}
-    <form action="{{ url('/add-rev') }}" method="post">
+    <form action="{{ url('/update-rev') }}" method="post">
         {{ csrf_field() }}
         <div id="edit_rc" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel1">Add Revenue Channel</h3>
+                <h3 id="myModalLabel1">Update Revenue Channel</h3>
             </div>
             <div class="modal-body">
                 <div class="row-fluid">
                     <label for="model_id">Revenue Channel Name:</label>
-                    <input type="text" name="revenue_channel_name" d="revenue_channel_name" class="span12" required/>
+                    <input type="text" name="revenue_channel_name" id="revenue_channel_name" class="span12" required/>
                 </div>
 
                 <div class="row-fluid">
                     <label for="imei">Revenue Channel Code:</label>
-                    <input type="text" name="revenue_channel_code" value="" class="span12" required>
+                    <input type="text" name="revenue_channel_code" id="revenue_channel_code" class="span12" required>
                 </div>
 
-                <div class="row-fluid" style="margin-bottom: 10px;">
+                <div class="row-fluid">
                     <label for="imei">Ifmis Subcode</label>
                     <div class="controls">
-                        <select data-placeholder="Ifmis Subcodes" class="live_search span12" name="ifmis_subcode">
+                        <select data-placeholder="Ifmis Subcodes" class="span12" name="ifmis_subcode" id="ifmis_subcode">
                             <option value=""></option>
                             @if(count($ifmis_headcodes))
                                 @foreach($ifmis_headcodes as $ifmis_headcode)
@@ -167,9 +167,11 @@
                     </div>
                 </div>
 
+                {{--hidden fields--}}
+                <input type="hidden" name="edit_id" id="edit_id" required/>
                 <div class="row-fluid">
                     <label for="imei">Status:</label>
-                    <select name="status" class="span12">
+                    <select name="status" class="span12" id="status">
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
                     </select>
@@ -179,6 +181,29 @@
             <div class="modal-footer">
                 <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> Close</button>
                 <button class="btn btn-primary"><i class="icon-save"></i> Save</button>
+            </div>
+        </div>
+    </form>
+
+    {{--Delete Modal--}}
+    <form action="{{ url('/delete-rev') }}" method="post">
+        {{ csrf_field() }}
+        <div id="del_rc" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel1">Delete Revenue Channel</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete revenue channel?</p>
+
+                {{--hidden fields--}}
+                <input type="hidden" name="delete_id" id="delete_id" required/>
+                <input type="hidden" name="_method" value="delete"/>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> No</button>
+                <button class="btn btn-danger"><i class="icon-remove"></i> Yes</button>
             </div>
         </div>
     </form>

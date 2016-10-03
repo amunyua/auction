@@ -31,18 +31,25 @@ Route::get('category-details/{id}','InventoryController@getAilments');
 Route::post('update-category/{id}',['uses'=>'InventoryController@updateCategory','as'=>'category.update']);
 Route::delete('delete-category/{id}','InventoryController@destroyCategory');
 
+#### Auction Module
+Route::get('auction-items', 'AuctionController@index');
+
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
 Route::post('/add-rev', 'RevenueChannelController@store');
+Route::get('/rev-data/{id}', 'RevenueChannelController@getRevData');
 Route::post('/update-rev', 'RevenueChannelController@update');
 Route::delete('/delete-rev', 'RevenueChannelController@destroy');
 Route::get('/service-channels', 'ServiceChannelController@serviceChannels');
 Route::post('/add-sc', 'ServiceChannelController@store');
+Route::get('/service-data/{id}', 'ServiceChannelController@getServData');
 Route::post('/update-sc', 'ServiceChannelController@update');
-Route::post('/delete-sc', 'ServiceChannelController@destroy');
+Route::delete('/delete-sc', 'ServiceChannelController@destroy');
 Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 
 ### User Management Module
 Route::get('/users', 'UserController@index');
+Route::post('/update-user', 'UserController@update');
+Route::delete('/delete-user', 'UserController@destroy');
 Route::post('add_user_role','UserRoleController@addUserRole');
 Route::post('audit_trail','UserRoleController@auditTrail');

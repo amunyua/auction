@@ -41,6 +41,21 @@
         </li>
         <li class="has-sub">
             <a href="javascript:;">
+                <i class="icon-th-list"></i>
+                <span class="title">Auction Manager</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub">
+                <li ><a href="{{ url('/auction-items') }}">Manage Auctions</a></li>
+                <li ><a href="{{ url('/auction-items') }}">Live Auction Items</a></li>
+                <li ><a href="{{ url('/service-channels') }}">Ended Auction Items</a></li>
+                <li ><a href="{{ url('/service-bills') }}">All Buy Now Purchases</a></li>
+                <li ><a href="{{ url('/service-bills') }}">All Bid Purchases</a></li>
+                <li ><a href="{{ url('/service-bills') }}">Bid Packages</a></li>
+            </ul>
+        </li>
+        <li class="has-sub">
+            <a href="javascript:;">
                 <i class="icon-user"></i>
                 <span class="title">Revenue Manager</span>
                 <span class="arrow "></span>
