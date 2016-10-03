@@ -19,27 +19,23 @@ class CreateStockTransactionsTable extends Migration
             $table->foreign('item_id')
                 ->references('id')
                 ->on('items')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->integer('transaction_type');
-            $table->foreign('transaction_type')
+                ->onUpdate('cascade');
+            $table->integer('transaction_type_id');
+            $table->foreign('transaction_type_id')
                 ->references('id')
                 ->on('transaction_types')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->integer('transaction_category');
-            $table->foreign('transaction_category')
+                ->onUpdate('cascade');
+            $table->integer('transaction_category_id');
+            $table->foreign('transaction_category_id')
                 ->references('id')
                 ->on('transaction_categories')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->integer('warehouse');
-            $table->foreign('warehouse')
+                ->onUpdate('cascade');
+            $table->integer('warehouse_id');
+            $table->foreign('warehouse_id')
                 ->references('id')
                 ->on('warehouses')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-            $table->integer('quantity');
+                ->onUpdate('cascade');
+            $table->integer('quantity')->nullable();
             $table->timestamps();
         });
     }

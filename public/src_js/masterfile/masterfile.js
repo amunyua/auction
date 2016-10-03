@@ -10,7 +10,7 @@ var FormWizard = function () {
             }
 
             // default form wizard
-            $('#form_wizard_1').bootstrapWizard({
+            $('#form_wizard_2').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index) {
@@ -28,34 +28,34 @@ var FormWizard = function () {
                     var current = index + 1;
 
                     // validate address details
-                    // if(current == 3){
-                    //     var valid2 = Masterfile2.validateMyWizard2();
-                    //     if(!valid2){
-                    //         return false;
-                    //     }
-                    // }
+                    if(current == 3){
+                        var valid2 = Masterfile2.validateMyWizard2();
+                        if(!valid2){
+                            return false;
+                        }
+                    }
 
                     // set wizard title
-                    $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
+                    $('.step-title', $('#form_wizard_2')).text('Step ' + (index + 1) + ' of ' + total);
                     // set done steps
-                    jQuery('li', $('#form_wizard_1')).removeClass("done");
+                    jQuery('li', $('#form_wizard_2')).removeClass("done");
                     var li_list = navigation.find('li');
                     for (var i = 0; i < index; i++) {
                         jQuery(li_list[i]).addClass("done");
                     }
 
                     if (current == 1) {
-                        $('#form_wizard_1').find('.button-previous').hide();
+                        $('#form_wizard_2').find('.button-previous').hide();
                     } else {
-                        $('#form_wizard_1').find('.button-previous').show();
+                        $('#form_wizard_2').find('.button-previous').show();
                     }
 
                     if (current >= total) {
-                        $('#form_wizard_1').find('.button-next').hide();
-                        $('#form_wizard_1').find('.button-submit').show();
+                        $('#form_wizard_2').find('.button-next').hide();
+                        $('#form_wizard_2').find('.button-submit').show();
                     } else {
-                        $('#form_wizard_1').find('.button-next').show();
-                        $('#form_wizard_1').find('.button-submit').hide();
+                        $('#form_wizard_2').find('.button-next').show();
+                        $('#form_wizard_2').find('.button-submit').hide();
                     }
                     App.scrollTo($('.page-title'));
                 },
@@ -63,26 +63,26 @@ var FormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     // set wizard title
-                    $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
+                    $('.step-title', $('#form_wizard_2')).text('Step ' + (index + 1) + ' of ' + total);
                     // set done steps
-                    jQuery('li', $('#form_wizard_1')).removeClass("done");
+                    jQuery('li', $('#form_wizard_2')).removeClass("done");
                     var li_list = navigation.find('li');
                     for (var i = 0; i < index; i++) {
                         jQuery(li_list[i]).addClass("done");
                     }
 
                     if (current == 1) {
-                        $('#form_wizard_1').find('.button-previous').hide();
+                        $('#form_wizard_2').find('.button-previous').hide();
                     } else {
-                        $('#form_wizard_1').find('.button-previous').show();
+                        $('#form_wizard_2').find('.button-previous').show();
                     }
 
                     if (current >= total) {
-                        $('#form_wizard_1').find('.button-next').hide();
-                        $('#form_wizard_1').find('.button-submit').show();
+                        $('#form_wizard_2').find('.button-next').hide();
+                        $('#form_wizard_2').find('.button-submit').show();
                     } else {
-                        $('#form_wizard_1').find('.button-next').show();
-                        $('#form_wizard_1').find('.button-submit').hide();
+                        $('#form_wizard_2').find('.button-next').show();
+                        $('#form_wizard_2').find('.button-submit').hide();
                     }
 
                     App.scrollTo($('.page-title'));
@@ -91,14 +91,14 @@ var FormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     var $percent = (current / total) * 100;
-                    $('#form_wizard_1').find('.bar').css({
+                    $('#form_wizard_2').find('.bar').css({
                         width: $percent + '%'
                     });
                 }
             });
 
-            $('#form_wizard_1').find('.button-previous').hide();
-            $('#form_wizard_1 .button-submit').click(function () {
+            $('#form_wizard_2').find('.button-previous').hide();
+            $('#form_wizard_2 .button-submit').click(function () {
                 //alert('Finished! Hope you like it :)');
             }).hide();
         }
@@ -138,6 +138,10 @@ var Masterfile = {
                     alert('You Must Provide Gender!');
                     $('#gender').focus();
                     return false;
+                }else if($('#user_role').val() == ''){
+                    alert('You Must Provide User Role!');
+                    $('#user_role').focus();
+                    return false;
                 }else{
                     return true;
                 }
@@ -172,6 +176,39 @@ var Masterfile = {
                     return true;
                 }
             break;
+        }
+    },
+}
+
+// masterfile address details validation
+var Masterfile2 = {
+    validateMyWizard2: function(){
+        if($('#county').val() == ''){
+            alert('You must provide County Name!');
+            $('#county').focus();
+            return false;
+        }else if($('#town').val() == ''){
+            alert('You must provide Town/City for the selected County!');
+            $('#town').focus();
+            return false;
+        }else if($('#phone').val() == ''){
+            alert('You must provide Provide Phone Number!');
+            $('#phone').focus();
+            return false;
+        }else if($('#box').val() == ''){
+            alert('You must provide Box Number!');
+            $('#box').focus();
+            return false;
+        }else if($('#postal_code').val() == ''){
+            alert('You must provide Postal Code!');
+            $('#postal_code').focus();
+            return false;
+        }else if($('#address_type_id').val() == ''){
+            alert('You must provide Address Type!');
+            $('#address_type_id').focus();
+            return false;
+        }else{
+            return true;
         }
     },
 }

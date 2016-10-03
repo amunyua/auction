@@ -30,21 +30,32 @@ class CItemsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->integer('supplier_mfid');
-            $table->foreign('supplier_mfid')
+            $table->foreign('supplier_mfid');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onUpdate('cascade');
+            $table->integer('sub_category_id')->nullable();
+            $table->foreign('sub_category_id')
+                ->references('id')
+                ->on('sub_categories')
+                ->onUpdate('cascade');
+            $table->integer('masterfile_id')->nullable();
+            $table->foreign('masterfile_id')
                 ->references('id')
                 ->on('masterfiles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
             $table->string('image_path',250);
             $table->double('purchase_price');
             $table->integer('initial_stock');
-            $table->integer('warehouse');
-            $table->foreign('warehouse')
+            $table->integer('warehouse_id');
+            $table->foreign('warehouse_id')
                 ->references('id')
                 ->on('warehouses')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onUpdate('cascade');
             $table->integer('stock_reorder_level');
+            $table->boolean('item_status')->default('1');
+            $table->timestamps();
 
         });
     }
