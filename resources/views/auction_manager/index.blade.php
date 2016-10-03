@@ -83,17 +83,17 @@
                 <div class="row-fluid" style="margin-bottom: 10px;">
                     <select name="item" class="span12 live_search">
                         <option value="">--Choose Auction Item--</option>
-                        {{--@if(count($items))--}}
-                            {{--@foreach($items as $item)--}}
-                                {{--<option value="{{ $item->id }}">{{ $item->name }}</option>--}}
-                            {{--@endforeach--}}
-                        {{--@endif--}}
+                        @if(count($items))
+                            @foreach($items as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
 
                 <div class="row-fluid">
-                    <label for="item">Auto-Rollover:</label>
-                    <select name="item" class="span12" required>
+                    <label for="auto_rollover">Auto-Rollover:</label>
+                    <select name="auto_rollover" class="span12" required>
                         <option value="">--Choose--</option>
                         <option value="1">Yes</option>
                         <option value="0">No</option>
