@@ -18,6 +18,7 @@ Route::get('/home', 'DashboardController@index');
 #### Masterfile Module
 Route::get('/masterfile', 'MasterfileController@index');
 Route::get('/all_mfs', 'MasterfileController@allMfs');
+Route::post('add_masterfile','MasterfileController@addMf');
 
 #### Inventory Module
 //routes for managing category details

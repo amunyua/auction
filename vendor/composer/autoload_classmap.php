@@ -19,6 +19,7 @@ return array(
     'CreateCustomerTypesTable' => $baseDir . '/database/migrations/2016_09_30_152245_create_customer_types_table.php',
     'CreateIfmisHeadcodesTable' => $baseDir . '/database/migrations/2016_10_01_173052_create_ifmis_headcodes_table.php',
     'CreateIfmisSubcodesTable' => $baseDir . '/database/migrations/2016_10_01_173107_create_ifmis_subcodes_table.php',
+    'CreateLoginsTable' => $baseDir . '/database/migrations/2016_10_02_170242_create_logins_table.php',
     'CreateMasterfilesTable' => $baseDir . '/database/migrations/2016_09_30_145500_create_masterfiles_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateRequestTypesTable' => $baseDir . '/database/migrations/2016_10_01_175305_create_request_types_table.php',
@@ -560,6 +561,5 @@ return array(
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'UserLoginSeeder' => $baseDir . '/database/seeds/UserLoginSeeder.php',
     'transaction_categories_seeder' => $baseDir . '/database/seeds/transaction_categories_seeder.php',
-    'transaction_table_seeder' => $baseDir . '/database/seeds/transaction_table_seeder.php',
     'transaction_types_seeder' => $baseDir . '/database/seeds/transaction_types_seeder.php',
 );
