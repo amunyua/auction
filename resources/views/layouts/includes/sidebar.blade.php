@@ -75,7 +75,7 @@
             </a>
             <ul class="sub">
                 <li ><a href="{{ url('/users') }}">All Users</a></li>
-                <li ><a href="{{ url('/add_user_role') }}">Manage User Role</a></li>
+                <li ><a href="{{ url('/user_roles') }}">Manage User Role</a></li>
                 <li ><a href="{{ url('/audit_trail') }}">Audit Trail</a></li>
             </ul>
         </li>

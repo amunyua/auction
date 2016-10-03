@@ -21,6 +21,19 @@ class CItemsTable extends Migration
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->integer('item_sub_category_id');
+            $table->foreign('item_sub_category_id')
+                ->references('id')
+                ->on('sub_categories')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->integer('supplier_mfid');
+            $table->foreign('supplier_mfid');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
                 ->onUpdate('cascade');
             $table->integer('sub_category_id')->nullable();
             $table->foreign('sub_category_id')
@@ -41,6 +54,8 @@ class CItemsTable extends Migration
                 ->on('warehouses')
                 ->onUpdate('cascade');
             $table->integer('stock_reorder_level');
+            $table->boolean('item_status')->default('1');
+            $table->timestamps();
 
         });
     }

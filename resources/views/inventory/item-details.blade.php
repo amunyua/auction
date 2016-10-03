@@ -4,7 +4,7 @@
         <div class="control-group">
             <label for="category" class="control-label">Item category<span>*</span></label>
             <div class="controls">
-                <select name="item_category" class="span12" id="item_category">
+                <select name="category_id" class="span12" id="item_category">
                     <option value="">--Choose item category--</option>
                     @if(count($categories))
                         @foreach($categories as $category)
@@ -20,7 +20,7 @@
         <div class="control-group">
             <label for="sub-category" class="control-label">Sub category</label>
             <div class="controls">
-                <select name="item_sub_category" class="span12" id="item_sub_category">
+                <select name="sub_category_id" class="span12" id="item_sub_category">
                     <option value="">--Choose a sub category--</option>
                     @if(count($subcategories))
                         @foreach($subcategories as $category)
