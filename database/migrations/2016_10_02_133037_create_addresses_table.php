@@ -15,7 +15,7 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('mf_id');
+            $table->bigInteger('masterfile_id');
             $table->string('county');
             $table->string('town');
             $table->string('postal_address');
@@ -26,6 +26,11 @@ class CreateAddressesTable extends Migration
             $table->string('building')->nullable();
             $table->bigInteger('phone');
             $table->timestamps();
+            $table->foreign('masterfile_id')
+                ->references('id')
+                ->on('masterfiles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
          $this->call(RequestTypesSeeder::class);
          $this->call(transaction_categories_seeder::class);
          $this->call(transaction_types_seeder::class);
-         $this->call(UserRolesSeeder::class);
+         $this->call(RolesSeeder::class);
          $this->call(AddressTypeSeeder::class);
          $this->call(CountySeeder::class);
     }

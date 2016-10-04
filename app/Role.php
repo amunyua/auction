@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserRoles extends Model
+class Role extends Model
 {
     protected $fillable = array(
         'role_name', 'role_code', 'role_status'

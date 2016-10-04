@@ -22,8 +22,8 @@
                 <span class="arrow "></span>
             </a>
             <ul class="sub">
-                <li ><a href="{{ url('/masterfile') }}">Add Masterfile</a></li>
-                <li ><a href="{{ url('/all_mfs') }}">All Masterfiles</a></li>
+                <li ><a href="{{ url('masterfile') }}">Add Masterfile</a></li>
+                <li ><a href="{{ url('all_mfs') }}">All Masterfiles</a></li>
             </ul>
         </li>
         <li class="has-sub">
@@ -33,11 +33,12 @@
                 <span class="arrow "></span>
             </a>
             <ul class="sub">
-                <li ><a href="{{ url('/add-item') }}">Create Inventory</a></li>
                 <li ><a href="{{ url('/categories') }}">Manage Categories</a></li>
                 <li ><a href="{{ url('/sub-categories') }}">Manage Sub Categories</a></li>
                 <li ><a href="{{ url('/warehouses') }}">Manage Warehouses</a></li>
-                <li ><a href="{{ url('/all-items') }}">All Items</a></li>
+                <li ><a href="{{ url('/add-item') }}">Create Inventory</a></li>
+                <li ><a href="{{ url('/all-items') }}">All Inventory Items</a></li>
+                <li ><a href="{{ url('/stock-transactions') }}">Stock Transactions</a></li>
             </ul>
         </li>
         <li class="has-sub">
@@ -48,11 +49,11 @@
             </a>
             <ul class="sub">
                 <li ><a href="{{ url('/auction-items') }}">Manage Auctions</a></li>
-                <li ><a href="{{ url('/auction-items') }}">Live Auction Items</a></li>
-                <li ><a href="{{ url('/service-channels') }}">Ended Auction Items</a></li>
+                <li ><a href="{{ url('/live-auction-items') }}">Live Auction Items</a></li>
+                <li ><a href="{{ url('/ended-auction-items') }}">Ended Auction Items</a></li>
                 <li ><a href="{{ url('/service-bills') }}">All Buy Now Purchases</a></li>
                 <li ><a href="{{ url('/service-bills') }}">All Bid Purchases</a></li>
-                <li ><a href="{{ url('/service-bills') }}">Bid Packages</a></li>
+                <li ><a href="{{ url('/bid-packages') }}">Bid Packages</a></li>
             </ul>
         </li>
         <li class="has-sub">

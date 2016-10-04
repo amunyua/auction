@@ -29,11 +29,11 @@
             <small>@yield('page-subtitle')</small>
         </h3>
         <ul class="breadcrumb">
-            <li>
-                <i class="icon-home"></i>
-                <a href="index.html">Home</a>
-                <span class="icon-angle-right"></span>
-            </li>
+            {{--<li>--}}
+                {{--<i class="icon-home"></i>--}}
+                {{--<a href="index.html">Home</a>--}}
+                {{--<span class="icon-angle-right"></span>--}}
+            {{--</li>--}}
             {{--<li>--}}
                 {{--<a href="#">Form Stuff</a>--}}
                 {{--<span class="icon-angle-right"></span>--}}

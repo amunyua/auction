@@ -46,6 +46,7 @@
                             {{ method_field('DELETE') }}
                         </form>
                     </td>
+                    <td>{{ ($warehouse->warehouse_status == 1) ? 'Active':'Inactive'  }}</td>
                 </tr>
             @endforeach
         @endif

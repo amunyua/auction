@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesTable extends Migration
+class AddCustomerTypeNameToMasterfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('role_code');
-            $table->string('role_name');
-            $table->boolean('role_status')->default(1);
-            $table->timestamps();
+        Schema::table('masterfiles', function (Blueprint $table) {
+            //
         });
     }
 
@@ -29,6 +25,8 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('masterfiles', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -6,8 +6,9 @@
                 <div class="controls">
                     <select name="b_role" class="span12" id="b_role">
                         <option value="">--Choose Business Role--</option>
-                        <option value="Client">Client</option>
-                        <option value="Staff">Staff</option>
+                        <option value="Client" {{ (old('b_role') == 'Client') ? 'selected' : '' }}>Client</option>
+                        <option value="Staff" {{ (old('b_role') == 'Staff' ? 'selected' : '') }}>Staff</option>
+                        <option value="Supplier" {{ (old('b_role') == 'Supplier' ? 'selected' : '') }}>Supplier</option>
                     </select>
                 </div>
             </div>
@@ -31,18 +32,17 @@
     <div class="row-fluid">
         <div class="span6">
             <div class="control-group">
-                <label for="surname" class="control-label" id="variation">Surname</label>
+                <label for="surname" class="control-label">Surname</label>
                 <div class="controls  input-icon">
-                    <input type="text" name="surname" class="span12" maxlength="20" value=""
-                           id="surname" placeholder="Surname"/>
+                    <input type="text" name="surname" class="span12" maxlength="20" value="{{ (old('surname')) }}" id="surname" placeholder="Surname"/>
                 </div>
             </div>
         </div>
         <div class="span6">
             <div class="control-group">
-                <label class="control-label" for="id_passport" id="id_pass">ID # or Passport<span>*</span></label>
+                <label class="control-label" for="id_passport">ID # or Passport<span>*</span></label>
                 <div class="controls">
-                    <input type="text" name="id_passport" maxlength="10" value="" class="span12" id="id_passport"/>
+                    <input type="text" name="id_passport" maxlength="10" value="{{ (old('id_passport')) }}" class="span12" id="id_passport" placeholder="Id # or Password"/>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
             <div class="control-group">
                 <label for="firstname" class="control-label">First Name</label>
                 <div class="controls">
-                    <input type="text" name="firstname" class="span12" id="firstname" maxlength="20" value="" placeholder="First Name"/>
+                    <input type="text" name="firstname" class="span12" id="firstname" maxlength="20" value="{{ old('firstname') }}" placeholder="First Name"/>
                 </div>
             </div>
         </div>
@@ -63,8 +63,8 @@
                 <div class="controls">
                     <select name="gender" class="span12" id="gender">
                         <option value="">--Choose Gender--</option>
-                        <option value="Male" >Male</option>
-                        <option value="Female">Female</option>
+                        <option value="Male" {{ (old('Male') == 'Male') ? 'selected' : '' }}>Male</option>
+                        <option value="Female" {{ (old('Female') == 'Female') ? 'selected' : '' }}>Female</option>
                     </select>
                 </div>
             </div>
@@ -76,7 +76,7 @@
             <div class="control-group">
                 <label for="middlename" class="control-label">Middle Name</label>
                 <div class="controls">
-                    <input type="text" name="middlename" class="span12" id="middlename" maxlength="20" value="" placeholder="Middle Name" />
+                    <input type="text" name="middlename" class="span12" id="middlename" maxlength="20" value="{{ old('middlename') }}" placeholder="Middle Name" />
                 </div>
             </div>
         </div>
@@ -86,8 +86,41 @@
                 <div class="controls">
                     <div class="input-icon left">
                         <i class="icon-envelope"></i>
-                        <input type="email" name="email" class="span12" value="" placeholder="email" id="email"/>
+                        <input type="email" name="email" class="span12" value="{{ old('email') }}" placeholder="email" id="email"/>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="control-group">
+                <label for="customer_type_name" class="control-label">Masterfile Type</label>
+                <div class="controls">
+                    <select name="customer_type_name" class="span12 live_search" id="customer_type_name">
+                        <option value="">--Select Masterfile Type--</option>
+                        @if(count($cts))
+                            @foreach($cts as $ct)
+                                <option value="{{ $ct->customer_type_code }}" {{ (old('customer_type') == $ct->customer_type_code) ? 'selected': '' }}>{{ $ct->customer_type_name }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="span6">
+            <div class="control-group">
+                <label for="user_role" class="control-label">User Roles</label>
+                <div class="controls">
+                    <select name="user_role" class="span12 live_search" id="user_role">
+                        <option value="">--Select User Role--</option>
+                        @if(count($roles))
+                            @foreach($roles as $role)
+                                <option value="{{ $role->role_code }}" {{ (old('role') == $role->role_code) ? 'selected': '' }}>{{ $role->role_name }}</option>
+                            @endforeach
+                        @endif
+                    </select>
                 </div>
             </div>
         </div>
@@ -104,21 +137,6 @@
                         <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input class="span12" type="file" name="image_path"/></span>
                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="span6">
-            <div class="control-group">
-                <label for="user_role" class="control-label">User Roles</label>
-                <div class="controls">
-                    <select name="user_role" class="span12 live_search" id="user_role">
-                        <option value="">--Select User Role--</option>
-                        @if(count($roles))
-                            @foreach($roles as $role)
-                                <option value="{{ $role->role_code }}" {{ (old('role') == $role->role_code) ? 'selected': '' }}>{{ $role->role_name }}</option>
-                            @endforeach
-                        @endif
-                    </select>
                 </div>
             </div>
         </div>

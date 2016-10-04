@@ -4,7 +4,7 @@
             <div class="control-group">
                 <label for="county" class="control-label">Supplier</label>
                 <div class="controls">
-                    <select name="supplier_mfid" class="span12" id="select2_sample79" >
+                    <select name="masterfile-id" class="span12" id="select2_sample79" >
                         <option value="">--Select supplier--</option>
                         @if(count($suppliers))
                             @foreach($suppliers as $supplier)
@@ -19,7 +19,7 @@
             <div class="control-group">
                 <label for="warehouse" class="control-label">Warehouse</label>
                 <div class="controls">
-                    <select name="warehouse" class="span12" id="select2_sample79" >
+                    <select name="warehouse_id" class="span12" id="select2_sample79" >
                         <option value="">--Select warehouse--</option>
                         @if(count($warehouses))
                             @foreach($warehouses as $warehouse)
@@ -39,7 +39,7 @@
             <div class="control-group">
                 <label for="warehouse" class="control-label">Transaction type</label>
                 <div class="controls">
-                    <select name="transaction_type" class="span12" id="select2_sample79" >
+                    <select name="transaction_type_id" class="span12" id="select2_sample79" >
                         <option value="">--Select transaction type--</option>
                         @if(count($transaction_types))
                             @foreach($transaction_types as $transaction_type)
@@ -54,7 +54,7 @@
             <div class="control-group">
                 <label for="transaction-category" class="control-label">Transaction category</label>
                 <div class="controls">
-                    <select name="transaction_category" class="span12" id="select2_sample79" >
+                    <select name="transaction_category_id" class="span12" id="select2_sample79" >
                         <option value="">--Select transaction category--</option>
                         @if(count($transaction_categories))
                             @foreach($transaction_categories as $transaction_category)

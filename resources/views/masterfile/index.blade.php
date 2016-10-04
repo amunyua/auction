@@ -9,10 +9,10 @@
         <span class="icon-angle-right"></span>
     </li>
     <li>
-        <a href="#">Masterfile</a>
+        <span>Masterfile</span>
         <span class="icon-angle-right"></span>
     </li>
-    <li><a href="#">Add New Masterfile</a></li>
+    <li><span>Add New Masterfile</span></li>
 @endsection
 
 @section('wizard-id', 'form_wizard_2')
@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ url('/add_masterfile') }}" method="post" class="form-horizontal">
+    <form action="{{ url('add_mf') }}" method="post" class="form-horizontal">
         {{--generating a token to prevent mismatch--}}
         {{ csrf_field() }}
         <div class="form-wizard">
@@ -54,6 +54,7 @@
                 <div class="bar"></div>
             </div>
             <div class="tab-content">
+                @include('layouts.includes._messages')
                 <div class="tab-pane active" id="tab1">
                     <h3>Provide your account details</h3>
                     @include('masterfile.basic_details')
