@@ -22,16 +22,16 @@
     @include('layouts.includes._messages')
     <table class="table table-bordered" id="table1" >
         <thead>
-        <tr>
-            <th>Id</th>
-            <th>Sub Category name</th>
-            <th>Belongs to</th>
-            <th>Sub Category code</th>
-            <th>Sub Category status</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
+            <tr>
+                <th>Id</th>
+                <th>Sub Category name</th>
+                <th>Belongs to</th>
+                <th>Sub Category code</th>
+                <th>Sub Category status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
         <tbody>
         @if(count($subcategories))
             @foreach($subcategories as $subcategory)

@@ -9,10 +9,10 @@
         <span class="icon-angle-right"></span>
     </li>
     <li>
-        <a href="#">Masterfile</a>
+        <span href="#">Masterfile</span>
         <span class="icon-angle-right"></span>
     </li>
-    <li><a href="#">All Masterfile</a></li>
+    <li><span>All Masterfile</span></li>
 @endsection
 
 @section('wizard-id', 'form_wizard_1')
@@ -48,7 +48,7 @@
                     <td>{{ $mf->email }}</td>
                     <td>{{ $mf->b_role }}</td>
                     <td><a href="{{ url('edit_mf/'.$mf->id) }}" class="btn btn-small edit_cat"><i class="icon-edit"></i> Edit</a> </td>
-                    <td><a href="{{ url('') }}" class="btn btn-small btn-info edit_cat" ><i class="icon-eye-open"></i> Profile</a> </td>
+                    <td><a href="{{ url('mf_profile/'.$mf->id) }}" class="btn btn-small btn-info edit_cat" ><i class="icon-eye-open"></i> Profile</a> </td>
 
                 </tr>
             @endforeach

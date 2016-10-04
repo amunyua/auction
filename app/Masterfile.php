@@ -10,7 +10,11 @@ class Masterfile extends Model
         'surname', 'firstname', 'middlename', 'id_passport', 'b_role', 'gender', 'email', 'user_role', 'customer_type_name', 'reg_date'
     );
 
-    public function UserRole(){
-        return $this->belongsTo('App\UserRole');
+    public function address(){
+        return $this->belongsTo('App\Address');
+    }
+
+    public function addressType(){
+        return $this->belongsTo('App\AddressType');
     }
 }
