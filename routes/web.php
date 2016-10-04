@@ -36,6 +36,7 @@ Route::get('auction-items', 'AuctionController@index');
 Route::get('auction-item-data/{id}', 'AuctionController@getAuctionItemData');
 Route::get('live-auction-items', 'AuctionController@liveAuctions');
 Route::get('ended-auction-items', 'AuctionController@endedAuctions');
+Route::post('add-auction-item', 'AuctionController@store');
 Route::post('edit-auction-item', 'AuctionController@update');
 Route::delete('delete-auction-item', 'AuctionController@destroy');
 Route::get('bid-packages', 'BidPackageController@index');
@@ -53,13 +54,17 @@ Route::delete('delete-subcategory/{id}','InventoryController@destroySubcategory'
 
 Route::get('warehouses',array('uses'=>'InventoryController@getWarehouses','as'=>'warehouses.store'));
 Route::get('all-items','InventoryController@getIndex');
+Route::get('warehouse-data/{warehouse_id}','InventoryController@getWarehouse');
 Route::post('add-warehouse','InventoryController@addWarehouse');
+Route::post('update-warehouse/{id}','InventoryController@updateWarehouse');
+Route::delete('delete-warehouse/{id}','InventoryController@destroyWarehouse');
 
 Route::get('add-item','NewInventoryController@addItem');
 Route::get('add-item',array( 'uses'=>'NewInventoryController@addItem','as'=>'add-items.index'));
 Route::post('store-item','NewInventoryController@StoreItem');
 Route::get('all-items',array('uses'=>'NewInventoryController@index','as'=>'all-items.index'));
-Route::get('stock-transactions','NewInventoryController@stockTransactions');
+Route::get('stock-transactions',array('uses'=>'NewInventoryController@stockTransactions','as'=>'stock-transactions.index'));
+Route::post('create-transaction','NewInventoryController@createTransaction');
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');

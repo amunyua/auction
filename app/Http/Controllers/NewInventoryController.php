@@ -13,12 +13,17 @@ use App\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
 
 class NewInventoryController extends Controller
 {
+    private $_request;
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index(){
         $items = Item::all();
         return view('inventory.all-items')->withItems($items);
@@ -39,6 +44,7 @@ class NewInventoryController extends Controller
     }
 
     public function storeItem(Request $request){
+
 //        var_dump($_POST);die;
         //validation
         $this->validate($request,array(
@@ -91,8 +97,40 @@ class NewInventoryController extends Controller
             'items'=>Item::all(),
             'transaction_types'=>TransactionType::all(),
             'transaction_categories'=>TransactionCategory::all(),
-            'warehouse'=>Warehouse::all(),
+            'warehouses'=>Warehouse::all(),
 
         ));
+    }
+
+    public function createTransaction(Request $request){
+        //validation
+        $this->_request =$request;
+        $this->validate($request, array(
+            'item_id'=>'required',
+            'transaction_type_id'=>'required',
+            'transaction_category_id'=>'required',
+            'warehouse_id'=>'required',
+            'quantity'=>'required|numeric'
+        ));
+        //save the items into the db
+        DB::transaction(function (){
+        $item = Item::find($request->item_id)->first();
+         $stock_level = $item->stock_level;
+
+        $user = Auth::user();
+        $stock_transaction = new StockTransaction();
+        $stock_transaction->item_id = $request->item_id;
+        $stock_transaction->transaction_type_id =$request->transaction_type_id;
+        $stock_transaction->transaction_category_id = $request->transaction_category_id;
+        $stock_transaction->warehouse_id =$request->warehouse_id;
+        $stock_transaction->quantity = $request->quantity;
+        $stock_transaction->transacted_by = $user->id;
+
+        $stock_transaction->save();
+    });
+
+        Session::flash('success','The stock transaction has been created');
+
+        return redirect()->route('stock-transactions.index');
     }
 }

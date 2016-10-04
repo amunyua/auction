@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\SubCategory;
 use App\Warehouse;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -167,23 +168,60 @@ class InventoryController extends Controller
     }
 
     public function addWarehouse(Request $request){
-        //var_dump($_POST);
+       // var_dump($_POST);die;
         $this->validate($request, array(
-            'warehouse_name'=> 'required|unique:warehouses,warehouse_name',
-            'warehouse_code'=>'required|unique:warehouses,warehouse_code',
+            'warehouse_name'=> 'required|unique:warehouses',
+            'warehouse_code'=>'required|unique:warehouses',
             'warehouse_status'=>'required'
         ));
 
         $warehouse = new Warehouse();
-
         $warehouse->warehouse_name = $request->warehouse_name;
         $warehouse->warehouse_code = $request->warehouse_code;
-        $warehouse->warehouse_status =$request->warehouse_status;
+        $warehouse->warehouse_status = $request->warehouse_status;
+        $warehouse->save();
+
+        Session::flash('success','The has been added');
+        return redirect('warehouses');
+
+    }
+
+    public function destroyWarehouse($id){
+        if(Warehouse::destroy($id)){
+            Session::flash('success','The warehouse has been deleted');
+            return redirect('warehouses');
+        }
+    }
+
+    public function getWarehouse(Request $request){
+        $id = $request->warehouse_id;
+        $warehouse = Warehouse::find($id);
+        return \Illuminate\Support\Facades\Response::json($warehouse);
+    }
+
+    public function updateWarehouse(Request $request, $id){
+//        var_dump($_POST);
+        $warehouse = Warehouse::find($id);
+        if($warehouse->warehouse_name != $request->input('warehouse_name')) {
+            $this->validate($request, array(
+                'warehouse_name'=> 'required|unique:warehouses',
+                'warehouse_code'=>'required|unique:warehouses',
+                'warehouse_status'=>'required'
+            ));
+        }else{
+            $this->validate($request, array(
+                'warehouse_name'=> 'required|unique:warehouses',
+                'warehouse_code'=>'required|unique:warehouses',
+                'warehouse_status'=>'required'
+            ));
+        }
+        $warehouse->warehouse_name = $request->input('sub_category_name');
+        $warehouse->warehouse_code = $request->input('sub_category_code');
+        $warehouse->warehouse_status =$request->input('sub_category_status');
 
         $warehouse->save();
 
-        Session::flash('success','Warehouse added');
-        return redirect()->route('warehouses.store');
-
+        Session::flash('success','The sub  has been edited');
+        return redirect('warehouses');
     }
 }
