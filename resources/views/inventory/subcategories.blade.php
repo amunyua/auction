@@ -25,7 +25,7 @@
         <tr>
             <th>Id</th>
             <th>Sub Category name</th>
-            <th>Belongs to</th>
+            <th>Category</th>
             <th>Sub Category code</th>
             <th>Sub Category status</th>
             <th>Edit</th>
@@ -35,10 +35,14 @@
         <tbody>
         @if(count($subcategories))
             @foreach($subcategories as $subcategory)
+                <?php
+                    $cat = App\Category::find($subcategory->category_id );
+                ?>
+
                 <tr>
                     <td>{{ $subcategory->id }}</td>
                     <td>{{ $subcategory->sub_category_name }}</td>
-                    <td></td>
+                    <td>{{ $cat->category_name }}</td>
                     <td>{{ $subcategory->sub_category_code }}</td>
                     <td>{{ ($subcategory->sub_category_status == 1) ? 'Active':'Inactive' }}</td>
                     <td><a href="#edit-subcategory" action="{{ url('update-subcategory/'.$subcategory->id ) }}" edit-id="{{ $subcategory->id }}" class="btn btn-success btn-small edit_subcat" data-toggle="modal">Edit</a> </td>

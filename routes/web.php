@@ -35,6 +35,7 @@ Route::get('auction-items', 'AuctionController@index');
 Route::get('auction-item-data/{id}', 'AuctionController@getAuctionItemData');
 Route::get('live-auction-items', 'AuctionController@liveAuctions');
 Route::get('ended-auction-items', 'AuctionController@endedAuctions');
+Route::post('add-auction-item', 'AuctionController@store');
 Route::post('edit-auction-item', 'AuctionController@update');
 Route::delete('delete-auction-item', 'AuctionController@destroy');
 Route::get('bid-packages', 'BidPackageController@index');
@@ -61,7 +62,8 @@ Route::get('add-item','NewInventoryController@addItem');
 Route::get('add-item',array( 'uses'=>'NewInventoryController@addItem','as'=>'add-items.index'));
 Route::post('store-item','NewInventoryController@StoreItem');
 Route::get('all-items',array('uses'=>'NewInventoryController@index','as'=>'all-items.index'));
-Route::get('stock-transactions','NewInventoryController@stockTransactions');
+Route::get('stock-transactions',array('uses'=>'NewInventoryController@stockTransactions','as'=>'stock-transactions.index'));
+Route::post('create-transaction','NewInventoryController@createTransaction');
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');

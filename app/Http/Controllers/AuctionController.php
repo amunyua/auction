@@ -36,7 +36,8 @@ class AuctionController extends Controller
             'refresh_rate' => 'required|numeric',
             'buy_now_option' => 'required',
             'buy_now_price' => 'required',
-            'start_date' => 'required'
+            'start_date' => 'required',
+            'end_date' => 'required'
         ));
 
         $auction = Auction::create(array(
@@ -48,6 +49,7 @@ class AuctionController extends Controller
             'buy_now_option' => Input::get('buy_now_option'),
             'buy_now_price' => Input::get('buy_now_price'),
             'start_date' => Input::get('start_date'),
+            'end_date' => Input::get('end_date'),
             'status' => '1'
         ));
         $auction->save();
