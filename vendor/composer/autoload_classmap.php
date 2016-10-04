@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddCustomerTypeNameToMasterfilesTable' => $baseDir . '/database/migrations/2016_10_03_161404_add_customer_type_name_to_masterfiles_table.php',
+    'AddEnddateColumn' => $baseDir . '/database/migrations/2016_10_04_085949_add_enddate_column.php',
     'AddMfidFk' => $baseDir . '/database/migrations/2016_09_30_160028_add_mfid_fk.php',
     'AddRevenuechannelFks' => $baseDir . '/database/migrations/2016_10_01_174941_add_revenuechannel_fks.php',
     'AddServicesFks' => $baseDir . '/database/migrations/2016_10_01_175654_add_services_fks.php',
@@ -15,10 +16,7 @@ return array(
     'CItemsTable' => $baseDir . '/database/migrations/2016_10_02_145011_c_items_table.php',
     'Categories' => $baseDir . '/database/migrations/2016_10_01_195538_categories.php',
     'CategoriesSeeder' => $baseDir . '/database/seeds/CategoriesSeeder.php',
-<<<<<<< HEAD
-=======
     'ChangeBooleantoVarchar' => $baseDir . '/database/migrations/2016_10_03_144332_change_booleanto_varchar.php',
->>>>>>> d0fb582d917c4d7f038e3a64f4693f59dd4c50f7
     'CountySeeder' => $baseDir . '/database/seeds/CountySeeder.php',
     'CreateAddressTypesTable' => $baseDir . '/database/migrations/2016_10_02_132938_create_address_types_table.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_10_02_133037_create_addresses_table.php',
