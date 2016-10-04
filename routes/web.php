@@ -35,6 +35,7 @@ Route::get('auction-items', 'AuctionController@index');
 Route::get('auction-item-data/{id}', 'AuctionController@getAuctionItemData');
 Route::get('live-auction-items', 'AuctionController@liveAuctions');
 Route::get('ended-auction-items', 'AuctionController@endedAuctions');
+Route::post('add-auction-item', 'AuctionController@store');
 Route::post('edit-auction-item', 'AuctionController@update');
 Route::delete('delete-auction-item', 'AuctionController@destroy');
 Route::get('bid-packages', 'BidPackageController@index');

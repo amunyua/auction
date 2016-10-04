@@ -44,6 +44,7 @@
             <th>Buy Now Option</th>
             <th>Buy Now Price</th>
             <th>Start Date</th>
+            <th>End Date</th>
             <th>Status</th>
         </tr>
         </thead>
@@ -63,6 +64,7 @@
                     <td>{{ ($auction->buy_now_option) ? 'Yes' : 'No' }}</td>
                     <td>{{ $auction->buy_now_price }}</td>
                     <td>{{ $auction->start_date }}</td>
+                    <td>{{ $auction->end_date }}</td>
                     <td>
                         @if($auction->status == '0')
                             {{ 'Pending' }}
@@ -144,7 +146,12 @@
 
                 <div class="row-fluid">
                     <label for="start_date">Start Date:</label>
-                    <input type="date" name="start_date" class="span12"/>
+                    <input type="datetime-local" name="start_date" class="span12"/>
+                </div>
+
+                <div class="row-fluid">
+                    <label for="start_date">End Date:</label>
+                    <input type="datetime-local" name="end_date" class="span12"/>
                 </div>
             </div>
 
