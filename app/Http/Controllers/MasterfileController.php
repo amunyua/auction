@@ -62,7 +62,22 @@ class MasterfileController extends Controller
             'address_type_name' => 'required'
         ));
 
-        DB::transaction(function(){
+        DB::transaction(function($path){
+            // upload image if exists
+            $path = '';
+            if(Input::hasFile('image_path')){
+                $prefix = uniqid();
+                $image = Input::file('image_path');
+                $filename = $image->getClientOriginalName();
+                $new_name = $prefix.$filename;
+
+                if($image->isValid()) {
+                    $image->move('uploads/images', $new_name);
+                    $path = 'uploads/images/'.$new_name;
+                }
+            }
+//            var_dump($path);exit;
+
             // add to db
             $mf = Masterfile::create(array(
                 'surname' => Input::get('surname'),
@@ -75,7 +90,7 @@ class MasterfileController extends Controller
                 'user_role' => Input::get('user_role'),
                 'reg_date' => Input::get('reg_date'),
                 'customer_type_name' => Input::get('customer_type_name'),
-                'image_path' => Input::get('image_path')
+                'image_path' => $path
             ));
             $mf->save();
             $mf_id = $mf->id;

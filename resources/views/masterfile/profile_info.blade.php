@@ -1,5 +1,5 @@
 
-<div class="span2"><img src="" alt="" /></div>
+<div class="span2"><img src="{{ URL::asset(empty($mf->image_path) ? 'assets/img/photo.jpg' : $mf->image_path) }}" alt="" /></div>
 
 <ul class="unstyled span10">
     <li><span>Full Name: </span>{{ $mf->surname.' '.$mf->firstname.' '.$mf->middlename }}</li>

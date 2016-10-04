@@ -20,7 +20,7 @@
     <li><span href="#">Mastefile Profile</span></li>
 @endsection
 
-@section('widget-title', '<span style="color: green;"> Full Name</span>')
+@section('widget-title', '<span style="color: green;"> '.$mf->surname.' '.$mf->firstname.' </span>')
 
 @section('content')
     @include('layouts.includes._messages')
