@@ -17,4 +17,7 @@ class Item extends Model
     public function subCategory(){
         return $this->belongsTo('App\SubCategory');
     }
+    public function stockTransaction(){
+        return $this->belongsTo('App\StockTransaction');
+    }
 }

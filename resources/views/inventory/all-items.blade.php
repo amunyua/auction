@@ -37,15 +37,15 @@
         @if(count($items))
             @foreach($items as $item)
                 <?php
-                    $category = \App\Item::find($item->id)->category;
-                        $subcategory = \App\Item::find($item->id)->subcategory;
+                    $category = \App\Category::find($item->category_id);
+                        $subcategory = \App\SubCategory::find($item->sub_category_id);
                 ?>
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->item_name }}</td>
                     <td>{{ $category->category_name }}</td>
                     <td>{{ $subcategory->sub_category_name }}</td>
-                    <td>{{ ($item->status == 1) ? 'Active':'Inactive'  }}</td>
+                    <td>{{ ($item->item_status == 't') ? 'Active':'Inactive'  }}</td>
                     <td>{{ $item->stock_level }}</td>
                     {{--<td><a href="#edit_item" edit-id="{{ $item->id }}" class="btn btn-small btn-success edit_cat" data-toggle="modal">Edit</a> </td>--}}
                     {{--<td><form method="post" action="">--}}
