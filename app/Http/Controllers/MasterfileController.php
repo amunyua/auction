@@ -25,12 +25,12 @@ class MasterfileController extends Controller
     public function index(){
         // fetch data for select list
         $roles = Role::all();
-        $ct = CustomerType::all();
+        $cts = CustomerType::all();
         $addresses = AddressType::all();
         $counties = County::all();
 
         return view('masterfile.index', array(
-            'customer_types' => $ct,
+            'cts' => $cts,
             'roles' => $roles,
             'addresses' => $addresses,
             'counties' => $counties
@@ -52,7 +52,14 @@ class MasterfileController extends Controller
             'gender' => 'required',
             'email' => 'required|unique:masterfiles',
             'b_role' => 'required',
-            'user_role' => 'required'
+            'user_role' => 'required',
+            'customer_type_name' => 'required',
+            'county' => 'required',
+            'town' => 'required',
+            'phone' => 'required',
+            'postal_address' => 'required',
+            'postal_code' => 'required',
+            'address_type_name' => 'required'
         ));
 
         DB::transaction(function(){
@@ -67,6 +74,7 @@ class MasterfileController extends Controller
                 'gender' => Input::get('gender'),
                 'user_role' => Input::get('user_role'),
                 'reg_date' => Input::get('reg_date'),
+                'customer_type_name' => Input::get('customer_type_name'),
                 'image_path' => Input::get('image_path')
             ));
             $mf->save();
@@ -110,16 +118,47 @@ class MasterfileController extends Controller
         ));
     }
 
-    public function update(Request $request){
-        // validate
+    public function updateMf(Request $request, $id){
+        // get selected id
+        $edit_mf = Masterfile::find($id);
+        if($edit_mf->mf_id != $request->input('mf_id')) {
+            $this->validate($request, array(
+                'surname' => 'required',
+                'firstname' => 'required',
+                'id_passport' => 'required|unique:masterfiles,id_passport',
+                'email' => 'required|unique:masterfiles,email',
+                'reg_date' => 'required',
+                'user_role' => 'required',
+                'customer_type_name' => 'required',
+                'gender' => 'required',
+            ));
+        }else{
+            $this->validate($request, array(
+                'surname' => 'required',
+                'firstname' => 'required',
+                'id_passport' => 'required',
+                'email' => 'required',
+                'reg_date' => 'required',
+                'user_role' => 'required',
+                'customer_type_name' => 'required',
+                'gender' => 'required',
+            ));
+        }
 
         // update db record
-        Masterfile::where('id', $request->id)
-            ->update(array(
-                'surname' => Input::get('surname')
-            ));
+        $edit_mf->b_role = $request->input('b_role');
+        $edit_mf->surname = $request->input('surname');
+        $edit_mf->firstname =$request->input('firstname');
+        $edit_mf->gender =$request->input('gender');
+        $edit_mf->image_path =$request->input('image_path');
+        $edit_mf->id_passport =$request->input('id_passport');
+        $edit_mf->user_role =$request->input('user_role');
+        $edit_mf->customer_type_name =$request->input('customer_type_name');
 
+        $edit_mf->save();
 
+        Session::flash('success','Masterfile record has been updated');
+        return redirect()->route('masterfile.edit_mf');
     }
 
     public function destroy(Request $request){

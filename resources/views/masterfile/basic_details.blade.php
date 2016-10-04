@@ -8,6 +8,7 @@
                         <option value="">--Choose Business Role--</option>
                         <option value="Client" {{ (old('b_role') == 'Client') ? 'selected' : '' }}>Client</option>
                         <option value="Staff" {{ (old('b_role') == 'Staff' ? 'selected' : '') }}>Staff</option>
+                        <option value="Supplier" {{ (old('b_role') == 'Supplier' ? 'selected' : '') }}>Supplier</option>
                     </select>
                 </div>
             </div>
@@ -94,15 +95,17 @@
 
     <div class="row-fluid">
         <div class="span6">
-            <label class="control-label">Profile Pic</label>
-            <div class="controls">
-                <div class="fileupload fileupload-new" data-provides="fileupload">
-                    <div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="assets/img/profile/avatar.png" style="width: 100%; height: 100%" /></div>
-                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100px; max-height: 100px; line-height: 20px;"></div>
-                    <div>
-                        <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input class="span12" type="file" name="image_path"/></span>
-                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
-                    </div>
+            <div class="control-group">
+                <label for="customer_type_name" class="control-label">Masterfile Type</label>
+                <div class="controls">
+                    <select name="customer_type_name" class="span12 live_search" id="customer_type_name">
+                        <option value="">--Select Masterfile Type--</option>
+                        @if(count($cts))
+                            @foreach($cts as $ct)
+                                <option value="{{ $ct->customer_type_code }}" {{ (old('customer_type') == $ct->customer_type_code) ? 'selected': '' }}>{{ $ct->customer_type_name }}</option>
+                            @endforeach
+                        @endif
+                    </select>
                 </div>
             </div>
         </div>
@@ -118,6 +121,22 @@
                             @endforeach
                         @endif
                     </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row-fluid">
+        <div class="span6">
+            <label class="control-label">Profile Pic</label>
+            <div class="controls">
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                    <div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="assets/img/profile/avatar.png" style="width: 100%; height: 100%" /></div>
+                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100px; max-height: 100px; line-height: 20px;"></div>
+                    <div>
+                        <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input class="span12" type="file" name="image_path"/></span>
+                        <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+                    </div>
                 </div>
             </div>
         </div>

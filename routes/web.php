@@ -20,6 +20,7 @@ Route::get('/', 'DashboardController@index');
 Route::get('/masterfile', 'MasterfileController@index');
 Route::post('add_mf', 'MasterfileController@addMf');
 Route::get('all_mfs', 'MasterfileController@allMfs');
+Route::post('edit_mf/{id}',['uses'=>'MasterfileController@updateMf','as'=>'masterfile.update']);
 
 #### Inventory Module
 //routes for managing category details
@@ -31,6 +32,16 @@ Route::delete('delete-category/{id}','InventoryController@destroyCategory');
 
 #### Auction Module
 Route::get('auction-items', 'AuctionController@index');
+Route::get('auction-item-data/{id}', 'AuctionController@getAuctionItemData');
+Route::get('live-auction-items', 'AuctionController@liveAuctions');
+Route::get('ended-auction-items', 'AuctionController@endedAuctions');
+Route::post('edit-auction-item', 'AuctionController@update');
+Route::delete('delete-auction-item', 'AuctionController@destroy');
+Route::get('bid-packages', 'BidPackageController@index');
+Route::post('add-bid-package', 'BidPackageController@store');
+Route::post('update-bid-package', 'BidPackageController@update');
+Route::delete('delete-bid-package', 'BidPackageController@destroy');
+Route::get('bid-package-data/{id}', 'BidPackageController@getBidPackage');
 
 //routes for managing sub category details
 Route::get('sub-categories',array('uses'=>'InventoryController@getSubCategories','as'=>'sub_category.index') );
@@ -42,6 +53,8 @@ Route::delete('delete-subcategory/{id}','InventoryController@destroySubcategory'
 Route::get('warehouses',array('uses'=>'InventoryController@getWarehouses','as'=>'warehouses.store'));
 Route::get('all-items','InventoryController@getIndex');
 Route::post('add-warehouse','InventoryController@addWarehouse');
+Route::post('update-warehouse/{id}','InventoryController@updateWarehouse');
+Route::delete('delete-warehouse/{id}','InventoryController@destroyWarehouse');
 
 Route::get('add-item','NewInventoryController@addItem');
 Route::get('add-item',array( 'uses'=>'NewInventoryController@addItem','as'=>'add-items.index'));

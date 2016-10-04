@@ -6,7 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+
     'AddColumnTransactdbyOnStockTransactions' => $baseDir . '/database/migrations/2016_10_04_111645_add_column_transactdby_on_stock_transactions.php',
+
+    'AddCustomerTypeNameToMasterfilesTable' => $baseDir . '/database/migrations/2016_10_03_161404_add_customer_type_name_to_masterfiles_table.php',
+    'AddEnddateColumn' => $baseDir . '/database/migrations/2016_10_04_085949_add_enddate_column.php',
+
     'AddMfidFk' => $baseDir . '/database/migrations/2016_09_30_160028_add_mfid_fk.php',
     'AddRevenuechannelFks' => $baseDir . '/database/migrations/2016_10_01_174941_add_revenuechannel_fks.php',
     'AddServicesFks' => $baseDir . '/database/migrations/2016_10_01_175654_add_services_fks.php',
@@ -15,10 +20,14 @@ return array(
     'CItemsTable' => $baseDir . '/database/migrations/2016_10_02_145011_c_items_table.php',
     'Categories' => $baseDir . '/database/migrations/2016_10_01_195538_categories.php',
     'CategoriesSeeder' => $baseDir . '/database/seeds/CategoriesSeeder.php',
+
+    'ChangeBooleantoVarchar' => $baseDir . '/database/migrations/2016_10_03_144332_change_booleanto_varchar.php',
+
     'CountySeeder' => $baseDir . '/database/seeds/CountySeeder.php',
     'CreateAddressTypesTable' => $baseDir . '/database/migrations/2016_10_02_132938_create_address_types_table.php',
     'CreateAddressesTable' => $baseDir . '/database/migrations/2016_10_02_133037_create_addresses_table.php',
     'CreateAuctionsTable' => $baseDir . '/database/migrations/2016_10_02_154957_create_auctions_table.php',
+    'CreateBidPackagesTable' => $baseDir . '/database/migrations/2016_10_03_163040_create_bid_packages_table.php',
     'CreateCountiesTable' => $baseDir . '/database/migrations/2016_10_03_073700_create_counties_table.php',
     'CreateCustomerTypesTable' => $baseDir . '/database/migrations/2016_09_30_152245_create_customer_types_table.php',
     'CreateIfmisHeadcodesTable' => $baseDir . '/database/migrations/2016_10_01_173052_create_ifmis_headcodes_table.php',

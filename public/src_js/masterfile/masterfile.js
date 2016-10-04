@@ -29,6 +29,7 @@ var FormWizard = function () {
 
                     // validate address details
                     if(current == 3){
+                        alert(current);
                         var valid2 = Masterfile2.validateMyWizard2();
                         if(!valid2){
                             return false;
@@ -142,6 +143,10 @@ var Masterfile = {
                     alert('You Must Provide User Role!');
                     $('#user_role').focus();
                     return false;
+                }else if($('#customer_type_name').val() == ''){
+                    alert('You Must Provide Masterfile Type!');
+                    $('#customer_type_name').focus();
+                    return false;
                 }else{
                     return true;
                 }
@@ -172,10 +177,56 @@ var Masterfile = {
                     alert('You Must Provide Email!');
                     $('#email').focus();
                     return false;
+                }else if($('#user_role').val() == ''){
+                    alert('You Must Provide User Role!');
+                    $('#user_role').focus();
+                    return false;
+                }else if($('#customer_type_name').val() == ''){
+                    alert('You Must Provide Masterfile Type!');
+                    $('#customer_type_name').focus();
+                    return false;
                 }else{
                     return true;
                 }
             break;
+
+            case 'Supplier':
+                if($('#surname').val() == ''){
+                    alert('You Must Provide Surname!');
+                    $('#surname').focus();
+                    return false;
+                }else if($('#firstname').val() == ''){
+                    alert('You Must Provide First Name!');
+                    $('#firstname').focus();
+                    return false;
+                }else if($('#id_passport').val() == ''){
+                    alert('You Must Provide Id/Passport!');
+                    $('#id_passport').focus();
+                    return false;
+                }else if($('#id_passport').val() == ''){
+                    alert('You Must Provide Id/Passport!');
+                    $('#id_passport').focus();
+                    return false;
+                }else if($('#gender').val() == ''){
+                    alert('You Must Provide Gender!');
+                    $('#gender').focus();
+                    return false;
+                }else if($('#email').val() == ''){
+                    alert('You Must Provide Email!');
+                    $('#email').focus();
+                    return false;
+                }else if($('#user_role').val() == ''){
+                    alert('You Must Provide User Role!');
+                    $('#user_role').focus();
+                    return false;
+                }else if($('#customer_type_name').val() == ''){
+                    alert('You Must Provide Masterfile Type!');
+                    $('#customer_type_name').focus();
+                    return false;
+                }else{
+                    return true;
+                }
+                break;
         }
     },
 }

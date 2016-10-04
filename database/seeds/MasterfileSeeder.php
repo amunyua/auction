@@ -22,6 +22,7 @@ class MasterfileSeeder extends Seeder
         $admin->b_role = 'Staff';
         $admin->user_role = 'System Admin';
         $admin->email = 'admin@admin.com';
+        $admin->customer_type_name = 'System Admin';
         $admin->save();
 
     }
