@@ -40,6 +40,8 @@ Route::delete('delete-subcategory/{id}','InventoryController@destroySubcategory'
 Route::get('warehouses',array('uses'=>'InventoryController@getWarehouses','as'=>'warehouses.store'));
 Route::get('all-items','InventoryController@getIndex');
 Route::post('add-warehouse','InventoryController@addWarehouse');
+Route::post('update-warehouse/{id}','InventoryController@updateWarehouse');
+Route::delete('delete-warehouse/{id}','InventoryController@destroyWarehouse');
 
 Route::get('add-item','NewInventoryController@addItem');
 Route::post('store-item','NewInventoryController@StoreItem');

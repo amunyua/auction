@@ -50,7 +50,7 @@
     {{--modal for add--}}
     <form action="{{ url('/add_user_role') }}" method="post">
         {{ csrf_field() }}
-        <div id="add_userole" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div id="add_user_role" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel1">Add A Role Name</h3>

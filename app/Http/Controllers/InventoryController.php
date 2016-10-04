@@ -166,24 +166,4 @@ class InventoryController extends Controller
         return view('inventory.warehouses')->withWarehouses($warehouses);
     }
 
-    public function addWarehouse(Request $request){
-        //var_dump($_POST);
-        $this->validate($request, array(
-            'warehouse_name'=> 'required|unique:warehouses,warehouse_name',
-            'warehouse_code'=>'required|unique:warehouses,warehouse_code',
-            'warehouse_status'=>'required'
-        ));
-
-        $warehouse = new Warehouse();
-
-        $warehouse->warehouse_name = $request->warehouse_name;
-        $warehouse->warehouse_code = $request->warehouse_code;
-        $warehouse->warehouse_status =$request->warehouse_status;
-
-        $warehouse->save();
-
-        Session::flash('success','Warehouse added');
-        return redirect()->route('warehouses.store');
-
-    }
 }
