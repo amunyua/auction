@@ -18,6 +18,17 @@
     </div>
     <div class="span6">
         <div class="control-group">
+            <label for="purchase-price" class="control-label">Buying price</label>
+            <div class="controls">
+                <input type="text" value="{{ old('purchase_price') }}"name="purchase_price" class="span12" id="purchase-price" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span6">
+        <div class="control-group">
             <label for="sub-category" class="control-label">Sub category</label>
             <div class="controls">
                 <select name="sub_category_id" class="span12" id="item_sub_category">
@@ -31,9 +42,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row-fluid">
     <div class="span6">
         <div class="control-group">
             <label for="item-name" class="control-label" id="variation">Name/title</label>
@@ -42,22 +50,15 @@
             </div>
         </div>
     </div>
-    <div class="span6">
-        <div class="control-group">
-            <label class="control-label" for="item-code" id="id_pass">Item Code</label>
-            <div class="controls">
-                <input type="text" value="{{ old('item_code') }}" name="item_code" class="span12" id="item-code">
-            </div>
-        </div>
-    </div>
+
 </div>
 
 <div class="row-fluid">
     <div class="span6">
         <div class="control-group">
-            <label for="purchase-price" class="control-label">Buying price</label>
+            <label class="control-label" for="item-code" id="id_pass">Item Code</label>
             <div class="controls">
-                <input type="text" value="{{ old('purchase_price') }}"name="purchase_price" class="span12" id="purchase-price" />
+                <input type="text" value="{{ old('item_code') }}" name="item_code" class="span12" id="item-code">
             </div>
         </div>
     </div>

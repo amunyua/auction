@@ -15,9 +15,10 @@
 @endsection
 @section('widget-title', 'All stock transactions')
 @section('actions')
-<a href="#add_transaction" class="btn btn-primary btn-small" data-toggle="modal">Create Transaction</a>
+<a href="#add_transaction" class="btn btn-primary btn-small" data-toggle="modal">Create a transaction</a>
     @endsection
 @section('content')
+    @include('layouts.includes._messages')
     <table class="table table-bordered" id="table1" >
         <thead>
         <tr>
@@ -27,18 +28,30 @@
             <th>transaction category</th>
             <th>Warehouse</th>
             <th>Quantity</th>
+            <th>Transaction date</th>
+            <th>Transacted by</th>
         </tr>
         </thead>
         <tbody>
         @if(count($transactions))
             @foreach($transactions as $transaction)
+                <?php
+                $item = \App\Item::find($transaction->item_id);
+                $transaction_type = \App\TransactionType::find($transaction->transaction_type_id);
+                $transaction_category = \App\TransactionCategory::find($transaction->transaction_category_id);
+                $warehouse = \App\Warehouse::find($transaction->warehouse_id);
+                $user = App\User::find($transaction->transacted_by);
+
+                 ?>
                 <tr>
                     <td>{{ $transaction->id }}</td>
-                    <td>{{ $transaction->item_id }}</td>
-                    <td>{{ $transaction->transaction_type_id }}</td>
-                    <td>{{ $transaction->transaction_category_id }}</td>
-                    <td>{{ $transaction->warehouse_id }}</td>
+                    <td>{{ $item['item_name'] }}</td>
+                    <td>{{ $transaction_type['transaction_type_name'] }}</td>
+                    <td>{{ $transaction_category['transaction_category_name'] }}</td>
+                    <td>{{ $warehouse['warehouse_name']}}</td>
                     <td>{{ $transaction->quantity }}</td>
+                    <td>{{ date('jS M Y h:i a',strtotime($transaction->created_at)) }}</td>
+                    <td>{{ ($transaction->transacted_by != '')? $user->name : '' }}</td>
                 </tr>
             @endforeach
         @endif
@@ -62,13 +75,22 @@
                 <div class="row-fluid">
                     <select name="item_id" class="span12" required>
                         <option value="">--Select inventory item--</option>
-
+                        @if(count($items))
+                            @foreach($items as $item)
+                                <option value="{{ $item->id }}">{{ $item->item_name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
                 <label for="group_name">Transaction type:</label>
                 <div class="row-fluid">
                     <select name="transaction_type_id" class="span12" required>
                         <option value="">--Select transaction type--</option>
+                    @if(count($transaction_types))
+                        @foreach($transaction_types as $transaction_type)
+                            <option value="{{ $transaction_type->id }}">{{ $transaction_type->transaction_type_name }}</option>
+                            @endforeach
+                        @endif
 
                     </select>
                 </div>
@@ -76,6 +98,11 @@
                 <div class="row-fluid">
                     <select name="transaction_category_id" class="span12" required>
                         <option value="">--Select transaction category--</option>
+                        @if(count($transaction_categories))
+                            @foreach($transaction_categories as $transaction_category)
+                                <option value="{{ $transaction_category->id }}">{{ $transaction_category->transaction_category_name }}</option>
+                            @endforeach
+                        @endif
 
                     </select>
                 </div>
@@ -83,7 +110,11 @@
                 <div class="row-fluid">
                     <select name="warehouse_id" class="span12" required>
                         <option value="">--Select warehouse--</option>
-
+                        @if(count($warehouses))
+                            @foreach($warehouses as $warehouse)
+                                <option value="{{ $warehouse->id }}">{{ $warehouse->warehouse_name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
                 <div class="row-fluid">
