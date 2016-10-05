@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ url('add_mf') }}" method="post" class="form-horizontal">
+    <form action="{{ url('add_mf') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
         {{--generating a token to prevent mismatch--}}
         {{ csrf_field() }}
         <div class="form-wizard">
