@@ -42,6 +42,7 @@ $('#table1').on('click', 'tr', function() {
                 $('#buy_now_option').val(0);
             $('#buy_now_price').val(data['buy_now_price']);
             $('#start_date').val(data['start_date']);
+            $('#end_date').val(data['end_date']);
             $('#refresh_rate').val(data['refresh_rate']);
         }
     });

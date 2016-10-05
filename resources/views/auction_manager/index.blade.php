@@ -223,7 +223,12 @@
 
                 <div class="row-fluid">
                     <label for="start_date">Start Date:</label>
-                    <input type="date" name="start_date" id="start_date" class="span12"/>
+                    <input type="text" name="start_date" id="start_date" class="span12"/>
+                </div>
+
+                <div class="row-fluid">
+                    <label for="end_date">End Date:</label>
+                    <input type="text" name="end_date" id="end_date" class="span12"/>
                 </div>
             </div>
 

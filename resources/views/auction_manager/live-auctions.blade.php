@@ -41,6 +41,7 @@
             <th>Buy Now Option</th>
             <th>Buy Now Price</th>
             <th>Start Date</th>
+            <th>End Date</th>
             <th>Status</th>
         </tr>
         </thead>
@@ -60,6 +61,7 @@
                     <td>{{ ($auction->buy_now_option) ? 'Yes' : 'No' }}</td>
                     <td>{{ $auction->buy_now_price }}</td>
                     <td>{{ $auction->start_date }}</td>
+                    <td>{{ $auction->end_date }}</td>
                     <td>
                         @if($auction->status == '0')
                             {{ 'Pending' }}
