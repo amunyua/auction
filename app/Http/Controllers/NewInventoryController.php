@@ -14,20 +14,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
 
 class NewInventoryController extends Controller
 {
-    private $_request;
-    private $_stock_level = '';
-    private $_image_path = Null;
     public function __construct(){
         $this->middleware('auth');
     }
+    private $_request;
+    private $_stock_level = '';
+    private $_image_path = Null;
     public function index(){
         $items = Item::all();
         return view('inventory.all-items')->withItems($items);
@@ -52,8 +50,7 @@ class NewInventoryController extends Controller
 //        var_dump($_POST);die;
         //validation
         $this->validate($request,array(
-            'category_id'=>'required',
-            'item_name'=>'required|min:2',
+            'item_name'=>'required|min:2|unique:items,item_name',
             'purchase_price'=>'required|numeric',
             'initial_stock'=>'required|numeric',
             'main_image_path'=>'required|image',
@@ -62,20 +59,34 @@ class NewInventoryController extends Controller
             'transaction_type_id'=>'required',
             'transaction_category_id'=>'required'
         ));
-        if ($request->hasFile('main_image_path')) {
-            $file = $request->file('main_image_path');
-//            var_dump($file);die;
-            $path = Storage::putFile('public', $file);
-        }
 
         DB::transaction(function (){
+            $path = '';
+            if(Input::hasFile('main_image_path')){
+                $prefix = uniqid();
+                $image = Input::file('main_image_path');
+                $filename = $image->getClientOriginalName();
+                $ext = $image->getClientOriginalExtension();
+
+                $new_name = md5($prefix);
+                $path = $new_name.'.'.$ext;
+
+                if($image->isValid()) {
+                    $image->move('uploads/items', $path);
+                   $img_path = 'uploads/items/'.$path;
+                    $this->_image_path = $img_path;
+               }
+            }
+
+            $category_id = Category::find(Input::get('sub_category_id'));
+
            $item = new Item();
             $item->item_name = Input::get('item_name');
             $item->item_code = Input::get('item_code');
-            $item->category_id = Input::get('category_id');
+            $item->category_id = $category_id->id;
             $item->sub_category_id = Input::get('sub_category_id');
             $item->masterfile_id = Input::get('masterfile_id');
-            $item->image_path = Input::get('main_image_path');
+            $item->image_path = $this->_image_path;
             $item->purchase_price = Input::get('purchase_price');
             $item->initial_stock = Input::get('initial_stock');
             $item->warehouse_id = Input::get('warehouse_id');
@@ -86,12 +97,15 @@ class NewInventoryController extends Controller
             $item->save();
             $item_id =$item->id;
 
+            $user = Auth::user();
+
             $stock_transaction = new StockTransaction();
             $stock_transaction->item_id = $item_id;
             $stock_transaction->transaction_type_id =Input::get('transaction_type_id');
             $stock_transaction->transaction_category_id =Input::get('transaction_category_id');
             $stock_transaction->warehouse_id =Input::get('warehouse_id');
             $stock_transaction->quantity =Input::get('initial_stock');
+            $stock_transaction->transacted_by = $user->id;
 
             $stock_transaction->save();
         });

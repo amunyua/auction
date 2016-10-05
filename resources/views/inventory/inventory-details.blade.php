@@ -67,6 +67,15 @@
         </div>
     </div>
 
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="control-group">
+                <div action="assets/plugins/dropzone/upload.php" class="dropzone" id="my-awesome-dropzone">
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 

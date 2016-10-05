@@ -1,21 +1,30 @@
+
 <div class="row-fluid">
-    {{--{{ var_dump($form_data), die() }}--}}
     <div class="span6">
         <div class="control-group">
-            <label for="category" class="control-label">Item category<span>*</span></label>
+            <label for="sub-category" class="control-label">Sub category</label>
             <div class="controls">
-                <select name="category_id" class="span12" id="item_category">
-                    <option value="">--Choose item category--</option>
+                <select data-placeholder="Select item sub category" name="sub_category_id" class="live_search span12" id="item_sub_category">
+                    <option value="">--please select a subcategory--</option>
                     @if(count($categories))
                         @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                            <optgroup label="{{ $category->category_name }}">
+                                <?php
+                                $scs = \App\SubCategory::where('category_id', $category->id)->get();
+                                ?>
+                                @if(count($scs))
+                                    @foreach($scs as $sc)
+                                        <option value="{{ $sc->id }}">{{ $sc->sub_category_name }}</option>
+                                    @endforeach
+                                @endif
+                            </optgroup>
                         @endforeach
-                        @endif
-
+                    @endif
                 </select>
             </div>
         </div>
     </div>
+
     <div class="span6">
         <div class="control-group">
             <label for="purchase-price" class="control-label">Buying price</label>
@@ -27,21 +36,7 @@
 </div>
 
 <div class="row-fluid">
-    <div class="span6">
-        <div class="control-group">
-            <label for="sub-category" class="control-label">Sub category</label>
-            <div class="controls">
-                <select name="sub_category_id" class="span12" id="item_sub_category">
-                    <option value="">--Choose a sub category--</option>
-                    @if(count($subcategories))
-                        @foreach($subcategories as $category)
-                            <option value="{{ $category->id }}">{{ $category->sub_category_name }}</option>
-                        @endforeach
-                    @endif
-                </select>
-            </div>
-        </div>
-    </div>
+
     <div class="span6">
         <div class="control-group">
             <label for="item-name" class="control-label" id="variation">Name/title</label>
@@ -50,10 +45,6 @@
             </div>
         </div>
     </div>
-
-</div>
-
-<div class="row-fluid">
     <div class="span6">
         <div class="control-group">
             <label class="control-label" for="item-code" id="id_pass">Item Code</label>
@@ -62,11 +53,24 @@
             </div>
         </div>
     </div>
+
+</div>
+
+<div class="row-fluid">
+
     <div class="span6">
         <div class="control-group">
             <label for="initial-stpck" class="control-label">Initial Stock</label>
             <div class="controls">
                 <input type="text" value="{{ old('initial_stock') }}"name="initial_stock" class="span12" id="initial-stock">
+            </div>
+        </div>
+    </div>
+    <div class="span6">
+        <div class="control-group">
+            <label for="reorder-level" class="control-label">Reorder level</label>
+            <div class="controls">
+                <input type="text" value="{{ old('stock_reorder_level') }}"name="stock_reorder_level" class="span12" id="reorder-level" />
             </div>
         </div>
     </div>
@@ -86,12 +90,5 @@
             </div>
         </div>
     </div>
-    <div class="span6">
-        <div class="control-group">
-            <label for="reorder-level" class="control-label">Reorder level</label>
-            <div class="controls">
-                <input type="text" value="{{ old('stock_reorder_level') }}"name="stock_reorder_level" class="span12" id="reorder-level" />
-            </div>
-        </div>
-    </div>
+
 </div>
