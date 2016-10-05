@@ -63,8 +63,8 @@
                 <div class="controls">
                     <select name="gender" class="span12" id="gender">
                         <option value="">--Choose Gender--</option>
-                        <option value="Male" {{ (old('Male') == 'Male') ? 'selected' : '' }}>Male</option>
-                        <option value="Female" {{ (old('Female') == 'Female') ? 'selected' : '' }}>Female</option>
+                        <option value="1" {{ (old('Male') == 'Male') ? 'selected' : '' }}>Male</option>
+                        <option value="0" {{ (old('Female') == 'Female') ? 'selected' : '' }}>Female</option>
                     </select>
                 </div>
             </div>
@@ -131,10 +131,15 @@
             <label class="control-label">Profile Pic</label>
             <div class="controls">
                 <div class="fileupload fileupload-new" data-provides="fileupload">
-                    <div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="assets/img/profile/avatar.png" style="width: 100%; height: 100%" /></div>
+                    <div class="fileupload-new thumbnail" style="width: 100px; height: 100px;">
+                        <img src="assets/img/photo.jpg" alt="" />
+                    </div>
                     <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100px; max-height: 100px; line-height: 20px;"></div>
                     <div>
-                        <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input class="span12" type="file" name="image_path"/></span>
+                        <span class="btn btn-file"><span class="fileupload-new">Select image</span>
+                            <span class="fileupload-exists">Change</span>
+                            <input class="span12" type="file" name="image_path"/>
+                        </span>
                         <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
                     </div>
                 </div>
