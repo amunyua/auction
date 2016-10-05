@@ -29,7 +29,7 @@
     {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>--}}
     {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables_themeroller.css')  }}" rel="stylesheet"/>--}}
     @stack('css')
-<!-- END PAGE LEVEL PLUGINS -->
+    <!-- END PAGE LEVEL PLUGINS -->
     <!-- Le fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="129x129" href="favicon-2.png">
     {{--<link rel="shortcut icon" href="favicon-2.png" />--}}
@@ -46,8 +46,8 @@
 <!-- BEGIN CONTAINER -->
 <div id="container" class="row-fluid">
     <!-- BEGIN SIDEBAR -->
-@include('layouts.includes.sidebar')
-<!-- END SIDEBAR -->
+    @include('layouts.includes.sidebar')
+    <!-- END SIDEBAR -->
     <!-- BEGIN PAGE -->
     <div id="body" data-height="800" style="">
         <div class="container-fluid">
@@ -59,7 +59,7 @@
             <ul class="breadcrumb">
                 @yield('breadcrumbs')
             </ul>
-        <!-- END BREADCRUMBS -->
+            <!-- END BREADCRUMBS -->
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
                 <div class="span12">
