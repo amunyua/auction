@@ -20,7 +20,8 @@ Route::get('/', 'DashboardController@index');
 Route::get('/masterfile', 'MasterfileController@index');
 Route::post('add_mf', 'MasterfileController@addMf');
 Route::get('all_mfs', 'MasterfileController@allMfs');
-Route::post('edit_mf/{id}',['uses'=>'MasterfileController@updateMf','as'=>'masterfile.update']);
+Route::get('edit_mf/{id}', 'MasterfileController@getMf');
+Route::get('mf_profile/{id}', 'MasterfileController@getMfProfile');
 
 #### Inventory Module
 //routes for managing category details
@@ -53,6 +54,7 @@ Route::delete('delete-subcategory/{id}','InventoryController@destroySubcategory'
 
 Route::get('warehouses',array('uses'=>'InventoryController@getWarehouses','as'=>'warehouses.store'));
 Route::get('all-items','InventoryController@getIndex');
+Route::get('warehouse-data/{warehouse_id}','InventoryController@getWarehouse');
 Route::post('add-warehouse','InventoryController@addWarehouse');
 Route::post('update-warehouse/{id}','InventoryController@updateWarehouse');
 Route::delete('delete-warehouse/{id}','InventoryController@destroyWarehouse');

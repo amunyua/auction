@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
@@ -21,6 +23,8 @@ use Illuminate\Support\Facades\Session;
 class NewInventoryController extends Controller
 {
     private $_request;
+    private $_stock_level = '';
+    private $_image_path = Null;
     public function __construct(){
         $this->middleware('auth');
     }
@@ -52,12 +56,17 @@ class NewInventoryController extends Controller
             'item_name'=>'required|min:2',
             'purchase_price'=>'required|numeric',
             'initial_stock'=>'required|numeric',
-            'main_image_path'=>'required',
+            'main_image_path'=>'required|image',
             'stock_reorder_level'=>'required|numeric',
             'warehouse_id'=>'required',
             'transaction_type_id'=>'required',
             'transaction_category_id'=>'required'
         ));
+        if ($request->hasFile('main_image_path')) {
+            $file = $request->file('main_image_path');
+//            var_dump($file);die;
+            $path = Storage::putFile('public', $file);
+        }
 
         DB::transaction(function (){
            $item = new Item();
@@ -90,6 +99,9 @@ class NewInventoryController extends Controller
         return redirect()->route('add-items.index');
 
     }
+    public function uploadImages(){
+
+    }
     public function stockTransactions(){
         $transactions = StockTransaction::all();
         return view('inventory.stock-transactions',array(
@@ -112,25 +124,48 @@ class NewInventoryController extends Controller
             'warehouse_id'=>'required',
             'quantity'=>'required|numeric'
         ));
+
         //save the items into the db
         DB::transaction(function (){
-        $item = Item::find($request->item_id)->first();
+        $item = Item::find($this->_request->item_id);
          $stock_level = $item->stock_level;
+
+         $transaction_t = TransactionType::find($this->_request->transaction_type_id);
+            $transaction_type = strtolower($transaction_t->transaction_type_name);
+            switch ($transaction_type){
+                case 'add':
+                $this->_stock_level = ($stock_level + $this->_request->quantity);
+                    break;
+                case 'subtract':
+                    if($stock_level < $this->_request->quantity){
+                        Session::flash('warning','Quantity cannot be grater than the stock available');
+                       return false;
+                    }
+                    $this->_stock_level = ($stock_level - $this->_request->quantity);
+                    break;
+            }
+            $item = Item::find($this->_request->item_id);
+            $item->stock_level = $this->_stock_level;
+            $item->save();
 
         $user = Auth::user();
         $stock_transaction = new StockTransaction();
-        $stock_transaction->item_id = $request->item_id;
-        $stock_transaction->transaction_type_id =$request->transaction_type_id;
-        $stock_transaction->transaction_category_id = $request->transaction_category_id;
-        $stock_transaction->warehouse_id =$request->warehouse_id;
-        $stock_transaction->quantity = $request->quantity;
+        $stock_transaction->item_id = $this->_request->item_id;
+        $stock_transaction->transaction_type_id =$this->_request->transaction_type_id;
+        $stock_transaction->transaction_category_id = $this->_request->transaction_category_id;
+        $stock_transaction->warehouse_id =$this->_request->warehouse_id;
+        $stock_transaction->quantity = $this->_request->quantity;
         $stock_transaction->transacted_by = $user->id;
 
         $stock_transaction->save();
-    });
-
         Session::flash('success','The stock transaction has been created');
 
+    });
+
         return redirect()->route('stock-transactions.index');
+
+
+
+
     }
 }

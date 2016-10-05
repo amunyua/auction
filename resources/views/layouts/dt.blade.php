@@ -16,8 +16,8 @@
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="{{ URL::asset('src/datatables/media/css/demo_table.css')  }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/css/pages/profile.css')  }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('src/datatables/media/css/demo_table.css')  }}" rel="stylesheet" />
     <link href="{{ URL::asset('src/datatables/extras/TableTools/media/css/TableTools.css')  }}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/chosen-bootstrap/chosen/chosen.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.css')  }}" />
@@ -39,8 +39,8 @@
 <!-- BEGIN HEADER -->
 <div id="header" class="navbar navbar-inverse navbar-fixed-top">
     <!-- BEGIN TOP NAVIGATION BAR -->
-@include('layouts.includes.top_navigation')
-<!-- END TOP NAVIGATION BAR -->
+    @include('layouts.includes.top_navigation')
+    <!-- END TOP NAVIGATION BAR -->
 </div>
 <!-- END HEADER -->
 <!-- BEGIN CONTAINER -->

@@ -15,3 +15,6 @@
     <li><span>Edit Masterfile</span></li>
 @endsection
 @section('widget-title', 'Edit Masterfile')
+@section('content')
+    {{ var_dump($mf) }}
+@endsection
