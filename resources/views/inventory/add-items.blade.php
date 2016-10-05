@@ -23,7 +23,7 @@
 
 @section('content')
     {{--@include('layouts.includes._messages')--}}
-    <form action="{{ url('store-item') }}" method="post" class="form-horizontal">
+    <form action="{{ url('store-item') }}" method="post" class="form-horizontal" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-wizard">
             <div class="navbar steps">
