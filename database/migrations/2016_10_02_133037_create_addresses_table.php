@@ -24,6 +24,7 @@ class CreateAddressesTable extends Migration
             $table->string('ward')->nullable();
             $table->string('street')->nullable();
             $table->string('building')->nullable();
+            $table->string('house_no')->nullable();
             $table->bigInteger('phone');
             $table->timestamps();
             $table->foreign('masterfile_id')
