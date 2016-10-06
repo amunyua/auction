@@ -120,6 +120,7 @@
 <script src="{{ URL::asset('assets/scripts/app.js') }}"></script>
 <script src="{{ URL::asset('assets/scripts/form-wizard.js') }}"></script>
 <script src="{{ URL::asset('assets/scripts/form-components.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/dropzone/dropzone.js') }}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function() {

@@ -80,7 +80,7 @@
 
 
 <!-- END FORM -->
-<script src="{{ URL::asset('assets/plugins/dropzone/dropzone.js') }}"></script>
+
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 {{--<script src="{{ URL::asset('assets/scripts/app.js') }}"></script>--}}

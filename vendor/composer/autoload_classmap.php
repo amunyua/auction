@@ -28,6 +28,7 @@ return array(
     'CreateCustomerTypesTable' => $baseDir . '/database/migrations/2016_09_30_152245_create_customer_types_table.php',
     'CreateIfmisHeadcodesTable' => $baseDir . '/database/migrations/2016_10_01_173052_create_ifmis_headcodes_table.php',
     'CreateIfmisSubcodesTable' => $baseDir . '/database/migrations/2016_10_01_173107_create_ifmis_subcodes_table.php',
+    'CreateImagesTable' => $baseDir . '/database/migrations/2016_10_05_203839_create_images_table.php',
     'CreateMasterfilesTable' => $baseDir . '/database/migrations/2016_09_30_145500_create_masterfiles_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateRequestTypesTable' => $baseDir . '/database/migrations/2016_10_01_175305_create_request_types_table.php',
