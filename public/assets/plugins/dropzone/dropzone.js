@@ -507,6 +507,7 @@
           },
           sending: o.noop,
           success: function(file) {
+            console.log(file);
             return file.previewTemplate.addClass("success");
           },
           complete: o.noop,

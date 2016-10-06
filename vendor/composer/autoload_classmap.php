@@ -11,6 +11,7 @@ return array(
     'AddCustomerTypeNameToMasterfilesTable' => $baseDir . '/database/migrations/2016_10_03_161404_add_customer_type_name_to_masterfiles_table.php',
     'AddEnddateColumn' => $baseDir . '/database/migrations/2016_10_04_085949_add_enddate_column.php',
     'AddMfidFk' => $baseDir . '/database/migrations/2016_09_30_160028_add_mfid_fk.php',
+    'AddParentcategoryfieldCat' => $baseDir . '/database/migrations/2016_10_05_155402_add_parentcategoryfield_cat.php',
     'AddRevenuechannelFks' => $baseDir . '/database/migrations/2016_10_01_174941_add_revenuechannel_fks.php',
     'AddServicesFks' => $baseDir . '/database/migrations/2016_10_01_175654_add_services_fks.php',
     'AddUserStatus' => $baseDir . '/database/migrations/2016_10_01_180412_add_user_status.php',
