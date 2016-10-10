@@ -43,7 +43,7 @@
                     <td>{{ $warehouse->warehouse_name }}</td>
                     <td>{{ $warehouse->warehouse_code }}</td>
                     <td>{{ ($warehouse->warehouse_status == 1) ? 'Active':'Inactive'  }}</td>
-                    <td><a href="#edit_warehouse" edit-id="{{ $warehouse->id }}" class="btn btn-small btn-success edit_warehouse" data-toggle="modal">Edit</a> </td>
+                    <td><a href="#edit_warehouse" edit-id="{{ $warehouse->id }}" action="{{ url('update-warehouse/'.$warehouse->id) }}" class="btn btn-small btn-success edit_warehouse" data-toggle="modal">Edit</a> </td>
                     <td><form method="post" action="{{ url('/delete-warehouse/'.$warehouse->id) }}">
                             {{ csrf_field() }}
                             <input type="submit" name="DELETE" value="Delete" class="btn btn-danger btn-small delete_warehouse">
@@ -93,7 +93,7 @@
         </div>
     </form>
 
-        <form action="{{ url('/update-warehouse/') }}" id="edit-cat-form" method="post">
+        <form  id="edit-warehouse-form" method="post">
             {{ csrf_field() }}
             <div id="edit_warehouse" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
                 <div class="modal-header">

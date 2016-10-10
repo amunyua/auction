@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use App\Item ;
 use App\Category;
 use App\Masterfile;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 
 class NewInventoryController extends Controller
@@ -23,9 +25,11 @@ class NewInventoryController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
+    private $_paths = array();
     private $_request;
     private $_stock_level = '';
     private $_image_path = Null;
+
     public function index(){
         $items = Item::all();
         return view('inventory.all-items')->withItems($items);
@@ -47,8 +51,6 @@ class NewInventoryController extends Controller
 
     public function storeItem(Request $request){
 
-//        var_dump($_POST);die;
-        //validation
         $this->validate($request,array(
             'item_name'=>'required|min:2|unique:items,item_name',
             'purchase_price'=>'required|numeric',
@@ -61,6 +63,7 @@ class NewInventoryController extends Controller
         ));
 
         DB::transaction(function (){
+
             $path = '';
             if(Input::hasFile('main_image_path')){
                 $prefix = uniqid();
@@ -72,8 +75,8 @@ class NewInventoryController extends Controller
                 $path = $new_name.'.'.$ext;
 
                 if($image->isValid()) {
-                    $image->move('uploads/items', $path);
-                   $img_path = 'uploads/items/'.$path;
+                    $image->move('uploads/images', $path);
+                   $img_path = 'uploads/images/'.$path;
                     $this->_image_path = $img_path;
                }
             }
@@ -97,6 +100,19 @@ class NewInventoryController extends Controller
             $item->save();
             $item_id =$item->id;
 
+            session_start();
+            if(isset($_SESSION['path'])) {
+                foreach ($_SESSION['path'] as $path) {
+                    echo $path;
+                $image = new Image();
+                $image->item_id = $item_id;
+              $image->image_path = $path;
+                $image->save();
+                }
+                unset($_SESSION['path']);
+            }
+
+
             $user = Auth::user();
 
             $stock_transaction = new StockTransaction();
@@ -106,8 +122,10 @@ class NewInventoryController extends Controller
             $stock_transaction->warehouse_id =Input::get('warehouse_id');
             $stock_transaction->quantity =Input::get('initial_stock');
             $stock_transaction->transacted_by = $user->id;
-
             $stock_transaction->save();
+
+            //insert other images to more images table
+
         });
         Session::flash('success','Inventory item has been created');
         return redirect()->route('add-items.index');
@@ -129,6 +147,7 @@ class NewInventoryController extends Controller
     }
 
     public function createTransaction(Request $request){
+//        var_dump($_SESSION['path']);die;
         //validation
         $this->_request =$request;
         $this->validate($request, array(
@@ -172,6 +191,12 @@ class NewInventoryController extends Controller
         $stock_transaction->transacted_by = $user->id;
 
         $stock_transaction->save();
+            if(isset($_SESSION['path'])&& !empty($_SESSION['path'])){
+                $image = new Image();
+
+
+            }
+
         Session::flash('success','The stock transaction has been created');
 
     });
@@ -182,4 +207,24 @@ class NewInventoryController extends Controller
 
 
     }
+
+    public function uploadInventoryPics(Request $request){
+        session_start();
+        $image = $request->file('file');
+        $prefix = uniqid();
+        $file_name = $image->getClientOriginalName();
+        $ext = $image->getClientOriginalExtension();
+        $new_name_ = $prefix.$file_name;
+        $new_name = md5($new_name_).'.'.$ext;
+
+        if(Input::hasFile('file')){
+            if($image->isValid()) {
+                $image->move('uploads/images', $new_name);
+                $path = 'uploads/images/'.$new_name;
+
+                $_SESSION['path'][] = $path;
+            }
+        }
+    }
+
 }

@@ -70,7 +70,8 @@
     <div class="row-fluid">
         <div class="span12">
             <div class="control-group">
-                <div action="assets/plugins/dropzone/upload.php" class="dropzone" id="my-awesome-dropzone">
+                <div action="{{ url('upload-inventory-pics') }}" class="dropzone" id="my-awesome-dropzone">
+                    {{ csrf_field() }}
                 </div>
             </div>
         </div>
@@ -81,7 +82,6 @@
 
 
 <!-- END FORM -->
-
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 {{--<script src="{{ URL::asset('assets/scripts/app.js') }}"></script>--}}

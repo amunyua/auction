@@ -181,7 +181,7 @@ class InventoryController extends Controller
         $warehouse->warehouse_status = $request->warehouse_status;
         $warehouse->save();
 
-        Session::flash('success','The has been added');
+        Session::flash('success','The warehouse has been added');
         return redirect('warehouses');
 
     }
@@ -200,28 +200,28 @@ class InventoryController extends Controller
     }
 
     public function updateWarehouse(Request $request, $id){
-//        var_dump($_POST);
+        var_dump($_POST);
         $warehouse = Warehouse::find($id);
         if($warehouse->warehouse_name != $request->input('warehouse_name')) {
             $this->validate($request, array(
                 'warehouse_name'=> 'required|unique:warehouses',
-                'warehouse_code'=>'required|unique:warehouses',
+                'warehouse_code'=>'required',
                 'warehouse_status'=>'required'
             ));
         }else{
             $this->validate($request, array(
-                'warehouse_name'=> 'required|unique:warehouses',
-                'warehouse_code'=>'required|unique:warehouses',
-                'warehouse_status'=>'required'
+                'warehouse_name'=> 'required',
+                'warehouse_code'=>'required',
+                'warehouse_code'=>'required'
             ));
         }
-        $warehouse->warehouse_name = $request->input('sub_category_name');
-        $warehouse->warehouse_code = $request->input('sub_category_code');
-        $warehouse->warehouse_status =$request->input('sub_category_status');
+        $warehouse->warehouse_name = $request->input('warehouse_name');
+        $warehouse->warehouse_code = $request->input('warehouse_code');
+        $warehouse->warehouse_status =$request->input('warehouse_status');
 
         $warehouse->save();
 
-        Session::flash('success','The sub  has been edited');
+        Session::flash('success','The warehouse has been edited');
         return redirect('warehouses');
     }
 }
