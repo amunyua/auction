@@ -212,10 +212,45 @@ class MasterfileController extends Controller
         $mf = Masterfile::find($mf_id);
         // get mf address info
         $addresses = Address::where('masterfile_id', $mf_id)->get();
+        $counties = County::all();
+        $addr_types = AddressType::all();
         return view('masterfile.mf_profile')->with(array(
             'mf' => $mf,
-            'addresses'=>$addresses
+            'addresses'=>$addresses,
+            'counties' => $counties,
+            'addr_types' => $addr_types
         ));
+    }
+
+    public function addAddress(Request $request){
+        //var_dump($_POST);die;
+        $this->validate($request, array(
+            'county'=> 'required',
+            'town'=> 'required',
+            'address_type_name'=> 'required',
+            'postal_address'=> 'required',
+            'postal_code'=> 'required',
+            'phone'=> 'required'
+        ));
+
+        $address = new address();
+
+        $address->county = $request->county;
+        $address->town = $request->town;
+        $address->address_type_name =$request->address_type_name;
+        $address->postal_address =$request->postal_address;
+        $address->postal_code =$request->postal_code;
+        $address->ward =$request->ward;
+        $address->street =$request->street;
+        $address->building =$request->building;
+        $address->house_no =$request->house_no;
+        $address->phone =$request->phone;
+
+        $address->save();
+
+        Session::flash('success','New address has been added.');
+        // return redirect()->route('masterfile.mf_profile');
+
     }
 
 }
