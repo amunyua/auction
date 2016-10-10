@@ -84,4 +84,3 @@
 <!-- END FORM -->
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-{{--<script src="{{ URL::asset('assets/scripts/app.js') }}"></script>--}}
