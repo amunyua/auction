@@ -130,6 +130,17 @@
         FormWizard.init();
     });
 </script>
+<script>
+
+    $(document).ready(function(){
+        $('ul ul').addClass('sub');
+        $('ul.sub .paro').hide();
+        $('li.active').parent().css('display','block').addClass('live-active');
+        $('.live-active').parent().addClass('active');
+        $('ul.sub:empty').hide();
+        FormComponents.init();
+    });
+</script>
 @stack('js')
 <!-- END JAVASCRIPTS -->
 </body>

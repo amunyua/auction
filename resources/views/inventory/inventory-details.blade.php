@@ -4,7 +4,7 @@
             <div class="control-group">
                 <label for="county" class="control-label">Supplier</label>
                 <div class="controls">
-                    <select name="masterfile-id" class="span12" id="select2_sample79" >
+                    <select name="masterfile-id" class="span12 live-search" id="select2_sample79" >
                         <option value="">--Select supplier--</option>
                         @if(count($suppliers))
                             @foreach($suppliers as $supplier)
