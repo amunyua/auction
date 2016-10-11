@@ -75,13 +75,12 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
 
 
 
 
 <!-- END FORM -->
-<script src="{{ URL::asset('src_js/inventory/inventory.js') }}"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-{{--<script src="{{ URL::asset('assets/scripts/app.js') }}"></script>--}}

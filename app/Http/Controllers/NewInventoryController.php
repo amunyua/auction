@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use App\Item ;
 use App\Category;
 use App\Masterfile;
@@ -49,9 +50,7 @@ class NewInventoryController extends Controller
     }
 
     public function storeItem(Request $request){
-        var_dump($this->_paths);die;
-//        var_dump($_POST);die;
-        //validation
+
         $this->validate($request,array(
             'item_name'=>'required|min:2|unique:items,item_name',
             'purchase_price'=>'required|numeric',
@@ -64,6 +63,7 @@ class NewInventoryController extends Controller
         ));
 
         DB::transaction(function (){
+
             $path = '';
             if(Input::hasFile('main_image_path')){
                 $prefix = uniqid();
@@ -100,6 +100,19 @@ class NewInventoryController extends Controller
             $item->save();
             $item_id =$item->id;
 
+            session_start();
+            if(isset($_SESSION['path'])) {
+                foreach ($_SESSION['path'] as $path) {
+                    echo $path;
+                $image = new Image();
+                $image->item_id = $item_id;
+              $image->image_path = $path;
+                $image->save();
+                }
+                unset($_SESSION['path']);
+            }
+
+
             $user = Auth::user();
 
             $stock_transaction = new StockTransaction();
@@ -109,8 +122,10 @@ class NewInventoryController extends Controller
             $stock_transaction->warehouse_id =Input::get('warehouse_id');
             $stock_transaction->quantity =Input::get('initial_stock');
             $stock_transaction->transacted_by = $user->id;
-
             $stock_transaction->save();
+
+            //insert other images to more images table
+
         });
         Session::flash('success','Inventory item has been created');
         return redirect()->route('add-items.index');
@@ -132,7 +147,7 @@ class NewInventoryController extends Controller
     }
 
     public function createTransaction(Request $request){
-        var_dump($this->_paths);die;
+//        var_dump($_SESSION['path']);die;
         //validation
         $this->_request =$request;
         $this->validate($request, array(
@@ -176,6 +191,12 @@ class NewInventoryController extends Controller
         $stock_transaction->transacted_by = $user->id;
 
         $stock_transaction->save();
+            if(isset($_SESSION['path'])&& !empty($_SESSION['path'])){
+                $image = new Image();
+
+
+            }
+
         Session::flash('success','The stock transaction has been created');
 
     });
@@ -192,33 +213,18 @@ class NewInventoryController extends Controller
         $image = $request->file('file');
         $prefix = uniqid();
         $file_name = $image->getClientOriginalName();
-        $new_name = $prefix.$file_name;
+        $ext = $image->getClientOriginalExtension();
+        $new_name_ = $prefix.$file_name;
+        $new_name = md5($new_name_).'.'.$ext;
 
-        $path = '';
         if(Input::hasFile('file')){
             if($image->isValid()) {
                 $image->move('uploads/images', $new_name);
                 $path = 'uploads/images/'.$new_name;
+
+                $_SESSION['path'][] = $path;
             }
         }
-
-
-        $_SESSION['path'][] = $path;
-
-        $paths = array(
-            'paths' => array(
-                'path' => $path
-            )
-        );
-
-
-
-        return Response::json(array(
-            'path' => $_SESSION['path']
-        ));
     }
 
-    public function collectPaths($path = array()){
-        session()->push('paths.path', $path);
-    }
 }
