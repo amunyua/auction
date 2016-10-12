@@ -40,7 +40,7 @@ class NewInventoryController extends Controller
         return view('inventory.add-items',array(
             'categories'=>Category::all(),
             'subcategories'=>SubCategory::all(),
-            'suppliers'=>Masterfile::all(),
+            'suppliers'=>Masterfile::where('b_role','=','Supplier'),
             'warehouses'=>Warehouse::all(),
             'transaction_types'=>TransactionType::all(),
             'transaction_categories'=>TransactionCategory::all()
@@ -50,7 +50,7 @@ class NewInventoryController extends Controller
     }
 
     public function storeItem(Request $request){
-
+//        var_dump($_POST);die;
         $this->validate($request,array(
             'item_name'=>'required|min:2|unique:items,item_name',
             'purchase_price'=>'required|numeric',
@@ -225,6 +225,11 @@ class NewInventoryController extends Controller
                 $_SESSION['path'][] = $path;
             }
         }
+    }
+
+    public function getItemDetails($id){
+        $results = Item::find($id);
+        return json_encode($results);
     }
 
 }

@@ -212,7 +212,7 @@ class InventoryController extends Controller
             $this->validate($request, array(
                 'warehouse_name'=> 'required',
                 'warehouse_code'=>'required',
-                'warehouse_code'=>'required'
+                'warehouse_status'=>'required'
             ));
         }
         $warehouse->warehouse_name = $request->input('warehouse_name');
