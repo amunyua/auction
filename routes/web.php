@@ -24,6 +24,9 @@ Route::get('edit_mf/{id}', 'MasterfileController@getMf');
 Route::get('mf_profile/{id}', 'MasterfileController@getMfProfile');
 Route::post('edit_mf/{id}', 'MasterfileController@updateMf');
 Route::post('mf_profile/{id}', 'MasterfileController@addAddress');
+Route::get('/address_data/{id}', 'MasterfileController@getAddressData');
+Route::put('/update_address', 'MasterfileController@updateAddress');
+Route::delete('/delete_address', 'MasterfileController@deleteAddress');
 
 #### Inventory Module
 //routes for managing category details

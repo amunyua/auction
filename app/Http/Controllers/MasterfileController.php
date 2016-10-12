@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Warehouse;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,6 +14,7 @@ use App\AddressType;
 use App\County;
 use App\User;
 use App\AllMfs;
+use App\Item;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -214,16 +216,20 @@ class MasterfileController extends Controller
         $addresses = Address::where('masterfile_id', $mf_id)->get();
         $counties = County::all();
         $addr_types = AddressType::all();
+        $addr = AddressType::all();
+        $items = Item::where('masterfile_id', $mf_id)->get();
         return view('masterfile.mf_profile')->with(array(
             'mf' => $mf,
             'addresses'=>$addresses,
             'counties' => $counties,
-            'addr_types' => $addr_types
+            'addr_types' => $addr_types,
+            'addr' => $addr,
+            'items' => $items
         ));
     }
 
     public function addAddress(Request $request){
-        //var_dump($_POST);die;
+        // var_dump($_POST);die;
         $this->validate($request, array(
             'county'=> 'required',
             'town'=> 'required',
@@ -235,6 +241,7 @@ class MasterfileController extends Controller
 
         $address = new address();
 
+        $address->masterfile_id = $request->masterfile_id;
         $address->county = $request->county;
         $address->town = $request->town;
         $address->address_type_name =$request->address_type_name;
@@ -248,9 +255,51 @@ class MasterfileController extends Controller
 
         $address->save();
 
-        Session::flash('success','New address has been added.');
-        // return redirect()->route('masterfile.mf_profile');
+        $request->session()->flash('success', 'New Address has been added has been updated');
+         return redirect()->route('masterfile.mf_profile');
 
+    }
+
+    public function getAddressData(Request $request){
+        $id = $request->id;
+        $address = Address::find($id);
+        return Response::json($address);
+    }
+
+    public function updateAddress(Request $request){
+        // validation
+        $this->validate($request, array(
+            'county' => 'required',
+            'town' => 'required',
+            'postal_address' => 'required|unique:addresses,postal_address,'.$request->edit_id,
+            'address_type_name' => 'required|unique:addresses,address_type_name,'.$request->edit_id,
+            'postal_code' => 'required',
+            'phone' => 'required'
+        ));
+
+        Address::where('id', $request->edit_id)
+            ->update(array(
+                'county' => $request->county,
+                'town' => $request->town,
+                'address_type_name' => $request->address_type_name,
+                'postal_address' => $request->postal_address,
+                'postal_code' => $request->postal_code,
+                'ward' => $request->ward,
+                'street' => $request->street,
+                'building' => $request->building,
+                'phone' => $request->phone
+            ));
+
+        $request->session()->flash('status', 'Address Details has been updated.');
+//        return redirect('mf_profile');
+    }
+
+    public function deleteAddress(Request $request){
+//        var_dump($_POST);exit;
+        if(Address::destroy($request->delete_id)){
+            $request->session()->flash('success', 'Address Details have been removed');
+        }
+        return redirect()->route('mf_profile');
     }
 
 }

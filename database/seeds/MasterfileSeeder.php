@@ -17,7 +17,7 @@ class MasterfileSeeder extends Seeder
         $admin->surname = 'Admin';
         $admin->firstname = 'Admin';
         $admin->id_passport = '123456';
-        $admin->gender = 'Male';
+        $admin->gender = '1';
         $admin->reg_date = date('Y-m-d');
         $admin->b_role = 'Staff';
         $admin->user_role = 'System Admin';
