@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Warehouse;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,6 +14,7 @@ use App\AddressType;
 use App\County;
 use App\User;
 use App\AllMfs;
+use App\Item;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -215,12 +217,14 @@ class MasterfileController extends Controller
         $counties = County::all();
         $addr_types = AddressType::all();
         $addr = AddressType::all();
+        $items = Item::where('masterfile_id', $mf_id)->get();
         return view('masterfile.mf_profile')->with(array(
             'mf' => $mf,
             'addresses'=>$addresses,
             'counties' => $counties,
             'addr_types' => $addr_types,
-            'addr' => $addr
+            'addr' => $addr,
+            'items' => $items
         ));
     }
 

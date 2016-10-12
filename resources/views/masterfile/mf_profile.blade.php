@@ -78,7 +78,7 @@
                                 </div>
 
                                 <div class="tab-pane profile-classic row-fluid" id="tab_1_8">
-                                    @include('masterfile.all_items_info')
+                                    @include('masterfile.supplier_items_info')
                                 </div>
                             </div>
 
