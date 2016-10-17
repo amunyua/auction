@@ -2,10 +2,10 @@
 <div class="row-fluid">
     <div class="span6">
         <div class="control-group">
-            <label for="sub-category" class="control-label">Sub category</label>
+            <label for="sub-category" class="control-label">category</label>
             <div class="controls">
                 <select data-placeholder="Select item sub category" name="sub_category_id" class="live_search span12" id="item_sub_category">
-                    <option value="">--please select a subcategory--</option>
+                    <option value="">--please select a category--</option>
                     @if(count($categories))
                         @foreach($categories as $category)
                             <optgroup label="{{ $category->category_name }}">
@@ -57,15 +57,6 @@
 </div>
 
 <div class="row-fluid">
-
-    <div class="span6">
-        <div class="control-group">
-            <label for="initial-stpck" class="control-label">Initial Stock</label>
-            <div class="controls">
-                <input type="text" value="{{ old('initial_stock') }}"name="initial_stock" class="span12" id="initial-stock">
-            </div>
-        </div>
-    </div>
     <div class="span6">
         <div class="control-group">
             <label for="reorder-level" class="control-label">Reorder level</label>
@@ -74,9 +65,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row-fluid">
     <div class="span6">
         <label class="control-label">Main picture</label>
         <div class="controls">
@@ -90,5 +78,4 @@
             </div>
         </div>
     </div>
-
 </div>
