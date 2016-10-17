@@ -97,3 +97,8 @@ Route::delete('/delete-user', 'UserController@destroy');
 Route::post('add_user_role','UserRoleController@addUserRole');
 Route::post('audit_trail','UserRoleController@auditTrail');
 Route::get('/user-roles', 'UserRoleController@index');
+
+
+#### System Manager Module
+Route::get('/routes', 'RoutesController@index');
+Route::get('/load-routes', 'RoutesController@loadRoutes');

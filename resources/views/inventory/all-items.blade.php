@@ -3,16 +3,16 @@
 @section('page-title','Manage inventory')
 @section('page-title-small', 'All items')
 @section('breadcrumbs')
-    <li >
+    <li>
         <i class="icon-home"></i>
-        <a href="{{ url('/home') }}">Home</a>
+        <a href="http://localhost:8000/home">Home</a>
         <span class="icon-angle-right"></span>
     </li>
     <li>
-        <a href="#">Inventory</a>
+        <span href="#">Masterfile</span>
         <span class="icon-angle-right"></span>
     </li>
-    <li><a href="#">Manage Inventory</a></li>
+    <li><span>All Masterfile</span></li>
 @endsection
 @section('widget-title', 'Manage Inventory')
 @section('actions')
