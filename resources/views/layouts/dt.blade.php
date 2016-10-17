@@ -123,6 +123,7 @@
 
 <script src="{{ URL::asset('assets/scripts/form-components.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/dropzone/dropzone.js') }}"></script>
 <script>
 
     $(document).ready(function(){

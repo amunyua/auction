@@ -28,6 +28,7 @@
             <th>transaction category</th>
             <th>Warehouse</th>
             <th>Quantity</th>
+            <th>Available stock</th>
             <th>Transaction date</th>
             <th>Transacted by</th>
         </tr>
@@ -50,6 +51,7 @@
                     <td>{{ $transaction_category['transaction_category_name'] }}</td>
                     <td>{{ $warehouse['warehouse_name']}}</td>
                     <td>{{ $transaction->quantity }}</td>
+                    <td>{{ $item->stock_level }}</td>
                     <td>{{ date('jS M Y h:i a',strtotime($transaction->created_at)) }}</td>
                     <td>{{ ($transaction->transacted_by != '')? $user->name : '' }}</td>
                 </tr>

@@ -121,12 +121,24 @@
 <script src="{{ URL::asset('assets/scripts/app.js') }}"></script>
 <script src="{{ URL::asset('assets/scripts/form-wizard.js') }}"></script>
 <script src="{{ URL::asset('assets/scripts/form-components.js') }}"></script>
+
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function() {
         // initiate layout and plugins
         App.init();
         FormWizard.init();
+    });
+</script>
+<script>
+
+    $(document).ready(function(){
+        $('ul ul').addClass('sub');
+        $('ul.sub .paro').hide();
+        $('li.active').parent().css('display','block').addClass('live-active');
+        $('.live-active').parent().addClass('active');
+        $('ul.sub:empty').hide();
+        FormComponents.init();
     });
 </script>
 @stack('js')

@@ -23,6 +23,10 @@ Route::get('all_mfs', 'MasterfileController@allMfs');
 Route::get('edit_mf/{id}', 'MasterfileController@getMf');
 Route::get('mf_profile/{id}', 'MasterfileController@getMfProfile');
 Route::post('edit_mf/{id}', 'MasterfileController@updateMf');
+Route::post('mf_profile/{id}', 'MasterfileController@addAddress');
+Route::get('/address_data/{id}', 'MasterfileController@getAddressData');
+Route::put('/update_address', 'MasterfileController@updateAddress');
+Route::delete('/delete_address', 'MasterfileController@deleteAddress');
 
 #### Inventory Module
 //routes for managing category details
@@ -67,6 +71,7 @@ Route::get('all-items',array('uses'=>'NewInventoryController@index','as'=>'all-i
 Route::get('stock-transactions',array('uses'=>'NewInventoryController@stockTransactions','as'=>'stock-transactions.index'));
 Route::post('create-transaction','NewInventoryController@createTransaction');
 Route::post('upload-inventory-pics', 'NewInventoryController@uploadInventoryPics');
+Route::get('item-details/{id}','NewInventoryController@getItemDetails');
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
