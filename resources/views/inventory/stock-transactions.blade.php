@@ -28,6 +28,8 @@
             <th>transaction category</th>
             <th>Warehouse</th>
             <th>Quantity</th>
+            <th>Warehouse stock</th>
+            <th>Global stock available</th>
             <th>Transaction date</th>
             <th>Transacted by</th>
         </tr>
@@ -48,8 +50,10 @@
                     <td>{{ $item['item_name'] }}</td>
                     <td>{{ $transaction_type['transaction_type_name'] }}</td>
                     <td>{{ $transaction_category['transaction_category_name'] }}</td>
-                    <td>{{ $warehouse['warehouse_name']}}</td>
+                    <td>{{ ($warehouse['warehouse_name'] == '')? 'Multiple warehouses':$warehouse['warehouse_name']}}</td>
                     <td>{{ $transaction->quantity }}</td>
+                    <td>{{ $transaction->warehouse_stock_level }}</td>
+                    <td>{{ $transaction->new_stock_level }}</td>
                     <td>{{ date('jS M Y h:i a',strtotime($transaction->created_at)) }}</td>
                     <td>{{ ($transaction->transacted_by != '')? $user->name : '' }}</td>
                 </tr>
@@ -73,7 +77,7 @@
 
                 <label for="group_name">Inventory Item:</label>
                 <div class="row-fluid">
-                    <select name="item_id" class="span12" required>
+                    <select name="item_id" class="span12 live_search" required>
                         <option value="">--Select inventory item--</option>
                         @if(count($items))
                             @foreach($items as $item)
@@ -84,7 +88,7 @@
                 </div>
                 <label for="group_name">Transaction type:</label>
                 <div class="row-fluid">
-                    <select name="transaction_type_id" class="span12" required>
+                    <select name="transaction_type_id" class="span12 live_search" required>
                         <option value="">--Select transaction type--</option>
                     @if(count($transaction_types))
                         @foreach($transaction_types as $transaction_type)
@@ -96,7 +100,7 @@
                 </div>
                 <label for="group_name">Transaction Categoty:</label>
                 <div class="row-fluid">
-                    <select name="transaction_category_id" class="span12" required>
+                    <select name="transaction_category_id" class="span12 live_search" required>
                         <option value="">--Select transaction category--</option>
                         @if(count($transaction_categories))
                             @foreach($transaction_categories as $transaction_category)
@@ -108,7 +112,7 @@
                 </div>
                 <label for="group_name">Warehouse:</label>
                 <div class="row-fluid">
-                    <select name="warehouse_id" class="span12" required>
+                    <select name="warehouse_id" class="span12 live_search" required>
                         <option value="">--Select warehouse--</option>
                         @if(count($warehouses))
                             @foreach($warehouses as $warehouse)

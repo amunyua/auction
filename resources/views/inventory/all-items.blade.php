@@ -3,16 +3,16 @@
 @section('page-title','Manage inventory')
 @section('page-title-small', 'All items')
 @section('breadcrumbs')
-    <li >
+    <li>
         <i class="icon-home"></i>
-        <a href="{{ url('/home') }}">Home</a>
+        <a href="http://localhost:8000/home">Home</a>
         <span class="icon-angle-right"></span>
     </li>
     <li>
-        <a href="#">Inventory</a>
+        <span href="#">Masterfile</span>
         <span class="icon-angle-right"></span>
     </li>
-    <li><a href="#">Manage Inventory</a></li>
+    <li><span>All Masterfile</span></li>
 @endsection
 @section('widget-title', 'Manage Inventory')
 @section('actions')
@@ -29,6 +29,7 @@
             <th>Sub Category</th>
             <th>Status</th>
             <th>Stock level</th>
+            {{--<th>Profile</th>--}}
             {{--<th>Edit</th>--}}
             {{--<th>Delete</th>--}}
         </tr>
@@ -47,7 +48,7 @@
                     <td>{{ $subcategory->sub_category_name }}</td>
                     <td>{{ ($item->item_status == 't') ? 'Active':'Inactive'  }}</td>
                     <td>{{ $item->stock_level }}</td>
-                    {{--<td><a href="#edit_item" edit-id="{{ $item->id }}" class="btn btn-small btn-success edit_cat" data-toggle="modal">Edit</a> </td>--}}
+                    {{--<td><a href="#view-profile" profile-id="{{ $item->id }}" class="btn btn-small btn-primary profile" data-toggle="modal">Profile</a> </td>--}}
                     {{--<td><form method="post" action="">--}}
                             {{--{{ csrf_field() }}--}}
                             {{--<input type="submit" name="DELETE" value="Delete" class="btn btn-danger btn-small delete_category">--}}
@@ -63,44 +64,34 @@
 
 @endsection
 @section('modals')
-
-
-    {{--modal for edit--}}
-    <form action="{{ url('') }}" id="" method="post">
-        {{ csrf_field() }}
-        <div id="edit_item" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    {{--modal for profile data--}}
+        <div id="view-profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel1">Edit inventory item</h3>
+                <h3 id="myModalLabel1">Item Profile</h3>
             </div>
             <div class="modal-body">
-
                 <div class="row-fluid">
-                    <label for="group_name">item name:</label>
-                    <input type="text" name="category_name" id="cat-name"value="" class="span12" required>
-                </div>
-                {{--<div class="row-fluid">--}}
-                    {{--<label for="group_name">Category code:</label>--}}
-                    {{--<input type="text" name="category_code" id ="cat-code"class="span12" required>--}}
-                {{--</div>--}}
-                {{--<label for="group_name">Category status:</label>--}}
-                {{--<div class="row-fluid">--}}
-                    {{--<select name="category_status" id="cat-status"class="span12" required>--}}
-                        {{--<option value="1">Active</option>--}}
-                        {{--<option value="0">Inactive</option>--}}
-                    {{--</select>--}}
 
-                {{--</div>--}}
-            {{--</div>--}}
+                    <div class="span4"><img src="" alt="" /></div>
+                  <div class="span8">
+                    <ul class="unstyled span10">
+                        <li><strong>Item:</strong> <span id="item-name">  </span></li>
+                        <li> <strong>Category: </strong><span id="category"></span></li>
+                        <li> <strong>Sub Category: </strong><span id="category"></span></li>
+                        <li> <strong>Category: </strong><span id="category"></span></li>
+                        <li><span> Sub Category: </span></li>
+                        <li><span> Stock level: </span></li>
+                    </ul>
+                </div>
+            </div>
+                </div>
             <div class="modal-footer">
-                <input type="text" id="route-id">
-                <input type="button" class="btn btn-default" value="Close" data-dismiss="modal">
-                <input type="submit" class="btn btn-primary" value="Save">
+
             </div>
         </div>
-    </form>
 @endsection
 
 @push('js')
-{{--<script src="{{ URL::asset('src_js/inventory/categories.js') }}"></script>--}}
+<script src="{{ URL::asset('src_js/inventory/items.js') }}"></script>
 @endpush

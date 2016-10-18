@@ -76,6 +76,7 @@ Route::get('all-items',array('uses'=>'NewInventoryController@index','as'=>'all-i
 Route::get('stock-transactions',array('uses'=>'NewInventoryController@stockTransactions','as'=>'stock-transactions.index'));
 Route::post('create-transaction','NewInventoryController@createTransaction');
 Route::post('upload-inventory-pics', 'NewInventoryController@uploadInventoryPics');
+Route::get('item-details/{id}','NewInventoryController@getItemDetails');
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
@@ -101,3 +102,19 @@ Route::delete('/delete-user', 'UserController@destroy');
 Route::post('add_user_role','UserRoleController@addUserRole');
 Route::post('audit_trail','UserRoleController@auditTrail');
 Route::get('/user-roles', 'UserRoleController@index');
+
+
+#### System Manager Module
+Route::get('/routes', 'RoutesController@index');
+Route::get('/load-routes', 'RoutesController@loadRoutes');
+Route::post('/add-route', 'RoutesController@store');
+Route::get('/get-routes', 'RoutesController@getRoutes');
+Route::get('/get-route/{id}', 'RoutesController@getRoute');
+Route::post('/update-route', 'RoutesController@update');
+Route::post('/delete-route', 'RoutesController@destroy');
+Route::get('/menu', 'MenuController@index');
+Route::post('/add-menu', 'MenuController@store');
+Route::post('/arrange-menu', 'MenuController@arrangeMenu');
+Route::get('/get-menu/{id}', 'MenuController@getMenu');
+Route::post('/edit-menu', 'MenuController@update');
+Route::post('/delete-menu', 'MenuController@destroy');
