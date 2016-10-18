@@ -28,6 +28,18 @@
         </li>
         <li class="has-sub">
             <a href="javascript:;">
+                <i class="icon-sitemap"></i>
+                <span class="title">CRM</span>
+                <span class="arrow "></span>
+            </a>
+            <ul class="sub">
+                <li ><a href="{{ url('all_staff') }}">All Staff</a></li>
+                <li ><a href="{{ url('all_customers') }}">All Customers</a></li>
+                <li ><a href="{{ url('all_suppliers') }}">All Suppliers</a></li>
+            </ul>
+        </li>
+        <li class="has-sub">
+            <a href="javascript:;">
                 <i class="icon-book"></i>
                 <span class="title">Inventory</span>
                 <span class="arrow "></span>

@@ -256,7 +256,7 @@ class MasterfileController extends Controller
         $address->save();
 
         $request->session()->flash('success', 'New Address has been added has been updated');
-         return redirect()->route('masterfile.mf_profile');
+         return redirect('mf_profile/'.$request->masterfile_id);
 
     }
 
