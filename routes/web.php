@@ -102,3 +102,14 @@ Route::get('/user-roles', 'UserRoleController@index');
 #### System Manager Module
 Route::get('/routes', 'RoutesController@index');
 Route::get('/load-routes', 'RoutesController@loadRoutes');
+Route::post('/add-route', 'RoutesController@store');
+Route::get('/get-routes', 'RoutesController@getRoutes');
+Route::get('/get-route/{id}', 'RoutesController@getRoute');
+Route::post('/update-route', 'RoutesController@update');
+Route::post('/delete-route', 'RoutesController@destroy');
+Route::get('/menu', 'MenuController@index');
+Route::post('/add-menu', 'MenuController@store');
+Route::post('/arrange-menu', 'MenuController@arrangeMenu');
+Route::get('/get-menu/{id}', 'MenuController@getMenu');
+Route::post('/edit-menu', 'MenuController@update');
+Route::post('/delete-menu', 'MenuController@destroy');
