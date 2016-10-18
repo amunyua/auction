@@ -160,4 +160,37 @@ class MenuController extends Controller
             return Response::json(['success' => false]);
         }
     }
+
+    public function getSideMenu($parent_id = NULL){
+        $menus = (is_null($parent_id) || empty($parent_id)) ? Menu::whereNull('parent_menu')->orderBy('sequence', 'asc')->get() : Menu::where('parent_menu', $parent_id)->orderBy('sequence', 'asc')->get();
+
+        if(count($menus)) {
+            $class = (!is_null($parent_id)) ? 'class="sub"': '';
+            echo '<ul '.$class.'>';
+
+            foreach ($menus as $menu) {
+                $route = Route::find($menu->route_id);
+                $route_name = $route->route_name;
+                $url = $route->url;
+
+                $has_sub = (is_null($parent_id)) ? 'has-sub' : '';
+                $uri = \Route::getFacadeRoot()->current()->uri();
+                $active = ($uri == $url) ? 'active' : '';
+
+                echo '<li class="'.$has_sub.' '.$active.'">';
+
+                echo '<a href="'.url($url).'">
+                    <i class="'.$menu->icon.'"></i>
+                    <span class="title">'.$route_name.'</span>';
+
+                echo (is_null($parent_id)) ? '<span class="arrow "></span>' : '';
+                echo '</a>';
+
+                $this->getSideMenu($menu->id);
+                echo '</li>';
+            }
+
+            echo '</ul>';
+        }
+    }
 }
