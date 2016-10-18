@@ -18,7 +18,7 @@
 @section('wizard-id', 'form_wizard_1')
 
 @section('wizard-title')
-    <i class="icon-reorder"></i> Create a new inventory item - <span class="step-title">Step 1 of 2</span>
+    <i class="icon-reorder"></i> Create a new inventory item - <span class="step-title">Step 1 of 3</span>
 @endsection
 
 @section('content')
@@ -41,12 +41,12 @@
                                 <span class="desc"><i class="icon-ok"></i> Inventory details</span>
                             </a>
                         </li>
-                        {{--<li class="span3">--}}
-                        {{--<a href="#tab3" data-toggle="tab" class="step">--}}
-                        {{--<span class="number">3</span>--}}
-                        {{--<span class="desc"><i class="icon-ok"></i> Billing Setup</span>--}}
-                        {{--</a>--}}
-                        {{--</li>--}}
+                        <li class="span3">
+                        <a href="#tab3" data-toggle="tab" class="step">
+                        <span class="number">3</span>
+                        <span class="desc"><i class="icon-ok"></i> Other Images</span>
+                        </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -63,10 +63,10 @@
                     <h4>Other details</h4>
                     @include('inventory.inventory-details')
                 </div>
-                {{--<div class="tab-pane" id="tab3">--}}
-                {{--<h4>Provide your billing and credit card details</h4>--}}
-                {{--@include('masterfile.account')--}}
-                {{--</div>--}}
+                <div class="tab-pane" id="tab3">
+                <h4>Other images</h4>
+                @include('inventory.more-images')
+                </div>
             </div>
             <div class="form-actions clearfix">
                 <a href="javascript:;" class="btn button-previous">
@@ -86,5 +86,5 @@
 @endsection
 
 @push('js')
-{{--<script src="{{ URL::asset('src_js/masterfile/masterfile.js') }}"></script>--}}
+<script src="{{ URL::asset('src_js/inventory/inventory.js') }}"></script>
 @endpush

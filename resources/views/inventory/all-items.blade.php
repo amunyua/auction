@@ -29,7 +29,7 @@
             <th>Sub Category</th>
             <th>Status</th>
             <th>Stock level</th>
-            <th>Profile</th>
+            {{--<th>Profile</th>--}}
             {{--<th>Edit</th>--}}
             {{--<th>Delete</th>--}}
         </tr>
@@ -48,7 +48,7 @@
                     <td>{{ $subcategory->sub_category_name }}</td>
                     <td>{{ ($item->item_status == 't') ? 'Active':'Inactive'  }}</td>
                     <td>{{ $item->stock_level }}</td>
-                    <td><a href="#view-profile" profile-id="{{ $item->id }}" class="btn btn-small btn-primary profile" data-toggle="modal">Profile</a> </td>
+                    {{--<td><a href="#view-profile" profile-id="{{ $item->id }}" class="btn btn-small btn-primary profile" data-toggle="modal">Profile</a> </td>--}}
                     {{--<td><form method="post" action="">--}}
                             {{--{{ csrf_field() }}--}}
                             {{--<input type="submit" name="DELETE" value="Delete" class="btn btn-danger btn-small delete_category">--}}
@@ -76,8 +76,10 @@
                     <div class="span4"><img src="" alt="" /></div>
                   <div class="span8">
                     <ul class="unstyled span10">
-                        <li><span> Item : </span></li>
-                        <li><span> Category: </span></li>
+                        <li><strong>Item:</strong> <span id="item-name">  </span></li>
+                        <li> <strong>Category: </strong><span id="category"></span></li>
+                        <li> <strong>Sub Category: </strong><span id="category"></span></li>
+                        <li> <strong>Category: </strong><span id="category"></span></li>
                         <li><span> Sub Category: </span></li>
                         <li><span> Stock level: </span></li>
                     </ul>

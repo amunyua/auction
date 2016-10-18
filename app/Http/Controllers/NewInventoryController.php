@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\WarehouseItem;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Response;
@@ -28,6 +29,7 @@ class NewInventoryController extends Controller
     private $_paths = array();
     private $_request;
     private $_stock_level = '';
+    private $_warehouse_stock_level;
     private $_image_path = Null;
 
     public function index(){
@@ -49,18 +51,19 @@ class NewInventoryController extends Controller
 
     }
 
+
     public function storeItem(Request $request){
-//        var_dump($_POST);die;
         $this->validate($request,array(
             'item_name'=>'required|min:2|unique:items,item_name',
             'purchase_price'=>'required|numeric',
             'initial_stock'=>'required|numeric',
             'main_image_path'=>'required|image',
             'stock_reorder_level'=>'required|numeric',
-            'warehouse_id'=>'required',
+//            'warehouse_id'=>'required',
             'transaction_type_id'=>'required',
             'transaction_category_id'=>'required'
         ));
+
 
         DB::transaction(function (){
 
@@ -92,13 +95,50 @@ class NewInventoryController extends Controller
             $item->image_path = $this->_image_path;
             $item->purchase_price = Input::get('purchase_price');
             $item->initial_stock = Input::get('initial_stock');
-            $item->warehouse_id = Input::get('warehouse_id');
+//            $item->warehouse_id = Input::get('warehouse_id');
             $item->stock_reorder_level = Input::get('stock_reorder_level');
             $item->stock_level = Input::get('initial_stock');
 
             //save into the database
             $item->save();
             $item_id =$item->id;
+
+            if($count = count(Input::get('warehouse_id'))){
+                $warehouses = array();
+                echo $count;
+                $count = 1;
+                $count1 =0;
+                foreach (Input::get('warehouse_id') as $warehouse_id){
+                    if(!empty($warehouse_id)){
+                        $warehouses[] = $warehouse_id;
+                        $count++;
+                        $count1++;
+                    }
+                }
+                echo $count1;
+                $warehouse_quantities = array();
+                $count_q = 1;
+                foreach(Input::get('warehouse_quantity') as $warehouse_quantity){
+                    if($count_q > $count1){
+                        break;
+                    }
+                    $warehouse_quantities[] = $warehouse_quantity;
+                    $count_q++;
+                }
+                // print_r($warehouse_quantities);
+                $vals = array_combine($warehouses,$warehouse_quantities);
+//                print_r($vals);
+                foreach ($vals as $warehouse_id => $quantity){
+                    $warehouse_item = new WarehouseItem();
+                    $warehouse_item->item_id = $item_id;
+                    $warehouse_item->warehouse_id = $warehouse_id;
+                    $warehouse_item->stock_level = $quantity;
+
+                    $warehouse_item->save();
+                }
+
+            }
+
 
             session_start();
             if(isset($_SESSION['path'])) {
@@ -119,8 +159,9 @@ class NewInventoryController extends Controller
             $stock_transaction->item_id = $item_id;
             $stock_transaction->transaction_type_id =Input::get('transaction_type_id');
             $stock_transaction->transaction_category_id =Input::get('transaction_category_id');
-            $stock_transaction->warehouse_id =Input::get('warehouse_id');
+//            $stock_transaction->warehouse_id =Input::get('warehouse_id');
             $stock_transaction->quantity =Input::get('initial_stock');
+            $stock_transaction->new_stock_level =Input::get('initial_stock');
             $stock_transaction->transacted_by = $user->id;
             $stock_transaction->save();
 
@@ -161,13 +202,21 @@ class NewInventoryController extends Controller
         //save the items into the db
         DB::transaction(function (){
         $item = Item::find($this->_request->item_id);
-         $stock_level = $item->stock_level;
+            $stock_level = $item->stock_level;
+//            $warehouse_stock = WarehouseItem::where([['item_id','=',$this->_request->item_id],['warehouse_id','=',$this->_request->warehouse_id]])->get();
+            $warehouse_stock = DB::table('warehouse_items')->where([
+                ['item_id', '=', $this->_request->item_id],
+                ['warehouse_id', '=', $this->_request->warehouse_id],
+            ])->get()->first();
+//            var_dump($warehouse_stock);die;
+            $warehouse_stock_level = $warehouse_stock->stock_level;
 
          $transaction_t = TransactionType::find($this->_request->transaction_type_id);
             $transaction_type = strtolower($transaction_t->transaction_type_name);
             switch ($transaction_type){
                 case 'add':
-                $this->_stock_level = ($stock_level + $this->_request->quantity);
+                    $this->_stock_level = ($stock_level + $this->_request->quantity);
+                $this->_warehouse_stock_level =($warehouse_stock_level + $this->_request->quantity);
                     break;
                 case 'subtract':
                     if($stock_level < $this->_request->quantity){
@@ -175,8 +224,10 @@ class NewInventoryController extends Controller
                        return false;
                     }
                     $this->_stock_level = ($stock_level - $this->_request->quantity);
+                    $this->_warehouse_stock_level = ($warehouse_stock_level - $this->_request->quantity);
                     break;
             }
+
             $item = Item::find($this->_request->item_id);
             $item->stock_level = $this->_stock_level;
             $item->save();
@@ -189,8 +240,14 @@ class NewInventoryController extends Controller
         $stock_transaction->warehouse_id =$this->_request->warehouse_id;
         $stock_transaction->quantity = $this->_request->quantity;
         $stock_transaction->transacted_by = $user->id;
-
+        $stock_transaction->new_stock_level = $this->_stock_level;
+        $stock_transaction->warehouse_stock_level = $this->_warehouse_stock_level;
         $stock_transaction->save();
+
+            $stock_l = WarehouseItem::where('item_id', $this->_request->item_id)
+                ->where('warehouse_id', $this->_request->warehouse_id)
+                ->update(['stock_level' => $this->_warehouse_stock_level]);
+
             if(isset($_SESSION['path'])&& !empty($_SESSION['path'])){
                 $image = new Image();
 

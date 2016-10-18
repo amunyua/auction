@@ -5,7 +5,8 @@ $('.profile').on('click', function () {
         url: 'item-details/'+id,
         dataType: 'json',
         success: function (data) {
-
+            $('#item-name').text(data['item_name']);
         }
     });
 })
+$('.live_search').select2();
