@@ -8,6 +8,7 @@
     </div>
     <!-- END RESPONSIVE QUICK SEARCH FORM -->
     <!-- BEGIN SIDEBAR MENU -->
+<<<<<<< HEAD
     <ul>
         <li class="start ">
             <a href="{{ url('/home') }}">
@@ -93,5 +94,16 @@
             </ul>
         </li>
     </ul>
+=======
+    <?php
+        $menu = new \App\Http\Controllers\MenuController;
+        $menu->getSideMenu(NULL);
+    ?>
+>>>>>>> f5f1df004ba898b6cecea3e296136846be831536
     <!-- END SIDEBAR MENU -->
+    @push('js')
+        <script>
+            $('li.active').parent().parent().addClass('active');
+        </script>
+    @endpush
 </div>
