@@ -1611,7 +1611,9 @@ return array(
     'Illuminate\\Routing\\RouteDependencyResolverTrait' => $vendorDir . '/laravel/framework/src/Illuminate/Routing/RouteDependencyResolverTrait.php',
     'Illuminate\\Routing\\Router' => $vendorDir . '/laravel/framework/src/Illuminate/Routing/Router.php',
     'Illuminate\\Routing\\RoutingServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/Routing/RoutingServiceProvider.php',
+
     'Illuminate\\Routing\\SortedMiddleware' => $vendorDir . '/laravel/framework/src/Illuminate/Routing/SortedMiddleware.php',
+
     'Illuminate\\Routing\\UrlGenerator' => $vendorDir . '/laravel/framework/src/Illuminate/Routing/UrlGenerator.php',
     'Illuminate\\Session\\CacheBasedSessionHandler' => $vendorDir . '/laravel/framework/src/Illuminate/Session/CacheBasedSessionHandler.php',
     'Illuminate\\Session\\Console\\SessionTableCommand' => $vendorDir . '/laravel/framework/src/Illuminate/Session/Console/SessionTableCommand.php',
@@ -1692,12 +1694,14 @@ return array(
     'Illuminate\\Validation\\DatabasePresenceVerifier' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/DatabasePresenceVerifier.php',
     'Illuminate\\Validation\\Factory' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/Factory.php',
     'Illuminate\\Validation\\PresenceVerifierInterface' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/PresenceVerifierInterface.php',
+
     'Illuminate\\Validation\\Rule' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/Rule.php',
     'Illuminate\\Validation\\Rules\\Dimensions' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/Rules/Dimensions.php',
     'Illuminate\\Validation\\Rules\\Exists' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/Rules/Exists.php',
     'Illuminate\\Validation\\Rules\\In' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/Rules/In.php',
     'Illuminate\\Validation\\Rules\\NotIn' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/Rules/NotIn.php',
     'Illuminate\\Validation\\Rules\\Unique' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/Rules/Unique.php',
+
     'Illuminate\\Validation\\UnauthorizedException' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/UnauthorizedException.php',
     'Illuminate\\Validation\\ValidatesWhenResolvedTrait' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/ValidatesWhenResolvedTrait.php',
     'Illuminate\\Validation\\ValidationException' => $vendorDir . '/laravel/framework/src/Illuminate/Validation/ValidationException.php',
@@ -1759,6 +1763,7 @@ return array(
     'League\\Flysystem\\ReadInterface' => $vendorDir . '/league/flysystem/src/ReadInterface.php',
     'League\\Flysystem\\RootViolationException' => $vendorDir . '/league/flysystem/src/RootViolationException.php',
     'League\\Flysystem\\SafeStorage' => $vendorDir . '/league/flysystem/src/SafeStorage.php',
+
     'League\\Flysystem\\UnreadableFileException' => $vendorDir . '/league/flysystem/src/UnreadableFileException.php',
     'League\\Flysystem\\Util' => $vendorDir . '/league/flysystem/src/Util.php',
     'League\\Flysystem\\Util\\ContentListingFormatter' => $vendorDir . '/league/flysystem/src/Util/ContentListingFormatter.php',
