@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css')  }}" />
     {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables.css')  }}" rel="stylesheet"/>--}}
     {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>--}}
-    {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables_themeroller.css')  }}" rel="stylesheet"/>--}}
+{{--    <link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables_themeroller.css')  }}" rel="stylesheet"/>--}}
     @stack('css')
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- Le fav and touch icons -->
