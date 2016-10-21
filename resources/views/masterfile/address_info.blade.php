@@ -140,6 +140,7 @@
         <div class="modal-footer">
             <input type="button" class="btn btn-default" value="Close" data-dismiss="modal">
             <input type="submit" class="btn btn-success" value="Save">
+            <input type="hidden" name="done-deal">
         </div>
     </div>
 </form>

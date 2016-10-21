@@ -14,13 +14,7 @@
     </li>
     <li><span>All Masterfile</span></li>
 @endsection
-
-@section('wizard-id', 'form_wizard_1')
-
-@section('wizard-title')
-    <i class="icon-reorder"></i> Add New Masterfile - <span class="step-title">Step 1 of 4</span>
-@endsection
-
+@section('widget-title', 'All Masterfile Records')
 @section('content')
     <table id="table1" class="table table-bordered">
         <thead>
