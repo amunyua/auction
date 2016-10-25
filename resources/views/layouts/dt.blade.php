@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-datepicker/css/datepicker.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/jquery-tags-input/jquery.tagsinput.css')  }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css')  }}" />
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/plugins/jquery-nestable/jquery.nestable.css') }}" />
     {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables.css')  }}" rel="stylesheet"/>--}}
     {{--<link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables.min.css') }}" rel="stylesheet"/>--}}
 {{--    <link href="{{ URL::asset('src/datatables/media/css/jquery.dataTables_themeroller.css')  }}" rel="stylesheet"/>--}}
@@ -124,8 +125,9 @@
 <script src="{{ URL::asset('assets/scripts/form-components.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
 <script src="{{ URL::asset('assets/plugins/dropzone/dropzone.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/jquery-nestable/jquery.nestable.js') }}"></script>
+<script src="{{ URL::asset('assets/scripts/ui-nestable.js') }}"></script>
 <script>
-
     $(document).ready(function(){
         $('ul ul').addClass('sub');
         $('ul.sub .paro').hide();
@@ -133,6 +135,7 @@
         $('.live-active').parent().addClass('active');
         $('ul.sub:empty').hide();
         FormComponents.init();
+        UINestable.init();
     });
 </script>
 
@@ -142,7 +145,13 @@
         $('#table1 .live_table').dataTable();
 
     });
+</script>
 
+{{--initialise nestable--}}
+<script>
+    $(document).ready(function(){
+        UINestable.init();
+    });
 </script>
 
 @stack('js')
