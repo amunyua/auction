@@ -13,4 +13,8 @@ class Role extends Model
     public function masterfile(){
         return $this->hasMany('App\Masterfile');
     }
+
+    public function routes(){
+        return $this->belongsToMany('App\Route');
+    }
 }
