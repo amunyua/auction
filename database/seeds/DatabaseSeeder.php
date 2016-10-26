@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
          $this->call(RoleSeeder::class);
 //         $this->call(AddressTypeSeeder::class);
 //         $this->call(CountySeeder::class);
+         $this->call(RouteSeeder::class);
+         $this->call(MenuSeeder::class);
     }
 }
