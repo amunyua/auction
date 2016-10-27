@@ -98,7 +98,6 @@ Route::delete('/delete-user', 'UserController@destroy');
 
 //Route::post('add_user_role','UserRoleController@addUserRole');
 //Route::post('audit_trail','UserRoleController@auditTrail');
-Route::post('audit_trail','UserRoleController@auditTrail');
 Route::get('/user-roles', 'UserRoleController@index');
 Route::get('/all-roles', 'UserRoleController@loadRoles');
 Route::post('/add-role', 'UserRoleController@store');
@@ -108,6 +107,7 @@ Route::post('/delete-role', 'UserRoleController@destroy');
 Route::post('/attach-to-role', 'UserRoleController@attachToRole');
 Route::post('/detach-from-role', 'UserRoleController@detachFromRole');
 Route::get('/get-role-routes/{role_id}', 'UserRoleController@getRoleRoutes');
+Route::get('/audit_trails','Audit_trailController@index');
 
 
 #### System Manager Module

@@ -87,9 +87,13 @@ $('#edit-action-btn').on('click', function(){
                 success: function(data){
                     $('#action_name').val(data['action_name']);
                     $('#action_description').val(data['action_description']);
-                    $('#class').select2("val", data['class']);
+                    $('#action_class').val(data['action_class']);
                     $('#ed_sys_route').select2("val", data['route_id']);
                     $('#action_status').val(data['action_status']);
+                    $('#action_type').val(data['action_type']);
+                    $('#action_category').val(data['action_category']);
+                    $('#attributes').val(data['attributes']);
+                    $('#icon').val(data['icon']);
                 }
             });
         }
@@ -105,24 +109,24 @@ $('#edit-action-btn').on('click', function(){
 // load Actions
 Sys_action.loadActions();
 
-var Sys_action = $('#sysaction').DataTable({
+var actions = $('#sysaction').DataTable({
     processing: true,
-    serverSide: false,
+    serverSide: true,
     order: [[ 0, "desc" ]],
     ajax: 'load-action',
     columns: [
         { data: 'id', 'name': 'id' },
-        { data: 'action_description', 'name': 'action_description' },
         { data: 'action_name', 'name': 'action_name' },
-        { data: 'class', 'name': 'class' },
-        { data: 'route_id', 'name': 'route_id' },
-        { data: 'user_mfid', 'name': 'user_mfid' },
-        { data: 'action_status', 'name': 'action_status' }
+        { data: 'action_code', 'name': 'action_code' },
+        { data: 'route_name', 'name': 'route_name' },
+        { data: 'action_status', 'name': 'action_status' },
+        { data: 'user_name', 'name': 'user_name' }
+
     ]
 });
 
 $('#refresh-actions').on('click', function(){
-    routes.ajax.reload();
+    actions.ajax.reload();
 });
 
 // add route
@@ -137,7 +141,7 @@ $('#add-sysaction-form').on('submit', function (e) {
         success: function(data){
             if(data.success){
                 // load Parent Routes
-                Sys_action.loadRoutes();
+                Sys_action.loadActions();
 
                 // reset fields
                 Sys_action.resetFields();
@@ -150,7 +154,7 @@ $('#add-sysaction-form').on('submit', function (e) {
                 $('#feedback').html(success);
 
                 // reload grid
-                routes.ajax.reload();
+                actions.ajax.reload();
 
                 //remove alert after 3 seconds
                 setTimeout(function(){
@@ -178,10 +182,14 @@ $('#edit-sysaction-form').on('submit', function (e) {
         data: {
             action_description: $('#action_description').val(),
             action_name: $('#action_name').val(),
-            class: $('#class').val(),
+            action_class: $('#action_class').val(),
             route_id: $('#ed_sys_route').val(),
             action_status: $('#action_status'),
             user_mfid: $('#user_mfid'),
+            action_type: $('#action_type'),
+            action_category: $('#action_category'),
+            attributes: $('#attributes'),
+            icon: $('#icon'),
             _token: $('input[name="_token"]').val(),
             id: $('tr.info').find('td:first').text()
         },
@@ -189,7 +197,7 @@ $('#edit-sysaction-form').on('submit', function (e) {
         success: function(data){
             if(data.success){
                 // load Parent Routes
-                Sys_action.loadRoutes();
+                Sys_action.loadActions();
 
                 // close modal
                 $('#edit-sysaction').modal('hide');
@@ -199,7 +207,7 @@ $('#edit-sysaction-form').on('submit', function (e) {
                 $('#feedback').html(success);
 
                 // reload grid
-                routes.ajax.reload();
+                actions.ajax.reload();
 
                 //remove alert after 3 seconds
                 setTimeout(function(){
@@ -233,14 +241,14 @@ $('#delete-action-btn').on('click', function(){
                     success: function (data) {
                         if (data.success) {
                             // load Parent Routes
-                            Sys_action.loadRoutes();
+                            Sys_action.loadActions();
 
                             // alert success
                             var success = Sys_action.splash('success', 'Successfully deleted!');
                             $('#feedback').html(success);
 
                             // reload grid
-                            routes.ajax.reload();
+                            actions.ajax.reload();
 
                             //remove alert after 3 seconds
                             setTimeout(function(){

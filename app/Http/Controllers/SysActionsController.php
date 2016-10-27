@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use App\Route;
 use App\Sys_action;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\Datatables\Facades\Datatables;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 use App\Http\Requests;
 
@@ -17,6 +21,10 @@ class SysActionsController extends Controller
         $this->middleware('auth');
     }
 
+    public function user(){
+        $user = Auth::user;
+
+    }
     public function index(){
         $action = Sys_action::all();
 
@@ -26,18 +34,12 @@ class SysActionsController extends Controller
     }
 
     public function loadActions(){
-        return Datatables::of(Sys_action::query())
-            ->editColumn('action_status',
+        return Datatables::queryBuilder(DB::table('sys_actions_view'))->editColumn('action_status',
                 '@if($action_status)
-                    Active 
+                    Active
                 @else
                     Inactive
-                @endif')
-            ->editColumn('route_id',
-                '@if(!empty($route_id))
-                    {{ App\Sys_action::find($route_id)->route_name }}
-                @endif')
-            ->make(true);
+                @endif')->make(true);
     }
 
     public function getChildRoutes(){
@@ -57,8 +59,13 @@ class SysActionsController extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'action_description' => 'required',
+            'action_name' => 'required',
+            'action_type' => 'required',
+            'action_category' => 'required',
             'action_status' => 'required'
         ]);
+
+        //var_dump('after validation');exit;
 
         $return = [];
         if($validator->fails()){
@@ -67,18 +74,55 @@ class SysActionsController extends Controller
                 'errors' => $validator->getMessageBag()->toArray()
             ];
         }else{
-            // add action
-            $action = new Sys_action();
-            $action->action_description = $request->action_description;
-            $action->action_name = $request->action_name;
-            $action->route_id = $request->route_id;
-            $action->action_status = $request->action_status;
-            $action->user_mfid = $request->user_mfid;
-            $action->class = $request->class;
-            $action->action_code = $request->action_code;
-            $action->save();
 
-            $return = [ 'success' => true ];
+            $user = Auth::user();
+            //var_dump($user);exit;
+            $cuser = $user->masterfile_id;
+
+            // generate the action code
+            $action_name = $request->action_name;
+            $croute_id = $request->route_id;
+            $parent_route_id = Route::find($croute_id)->parent_route;
+            $parent_name = Route::find($parent_route_id)->route_name;
+            $route_name = Route::find($croute_id)->route_name;
+            //var_dump($route_name);exit;
+
+            //this will limit the action code to four characters
+            $parent_name = substr($parent_name, 0, 4);
+            $route_name= substr($route_name, 0, 4);
+            $action_name  = substr($action_name, 0, 3);
+            $action_code = $parent_name.'_'.$route_name.'_'.$action_name;
+
+            //var_dump('after substr');exit;
+            // check if the action code exists
+            $code_count = Sys_action::where('action_code', $action_code)->count();
+            //var_dump($code_count);exit;
+            if(!$code_count) {
+                // add action
+                $action = new Sys_action();
+                $action->action_description = $request->action_description;
+                $action->action_name = $request->action_name;
+                $action->route_id = $request->route_id;
+                $action->action_status = $request->action_status;
+                $action->user_mfid = $user->masterfile_id;
+                $action->action_class = $request->action_class;
+                $action->attributes = $request->action_attributes;
+                $action->icon = $request->icon;
+                $action->action_type = $request->action_type;
+                $action->action_category = $request->action_category;
+                $action->save();
+                $action_id = $action->id;
+                //var_dump($action_id);exit;
+                // update the action code
+                Sys_action::where('id', $action_id)
+                    ->update([
+                        'action_code' => $action_code.'_'.$action_id
+                    ]);
+
+                $return = ['success' => true];
+            }else{
+                $return = ['success' => false];
+            }
         }
         return Response::json($return);
     }
@@ -97,13 +141,18 @@ class SysActionsController extends Controller
             ];
         }else{
             // edit action
+            $user = Auth::user();
             Sys_action::where('id', $request->id)
                 ->update([
                     'action_description' => $request->action_description,
                     'action_name' => $request->action_name,
-                    'class' =>  $request->class,
+                    'action_class' =>  $request->action_class,
+                    'attributes' =>  $request->attributes,
+                    'icon' =>  $request->icon,
+                    'action_type' =>  $request->action_type,
+                    'action_category' =>  $request->action_category,
                     'route_id' =>  $request->route_id,
-                    'user_mfid' =>  $request->user_mfid,
+                    'user_mfid' =>  $user->id,
                     'action_status' => $request->action_status
                 ]);
 
@@ -128,8 +177,8 @@ class SysActionsController extends Controller
     }
 
     public function getParent(Request $request){
-        $route_id = $request->route_id;
-        $parent_route = Sys_action::find($route_id);
+        $route_id = $request->parent_route;
+        $parent_route = Route::find($route_id);
         return Response::json($parent_route);
     }
 }

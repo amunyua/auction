@@ -27,7 +27,7 @@
 <button id="edit-action-btn" class="btn btn-warning btn-small" title="Edit Sys Action" data-toggl data-target="#edit-sysaction">
     <i class="icon-edit"></i> Edit
 </button>
-<button id="delete-action-btn" class="btn btn-danger btn-small" title="Delete Sys Action" data-toggle="modal" data-target="#delete-sysaction">
+<button id="delete-action-btn" class="btn btn-danger btn-small" title="Delete Sys Action">
     <i class="icon-trash"></i> Delete
 </button>
 <button id="refresh-actions" class="btn btn-info btn-small">Refresh</button>
@@ -64,13 +64,32 @@
                 </div>
 
                 <div class="row-fluid">
-                    <label for="action_description ">Action Description</label>
-                    <input type="text" name="action_description " class="span12">
+                    <label for="action_type">Action Type:</label>
+                    <select name="action_type" class="span12">
+                        <option value="">--Choose Action Type--</option>
+                        <option value="submit">Submit</option>
+                        <option value="reset">Reset</option>
+                        <option value="button">Button</option>
+                    </select>
                 </div>
 
                 <div class="row-fluid">
-                    <label for="class ">Class</label>
-                    <input type="text" name="class " class="span12">
+                    <label for="icon">Icon:</label>
+                    <input type="text" name="icon" class="span12">
+                </div>
+
+                <div class="row-fluid">
+                    <label for="action_class">Class:</label>
+                    <input type="text" name="action_class" class="span12">
+                </div>
+
+                <div class="row-fluid">
+                    <label for="action_category">Action Category:</label>
+                    <select name="action_category" class="span12">
+                        <option value="">--Choose Action Category--</option>
+                        <option value="form">Form</option>
+                        <option value="section">Section</option>
+                    </select>
                 </div>
 
                 <label for="route_id">Route:</label>
@@ -86,6 +105,16 @@
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
                     </select>
+                </div>
+
+                <div class="row-fluid">
+                    <label for="action_attributes">Attributes:</label>
+                    <textarea name="action_attributes" class="span12"></textarea>
+                </div>
+
+                <div class="row-fluid">
+                    <label for="action_description">Action Description:</label>
+                    <textarea name="action_description" class="span12"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -110,13 +139,32 @@
                 </div>
 
                 <div class="row-fluid">
-                    <label for="action_description ">Action Description</label>
-                    <input type="text" name="action_description"  id="action_description" class="span12">
+                    <label for="action_type">Action Type:</label>
+                    <select name="action_type" id="action_type" class="span12">
+                        <option value="">--Choose Action Type--</option>
+                        <option value="submit">Submit</option>
+                        <option value="reset">Reset</option>
+                        <option value="button">Button</option>
+                    </select>
                 </div>
 
                 <div class="row-fluid">
-                    <label for="class">Class</label>
-                    <input type="text" name="class" id="class"  class="span12">
+                    <label for="icon">Icon:</label>
+                    <input type="text" name="icon" id="icon" class="span12">
+                </div>
+
+                <div class="row-fluid">
+                    <label for="action_class">Class</label>
+                    <input type="text" name="action_class" id="action_class"  class="span12">
+                </div>
+
+                <div class="row-fluid">
+                    <label for="action_category">Action Category:</label>
+                    <select name="action_category" id="action_category" class="span12">
+                        <option value="">--Choose Action Category--</option>
+                        <option value="form">Form</option>
+                        <option value="section">Section</option>
+                    </select>
                 </div>
 
                 <label for="route_id">Route:</label>
@@ -132,6 +180,16 @@
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
                     </select>
+                </div>
+
+                <div class="row-fluid">
+                    <label for="attributes">Attributes:</label>
+                    <textarea name="attributes" id="attributes" class="span12"></textarea>
+                </div>
+
+                <div class="row-fluid">
+                    <label for="action_description">Action Description:</label>
+                    <textarea name="action_description" id="action_description" class="span12"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
