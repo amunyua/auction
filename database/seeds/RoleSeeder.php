@@ -11,6 +11,7 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+        \Illuminate\Support\Facades\DB::table('roles')->delete();
         $admin = \App\Masterfile::where('surname', 'Admin')->first();
         $sys_admin = new \App\Role();
         $sys_admin->role_name = 'System Administrator';

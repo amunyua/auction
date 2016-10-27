@@ -171,7 +171,7 @@ class MenuController extends Controller
             foreach ($menus as $menu) {
                 $route = Route::find($menu->route_id);
                 $route_name = $route->route_name;
-                $url = $route->url;
+                $url = (!empty($route->url)) ? $route->url : '';
 
                 $has_sub = (is_null($parent_id)) ? 'has-sub' : '';
                 $uri = \Route::getFacadeRoot()->current()->uri();
