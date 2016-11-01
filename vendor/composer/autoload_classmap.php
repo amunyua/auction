@@ -22,6 +22,7 @@ return array(
     'AddUserStatus' => $baseDir . '/database/migrations/2016_10_01_180412_add_user_status.php',
     'AddWarehouseStockLevelToStockTransactionsTable' => $baseDir . '/database/migrations/2016_10_16_163818_add_warehouse_stock_level_to_stock_transactions_table.php',
     'AddressTypeSeeder' => $baseDir . '/database/seeds/AddressTypeSeeder.php',
+    'AudilTrailView' => $baseDir . '/database/migrations/2016_10_27_163900_audil_trail_view.php',
     'CItemsTable' => $baseDir . '/database/migrations/2016_10_02_145011_c_items_table.php',
     'Categories' => $baseDir . '/database/migrations/2016_10_01_195538_categories.php',
     'CategoriesSeeder' => $baseDir . '/database/seeds/CategoriesSeeder.php',

@@ -26,7 +26,7 @@ class Audit_trailController extends Controller
     }
 
     public function loadAudit(){
-        return Datatables::queryBuilder(DB::table('sys_actions_view'))->make(true);
+        return Datatables::queryBuilder(DB::table('audit_view'))->make(true);
     }
 
     public function getAudit(Request $request){

@@ -108,6 +108,7 @@ Route::post('/attach-to-role', 'UserRoleController@attachToRole');
 Route::post('/detach-from-role', 'UserRoleController@detachFromRole');
 Route::get('/get-role-routes/{role_id}', 'UserRoleController@getRoleRoutes');
 Route::get('/audit_trails','Audit_trailController@index');
+Route::get('/load_audit','Audit_trailController@loadAudit');
 
 
 #### System Manager Module

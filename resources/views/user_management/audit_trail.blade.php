@@ -20,6 +20,10 @@
     <li><a href="{{ url('audit_trail') }}">Audit Trail</a></li>
 @endsection
 
+@section('actions')
+    <button id="refresh-audits" class="btn btn-info btn-small">Refresh</button>
+@endsection
+
 @section('content')
     <div id="feedback"></div>
     <table id="audit" class="table table-bordered">
