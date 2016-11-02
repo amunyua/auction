@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Yajra\Datatables\Facades\Datatables;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 use App\Http\Requests;
 
@@ -18,6 +20,7 @@ class Audit_trailController extends Controller
     }
 
     public function index(){
+
         $audit = Audit_trail::all();
 
         return view('user_management.audit_trail', [

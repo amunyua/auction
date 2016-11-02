@@ -92,9 +92,11 @@ Route::delete('/delete-sc', 'ServiceChannelController@destroy');
 Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 
 ### User Management Module
-Route::get('/users', 'UserController@index');
-Route::post('/update-user', 'UserController@update');
-Route::delete('/delete-user', 'UserController@destroy');
+Route::get('/all-users', 'Manage_userController@index');
+Route::get('/load-users','Manage_userController@loadAllusers');
+Route::post('/reset_pass', 'Manage_userController@update');
+Route::delete('/delete-user', 'Manage_userController@destroy');
+Route::get('/user-data/{id}', 'Manage_userController@getUserData');
 
 //Route::post('add_user_role','UserRoleController@addUserRole');
 //Route::post('audit_trail','UserRoleController@auditTrail');
