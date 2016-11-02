@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Auth;
 use App\WarehouseItem;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 
 class NewInventoryController extends Controller
@@ -26,11 +25,12 @@ class NewInventoryController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    private $_paths = array();
+    private $_paths = null;
     private $_request;
     private $_stock_level = '';
     private $_warehouse_stock_level;
     private $_image_path = Null;
+
 
     public function index(){
         $items = Item::all();
@@ -42,7 +42,7 @@ class NewInventoryController extends Controller
         return view('inventory.add-items',array(
             'categories'=>Category::all(),
             'subcategories'=>SubCategory::all(),
-            'suppliers'=>Masterfile::where('b_role','=','Supplier'),
+            'suppliers'=>Masterfile::where('b_role','=','Supplier')->get(),
             'warehouses'=>Warehouse::all(),
             'transaction_types'=>TransactionType::all(),
             'transaction_categories'=>TransactionCategory::all()
@@ -53,6 +53,26 @@ class NewInventoryController extends Controller
 
 
     public function storeItem(Request $request){
+        if(Session::has('image_paths')){
+//            $paths = Session::get('image_paths');
+//               var_dump($paths);
+//            $image_paths = Session::pull('image_paths',null);
+//            var_dump($image_paths);die;
+            dump(Session::all());
+            dump($request->session()->all());
+            $image_paths = $request->session()->get('image_paths');
+            foreach ($image_paths as $key => $paths){
+                $request->session()->pull('images'.$key);
+                echo $value = $request->session()->pull($key, $paths). '<br>' ;
+                unset($image_paths[$key]);
+                Session::set('image_paths', $image_paths);
+            }
+            dump($request->session()->all());
+
+            dump(Session::all());
+            var_dump($image_paths);
+        }
+        die;
         $this->validate($request,array(
             'item_name'=>'required|min:2|unique:items,item_name',
             'purchase_price'=>'required|numeric',
@@ -138,8 +158,6 @@ class NewInventoryController extends Controller
                 }
 
             }
-
-
             session_start();
             if(isset($_SESSION['path'])) {
                 foreach ($_SESSION['path'] as $path) {
@@ -170,9 +188,6 @@ class NewInventoryController extends Controller
         });
         Session::flash('success','Inventory item has been created');
         return redirect()->route('add-items.index');
-
-    }
-    public function uploadImages(){
 
     }
     public function stockTransactions(){
@@ -266,20 +281,26 @@ class NewInventoryController extends Controller
     }
 
     public function uploadInventoryPics(Request $request){
-        session_start();
+
         $image = $request->file('file');
         $prefix = uniqid();
         $file_name = $image->getClientOriginalName();
         $ext = $image->getClientOriginalExtension();
         $new_name_ = $prefix.$file_name;
         $new_name = md5($new_name_).'.'.$ext;
-
+//        $request->session()->put('image_paths',[]);
         if(Input::hasFile('file')){
             if($image->isValid()) {
-                $image->move('uploads/images', $new_name);
+//                $image->move('uploads/images', $new_name);
                 $path = 'uploads/images/'.$new_name;
+//                echo $path;
+                $request->session()->push('image_paths', $path);
 
-                $_SESSION['path'][] = $path;
+
+//                $image_paths = session('image_paths',[$path]);
+//                echo json_encode($image_paths);
+//                session()->push('paths',[$path]);
+//                echo json_encode(var_dump($this->_paths));
             }
         }
     }
