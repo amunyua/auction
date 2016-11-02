@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Menu;
 use App\Role;
 use App\Route;
+use App\Sys_action;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
@@ -130,7 +131,7 @@ class UserRoleController extends Controller
                 if(!is_null($parent_id)) {
                     echo '<label><input type="checkbox" class="checkbox style-0" value="' . $route->id . '"/>';
                     echo '<span class="font-xs" menu-id="' . $route->id . '">';
-                    echo '<a href="#edit-menu-item" class="edit-menu-link" data-toggle="modal" item-id="' . $route->id . '">';
+                    echo '<a href="#load_actions" class="load-actions-link" data-toggle="modal" item-id="' . $route->id . '">';
                     echo '<i class="fa fa-clip"></i> Actions </a>';
                     echo '</span>';
                     echo '</label>';
@@ -181,5 +182,45 @@ class UserRoleController extends Controller
             ->where('role_id', $role_id)
             ->get();
         return Response::json($allocated);
+    }
+
+    public function loadRouteActions(Request $request){
+        $actions = Sys_action::where('route_id', $request->id)->get();
+
+        $return = [];
+        if (count($actions)){
+            foreach ($actions as $action){
+                // check if action is allocated
+                $attached = DB::table('role_sys_action')
+                    ->where([
+                        'role_id' => $request->role_id,
+                        'sys_action_id' => $action->id
+                    ])
+                    ->count();
+
+                $return[] = array(
+                    'id' => $action->id,
+                    'action_name' => $action->action_name,
+                    'action_code' => $action->action_code,
+                    'action_status' => $action->action_status,
+                    'route_id' => $action->route_id,
+                    'attached' => ($attached) ? true : false
+                );
+            }
+        }
+
+        return Response::json($return);
+    }
+
+    public function attachAction(Request $request){
+        $role = Role::find($request->role_id);
+        $role->actions()->attach($request->action_id);
+        return Response::json(['success' => true]);
+    }
+
+    public function detachAction(Request $request){
+        $role = Role::find($request->role_id);
+        $role->actions()->detach($request->action_id);
+        return Response::json(['success' => true]);
     }
 }

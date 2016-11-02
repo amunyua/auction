@@ -56,6 +56,15 @@ class RouteSeeder extends Seeder
         $inventory->save();
         $inventory_id = $inventory->id;
 
+        $inventory_cats = new Route();
+        $inventory_cats->route_name = 'Manage Category';
+        $inventory_cats->url = 'categories';
+        $inventory_cats->parent_route = $inventory_id;
+        $inventory_cats->route_status = '1';
+        $inventory_cats->save();
+
+
+
         #### Auction Manager
         $auction_manager = new Route();
         $auction_manager->route_name = 'Auction Manager';
