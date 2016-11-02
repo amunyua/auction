@@ -30,7 +30,11 @@ class PHPUnit_Runner_Version
         }
 
         if (self::$version === null) {
+<<<<<<< HEAD
             $version       = new SebastianBergmann\Version('5.6.1', dirname(dirname(__DIR__)));
+=======
+            $version       = new SebastianBergmann\Version('5.6.2', dirname(dirname(__DIR__)));
+>>>>>>> 0b6ac9e9b9c83713e90fe7a24e61839032fc68bd
             self::$version = $version->getVersion();
         }
 

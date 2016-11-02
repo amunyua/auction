@@ -30,8 +30,18 @@
                         <!--BEGIN TABS-->
                         <div class="tabbable tabbable-custom">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab_1_1" data-toggle="tab"><i class="icon-user"></i> Profile Info</a></li>
-                                <li class=""><a href="#tab_1_2" data-toggle="tab"><i class="icon-map-marker"></i> Manage Addresses</a></li>
+                                <?php
+                                $tab1 = '';
+                                $tab2 = '';
+                                if(isset($_POST['done-deal'])){
+                                    $tab2 = 'active';
+                                }
+                                else{
+                                    $tab1 = 'active';
+                                }
+                                ?>
+                                <li class="<?php echo $tab1; ?>"><a href="#tab_1_1" data-toggle="tab"><i class="icon-user"></i> Profile Info</a></li>
+                                <li class="<?php echo $tab2; ?>"><a href="#tab_1_2" data-toggle="tab"><i class="icon-map-marker"></i> Manage Addresses</a></li>
                                 <?php
                                     if($mf['b_role'] == 'Client'){
                                 ?>
@@ -49,11 +59,11 @@
                             </ul>
                             {{-- tabs panes --}}
                             <div class="tab-content">
-                                <div class="tab-pane profile-classic row-fluid active"  id="tab_1_1">
+                                <div class="tab-pane <?php echo $tab1; ?> profile-classic row-fluid active"  id="tab_1_1">
                                     @include('masterfile.profile_info')
                                 </div>
 
-                                <div class="tab-pane profile-classic row-fluid" id="tab_1_2">
+                                <div class="tab-pane <?php echo $tab2; ?> profile-classic row-fluid" id="tab_1_2">
                                     @include('masterfile.address_info')
                                 </div>
 

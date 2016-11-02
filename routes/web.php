@@ -28,6 +28,11 @@ Route::get('/address_data/{id}', 'MasterfileController@getAddressData');
 Route::put('/update_address', 'MasterfileController@updateAddress');
 Route::delete('/delete_address', 'MasterfileController@deleteAddress');
 
+### Crm Module
+Route::get('all_customers', 'CrmController@getAllCustomers');
+Route::get('all_staff', 'CrmController@getAllStaffs');
+Route::get('all_suppliers', 'CrmController@getAllSuppliers');
+
 #### Inventory Module
 //routes for managing category details
 Route::get('categories',array('uses'=>'InventoryController@getCategories','as'=>'category.index') );
@@ -93,12 +98,37 @@ Route::delete('/delete-user', 'UserController@destroy');
 
 //Route::post('add_user_role','UserRoleController@addUserRole');
 //Route::post('audit_trail','UserRoleController@auditTrail');
-
-Route::post('add_user_role','UserRoleController@addUserRole');
-Route::post('audit_trail','UserRoleController@auditTrail');
 Route::get('/user-roles', 'UserRoleController@index');
+Route::get('/all-roles', 'UserRoleController@loadRoles');
+Route::post('/add-role', 'UserRoleController@store');
+Route::get('/get-role/{id}', 'UserRoleController@getRole');
+Route::post('/edit-role', 'UserRoleController@update');
+Route::post('/delete-role', 'UserRoleController@destroy');
+Route::post('/attach-to-role', 'UserRoleController@attachToRole');
+Route::post('/detach-from-role', 'UserRoleController@detachFromRole');
+Route::get('/get-role-routes/{role_id}', 'UserRoleController@getRoleRoutes');
+Route::get('/audit_trails','Audit_trailController@index');
+Route::get('/load_audit','Audit_trailController@loadAudit');
 
 
 #### System Manager Module
 Route::get('/routes', 'RoutesController@index');
 Route::get('/load-routes', 'RoutesController@loadRoutes');
+Route::post('/add-route', 'RoutesController@store');
+Route::get('/get-routes', 'RoutesController@getRoutes');
+Route::get('/get-route/{id}', 'RoutesController@getRoute');
+Route::post('/update-route', 'RoutesController@update');
+Route::post('/delete-route', 'RoutesController@destroy');
+Route::get('/menu', 'MenuController@index');
+Route::post('/add-menu', 'MenuController@store');
+Route::post('/arrange-menu', 'MenuController@arrangeMenu');
+Route::get('/get-menu/{id}', 'MenuController@getMenu');
+Route::post('/edit-menu', 'MenuController@update');
+Route::post('/delete-menu', 'MenuController@destroy');
+Route::get('/sys-actions', 'SysActionsController@index');
+Route::get('/load-action', 'SysActionsController@loadActions');
+Route::post('/add-action', 'SysActionsController@store');
+Route::post('/update-action', 'SysActionsController@update');
+Route::post('/delete-action', 'SysActionsController@destroy');
+Route::get('/get-child-routes', 'SysActionsController@getChildRoutes');
+Route::get('/get-action/{id}', 'SysActionsController@getAction');
