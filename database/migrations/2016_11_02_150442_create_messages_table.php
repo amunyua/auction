@@ -17,9 +17,9 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->text('body');
             $table->bigInteger('sender');
-            $table->bigInteger('recipients');
+            $table->json('recipients');
             $table->boolean('message_status')->default(0);
-            $table->bigInteger('message_type');
+            $table->json('message_type');
             $table->bigInteger('content_type');
             $table->timestamps();
         });
