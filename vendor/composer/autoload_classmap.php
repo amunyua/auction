@@ -13,7 +13,10 @@ return array(
     'AddFkParent' => $baseDir . '/database/migrations/2016_10_18_144143_add_fk_parent.php',
     'AddMfidFk' => $baseDir . '/database/migrations/2016_09_30_160028_add_mfid_fk.php',
     'AddNewStockLevelToTransactions' => $baseDir . '/database/migrations/2016_10_15_064411_add_new_stock_level_to_transactions.php',
+<<<<<<< HEAD
+=======
     'AddNullablesFields' => $baseDir . '/database/migrations/2016_10_17_144033_add_nullables_fields.php',
+>>>>>>> 0b6ac9e9b9c83713e90fe7a24e61839032fc68bd
     'AddParentRoute' => $baseDir . '/database/migrations/2016_10_17_114731_add_parent_route.php',
     'AddParentcategoryfieldCat' => $baseDir . '/database/migrations/2016_10_05_155402_add_parentcategoryfield_cat.php',
     'AddRevenuechannelFks' => $baseDir . '/database/migrations/2016_10_01_174941_add_revenuechannel_fks.php',
@@ -48,12 +51,15 @@ return array(
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateRequestTypesTable' => $baseDir . '/database/migrations/2016_10_01_175305_create_request_types_table.php',
     'CreateRevenueChannelsTable' => $baseDir . '/database/migrations/2016_10_01_171017_create_revenue_channels_table.php',
+    'CreateRoleActions' => $baseDir . '/database/migrations/2016_11_01_151211_create_role_actions.php',
     'CreateRoleRoute' => $baseDir . '/database/migrations/2016_10_24_142745_create_role_route.php',
+    'CreateRoleSysAction' => $baseDir . '/database/migrations/2016_11_01_170917_create_role_sys_action.php',
     'CreateRoleUser' => $baseDir . '/database/migrations/2016_10_24_140210_create_role_user.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2016_10_02_085959_create_roles_table.php',
     'CreateRoutesTable' => $baseDir . '/database/migrations/2016_10_17_114557_create_routes_table.php',
     'CreateServiceBillsTable' => $baseDir . '/database/migrations/2016_10_01_171051_create_service_bills_table.php',
     'CreateServiceChannelsTable' => $baseDir . '/database/migrations/2016_10_01_171038_create_service_channels_table.php',
+    'CreateSessionsTable' => $baseDir . '/database/migrations/2016_10_17_133942_create_sessions_table.php',
     'CreateStockTransactionsTable' => $baseDir . '/database/migrations/2016_10_02_153557_create_stock_transactions_table.php',
     'CreateSubCategoriesTable' => $baseDir . '/database/migrations/2016_10_01_195611_create_sub_categories_table.php',
     'CreateSysActionsTable' => $baseDir . '/database/migrations/2016_10_21_182717_create_sys_actions_table.php',
@@ -634,7 +640,11 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+<<<<<<< HEAD
+    'UploadHandler' => $baseDir . '/database/public/assets/plugins/jquery-file-upload/server/php/UploadHandler.php',
+=======
     'UpdateColumn' => $baseDir . '/database/migrations/2016_10_27_132841_updateColumn.php',
+>>>>>>> 0b6ac9e9b9c83713e90fe7a24e61839032fc68bd
     'UserLoginSeeder' => $baseDir . '/database/seeds/UserLoginSeeder.php',
     'Userfk' => $baseDir . '/database/migrations/2016_10_27_150110_userfk.php',
     'transaction_categories_seeder' => $baseDir . '/database/seeds/transaction_categories_seeder.php',
