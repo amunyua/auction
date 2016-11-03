@@ -125,7 +125,7 @@
     </form>
 
     {{--edit modal--}}
-    <form action="{{ url('/update-route') }}" method="post" id="edit-sysaction-form">
+    <form action="{{ url('/update-action') }}" method="post" id="edit-sysaction-form">
         {{ csrf_field() }}
         <div id="edit-sysaction" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-header">
@@ -184,7 +184,7 @@
 
                 <div class="row-fluid">
                     <label for="attributes">Attributes:</label>
-                    <textarea name="attributes" id="attributes" class="span12"></textarea>
+                    <textarea name="action_attributes" id="attributes" class="span12"></textarea>
                 </div>
 
                 <div class="row-fluid">

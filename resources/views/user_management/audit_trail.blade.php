@@ -26,7 +26,7 @@
 
 @section('content')
     <div id="feedback"></div>
-    <table id="audit" class="table table-bordered">
+    <table id="audit_trails" class="table table-bordered">
         <thead>
         <tr>
             <th>ID#</th>

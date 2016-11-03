@@ -179,20 +179,7 @@ $('#edit-sysaction-form').on('submit', function (e) {
     $.ajax({
         url: $(this).attr('action'),
         type: 'POST',
-        data: {
-            action_description: $('#action_description').val(),
-            action_name: $('#action_name').val(),
-            action_class: $('#action_class').val(),
-            route_id: $('#ed_sys_route').val(),
-            action_status: $('#action_status'),
-            user_mfid: $('#user_mfid'),
-            action_type: $('#action_type'),
-            action_category: $('#action_category'),
-            attributes: $('#attributes'),
-            icon: $('#icon'),
-            _token: $('input[name="_token"]').val(),
-            id: $('tr.info').find('td:first').text()
-        },
+        data: $(this).serialize(),
         dataType: 'json',
         success: function(data){
             if(data.success){

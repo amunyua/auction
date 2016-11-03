@@ -110,6 +110,13 @@ class MenuSeeder extends Seeder
         $roles->sequence = 2;
         $roles->save();
 
+        $route_roles = \App\Route::where('route_name', 'Audit Trail')->first();
+        $roles = new Menu();
+        $roles->route_id = $route_roles->id;
+        $roles->parent_menu = $user_mgt->id;
+        $roles->sequence = 3;
+        $roles->save();
+
         $route_system = \App\Route::where('route_name', 'System Manager')->first();
         $system = new Menu();
         $system->route_id = $route_system->id;
@@ -128,7 +135,14 @@ class MenuSeeder extends Seeder
         $menu = new Menu();
         $menu->route_id = $route_menu->id;
         $menu->parent_menu = $system->id;
-        $menu->sequence = 1;
+        $menu->sequence = 2;
+        $menu->save();
+
+        $route_menu = \App\Route::where('route_name', 'System Actions')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_menu->id;
+        $menu->parent_menu = $system->id;
+        $menu->sequence = 3;
         $menu->save();
 
         $inventory_menu = \App\Route::where('route_name','Inventory')->first();

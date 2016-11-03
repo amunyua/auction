@@ -28,11 +28,6 @@ Route::get('/address_data/{id}', 'MasterfileController@getAddressData');
 Route::put('/update_address', 'MasterfileController@updateAddress');
 Route::delete('/delete_address', 'MasterfileController@deleteAddress');
 
-### Crm Module
-Route::get('all_customers', 'CrmController@getAllCustomers');
-Route::get('all_staff', 'CrmController@getAllStaffs');
-Route::get('all_suppliers', 'CrmController@getAllSuppliers');
-
 #### Inventory Module
 //routes for managing category details
 Route::get('categories',array('uses'=>'InventoryController@getCategories','as'=>'category.index') );
@@ -92,9 +87,11 @@ Route::delete('/delete-sc', 'ServiceChannelController@destroy');
 Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 
 ### User Management Module
-Route::get('/users', 'UserController@index');
-Route::post('/update-user', 'UserController@update');
-Route::delete('/delete-user', 'UserController@destroy');
+Route::get('/all-users', 'Manage_userController@index');
+Route::get('/load-users','Manage_userController@loadAllusers');
+Route::post('/reset_pass', 'Manage_userController@update');
+Route::delete('/delete-user', 'Manage_userController@destroy');
+Route::get('/user-data/{id}', 'Manage_userController@getUserData');
 
 //Route::post('add_user_role','UserRoleController@addUserRole');
 //Route::post('audit_trail','UserRoleController@auditTrail');
@@ -114,7 +111,7 @@ Route::post('/attach-action','UserRoleController@attachAction');
 Route::post('/detach-action','UserRoleController@detachAction');
 
 
-#### System Manager Module
+#### System Manager  Module
 Route::get('/routes', 'RoutesController@index');
 Route::get('/load-routes', 'RoutesController@loadRoutes');
 Route::post('/add-route', 'RoutesController@store');

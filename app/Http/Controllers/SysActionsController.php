@@ -142,17 +142,20 @@ class SysActionsController extends Controller
         }else{
             // edit action
             $user = Auth::user();
+            $cuser = $user->masterfile_id;
+//            var_dump($request->action_description);exit;
+//            var_dump($user);exit;
             Sys_action::where('id', $request->id)
                 ->update([
                     'action_description' => $request->action_description,
                     'action_name' => $request->action_name,
-                    'action_class' =>  $request->action_class,
-                    'attributes' =>  $request->attributes,
-                    'icon' =>  $request->icon,
-                    'action_type' =>  $request->action_type,
-                    'action_category' =>  $request->action_category,
-                    'route_id' =>  $request->route_id,
-                    'user_mfid' =>  $user->id,
+                    'action_class' => $request->action_class,
+                    'attributes' => $request->action_attributes,
+                    'icon' => $request->icon,
+                    'action_type' => $request->action_type,
+                    'action_category' => $request->action_category,
+                    'route_id' => $request->route_id,
+                    'user_mfid' => $user->masterfile_id,
                     'action_status' => $request->action_status
                 ]);
 

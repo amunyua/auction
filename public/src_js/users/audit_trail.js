@@ -1,5 +1,5 @@
 
-var Audit_trails = $('#audit').DataTable({
+var Audit_trails = $('#audit_trails').DataTable({
     processing: true,
     serverProcessing: true,
     order: [[0, 'desc']],
@@ -17,16 +17,16 @@ $('#refresh-btn').click(function(){
     Audit_trails.ajax.reload();
 });
 
-$('#audit > tbody > tr').live('click', function(event){
+$('#audit_trails > tbody > tr').live('click', function(event){
     if(event.ctrlKey) {
         $(this).toggleClass('info');
     }
     else {
         if ( $(this).hasClass('info') ) {
-            $('#audit > tbody > tr').removeClass('info');
+            $('#audit_trails > tbody > tr').removeClass('info');
         }
         else {
-            $('#audit > tbody > tr').removeClass('info');
+            $('#audit_trails > tbody > tr').removeClass('info');
             $(this).toggleClass('info');
         }
     }
