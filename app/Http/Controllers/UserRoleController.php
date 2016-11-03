@@ -45,7 +45,7 @@ class UserRoleController extends Controller
             $role->role_name = $request->role_name;
             $role->role_code = $request->role_code;
             $role->role_status = $request->role_status;
-            $role->user_mfid = $user->mf_id;
+            $role->user_mfid = $user->masterfile_id;
             $role->save();
 
             return Response::json([
