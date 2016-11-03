@@ -53,7 +53,7 @@ class Connector
         $password = Arr::get($config, 'password');
 
         try {
-            $pdo = $this-> createPdoConnection($dsn, $username, $password, $options);
+            $pdo = $this->createPdoConnection($dsn, $username, $password, $options);
         } catch (Exception $e) {
             $pdo = $this->tryAgainIfCausedByLostConnection(
                 $e, $dsn, $username, $password, $options

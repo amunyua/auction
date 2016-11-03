@@ -87,16 +87,28 @@ Route::delete('/delete-sc', 'ServiceChannelController@destroy');
 Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 
 ### User Management Module
-Route::get('/users', 'UserController@index');
-Route::post('/update-user', 'UserController@update');
-Route::delete('/delete-user', 'UserController@destroy');
+Route::get('/all-users', 'Manage_userController@index');
+Route::get('/load-users','Manage_userController@loadAllusers');
+Route::post('/reset_pass', 'Manage_userController@update');
+Route::delete('/delete-user', 'Manage_userController@destroy');
+Route::get('/user-data/{id}', 'Manage_userController@getUserData');
 
 //Route::post('add_user_role','UserRoleController@addUserRole');
 //Route::post('audit_trail','UserRoleController@auditTrail');
-
-Route::post('add_user_role','UserRoleController@addUserRole');
-Route::post('audit_trail','UserRoleController@auditTrail');
 Route::get('/user-roles', 'UserRoleController@index');
+Route::get('/all-roles', 'UserRoleController@loadRoles');
+Route::post('/add-role', 'UserRoleController@store');
+Route::get('/get-role/{id}', 'UserRoleController@getRole');
+Route::post('/edit-role', 'UserRoleController@update');
+Route::post('/delete-role', 'UserRoleController@destroy');
+Route::post('/attach-to-role', 'UserRoleController@attachToRole');
+Route::post('/detach-from-role', 'UserRoleController@detachFromRole');
+Route::get('/get-role-routes/{role_id}', 'UserRoleController@getRoleRoutes');
+Route::get('/audit_trails','Audit_trailController@index');
+Route::get('/load_audit','Audit_trailController@loadAudit');
+Route::get('/load-actions/{id}/{role_id}','UserRoleController@loadRouteActions');
+Route::post('/attach-action','UserRoleController@attachAction');
+Route::post('/detach-action','UserRoleController@detachAction');
 
 
 #### System Manager  Module
@@ -113,3 +125,10 @@ Route::post('/arrange-menu', 'MenuController@arrangeMenu');
 Route::get('/get-menu/{id}', 'MenuController@getMenu');
 Route::post('/edit-menu', 'MenuController@update');
 Route::post('/delete-menu', 'MenuController@destroy');
+Route::get('/sys-actions', 'SysActionsController@index');
+Route::get('/load-action', 'SysActionsController@loadActions');
+Route::post('/add-action', 'SysActionsController@store');
+Route::post('/update-action', 'SysActionsController@update');
+Route::post('/delete-action', 'SysActionsController@destroy');
+Route::get('/get-child-routes', 'SysActionsController@getChildRoutes');
+Route::get('/get-action/{id}', 'SysActionsController@getAction');

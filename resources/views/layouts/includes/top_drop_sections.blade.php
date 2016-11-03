@@ -136,7 +136,18 @@
         {{--<li><a href="#"><i class="icon-tasks"></i> Tasks</a></li>--}}
         {{--<li><a href="#"><i class="icon-ok"></i> Calendar</a></li>--}}
         <li class="divider"></li>
-        <li><a href="{{ url('/logout') }}"><i class="icon-key"></i> Log Out</a></li>
+        <li><a href="{{ url('/logout') }}" id="logout"><i class="icon-key"></i> Log Out</a></li>
+        <form id="logout-form" action="{{ url('logout') }}" method="post" style="display: none;">
+            {{ csrf_field() }}
+        </form>
     </ul>
 </li>
 <!-- END USER LOGIN DROPDOWN -->
+@push('js')
+    <script>
+        $('a#logout').on('click', function(e){
+            e.preventDefault();
+            $('#logout-form').submit();
+        });
+    </script>
+@endpush
