@@ -73,6 +73,11 @@ Route::post('create-transaction','NewInventoryController@createTransaction');
 Route::post('upload-inventory-pics', 'NewInventoryController@uploadInventoryPics');
 Route::get('item-details/{id}','NewInventoryController@getItemDetails');
 
+#### Auction Sales
+Route::get('/bid-sales', 'SalesController@bidSales');
+Route::get('/buy-now', 'SalesController@buyNowPurchases');
+Route::get('/online-shopping', 'SalesController@onlineShopping');
+
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
 Route::post('/add-rev', 'RevenueChannelController@store');
@@ -110,7 +115,6 @@ Route::get('/load-actions/{id}/{role_id}','UserRoleController@loadRouteActions')
 Route::post('/attach-action','UserRoleController@attachAction');
 Route::post('/detach-action','UserRoleController@detachAction');
 
-
 #### System Manager  Module
 Route::get('/routes', 'RoutesController@index');
 Route::get('/load-routes', 'RoutesController@loadRoutes');
@@ -132,3 +136,8 @@ Route::post('/update-action', 'SysActionsController@update');
 Route::post('/delete-action', 'SysActionsController@destroy');
 Route::get('/get-child-routes', 'SysActionsController@getChildRoutes');
 Route::get('/get-action/{id}', 'SysActionsController@getAction');
+
+#### Access Denied
+Route::get('/access-denied', function(){
+    return view('pages.access_denied');
+});

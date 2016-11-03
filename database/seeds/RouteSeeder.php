@@ -222,5 +222,31 @@ class RouteSeeder extends Seeder
         $menu->parent_route = $user_mgt_id;
         $menu->save();
         $menu->roles()->attach($admin);
+
+        #### Auction Sales
+        $auction_sales = new Route();
+        $auction_sales->route_name = 'Auction Sales';
+        $auction_sales->save();
+
+        $bid_sales = new Route();
+        $bid_sales->route_name = 'Bid Sales';
+        $bid_sales->url = 'bid-sales';
+        $bid_sales->parent_route = $auction_sales->id;
+        $bid_sales->save();
+        $bid_sales->roles()->attach($admin);
+
+        $buy_now = new Route();
+        $buy_now->route_name = 'Buy Now Purchases';
+        $buy_now->url = 'bid-sales';
+        $buy_now->parent_route = $auction_sales->id;
+        $buy_now->save();
+        $buy_now->roles()->attach($admin);
+
+        $buy_now = new Route();
+        $buy_now->route_name = 'Online Purchases';
+        $buy_now->url = 'online-shopping';
+        $buy_now->parent_route = $auction_sales->id;
+        $buy_now->save();
+        $buy_now->roles()->attach($admin);
     }
 }

@@ -15,6 +15,7 @@ class AuctionController extends Controller
     public function __construct()
     {
         return $this->middleware('auth');
+        return $this->middleware('validateroutes');
     }
 
     public function index(){
