@@ -28,11 +28,6 @@ Route::get('/address_data/{id}', 'MasterfileController@getAddressData');
 Route::put('/update_address', 'MasterfileController@updateAddress');
 Route::delete('/delete_address', 'MasterfileController@deleteAddress');
 
-### Crm Module
-Route::get('all_customers', 'CrmController@getAllCustomers');
-Route::get('all_staff', 'CrmController@getAllStaffs');
-Route::get('all_suppliers', 'CrmController@getAllSuppliers');
-
 #### Inventory Module
 //routes for managing category details
 Route::get('categories',array('uses'=>'InventoryController@getCategories','as'=>'category.index') );
@@ -116,7 +111,7 @@ Route::post('/attach-action','UserRoleController@attachAction');
 Route::post('/detach-action','UserRoleController@detachAction');
 
 
-#### System Manager Module
+#### System Manager  Module
 Route::get('/routes', 'RoutesController@index');
 Route::get('/load-routes', 'RoutesController@loadRoutes');
 Route::post('/add-route', 'RoutesController@store');

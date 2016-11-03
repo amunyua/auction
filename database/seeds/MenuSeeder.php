@@ -56,7 +56,7 @@ class MenuSeeder extends Seeder
         $route_action = \App\Route::where('route_name', 'Auction Manager')->first();
         $auction = new Menu();
         $auction->route_id = $route_action->id;
-        $auction->sequence = 3;
+        $auction->sequence = 4;
         $auction->icon = 'icon-list';
         $auction->save();
 
@@ -92,7 +92,7 @@ class MenuSeeder extends Seeder
         $route_user_mgt = \App\Route::where('route_name', 'User Management')->first();
         $user_mgt = new Menu();
         $user_mgt->route_id = $route_user_mgt->id;
-        $user_mgt->sequence = 4;
+        $user_mgt->sequence = 5;
         $user_mgt->icon = 'icon-user';
         $user_mgt->save();
 
@@ -120,7 +120,7 @@ class MenuSeeder extends Seeder
         $route_system = \App\Route::where('route_name', 'System Manager')->first();
         $system = new Menu();
         $system->route_id = $route_system->id;
-        $system->sequence = 5;
+        $system->sequence = 6;
         $system->icon = 'icon-cogs';
         $system->save();
 
@@ -144,5 +144,59 @@ class MenuSeeder extends Seeder
         $menu->parent_menu = $system->id;
         $menu->sequence = 3;
         $menu->save();
+
+        $inventory_menu = \App\Route::where('route_name','Inventory')->first();
+        $inv_men =new Menu();
+        $inv_men->route_id = $inventory_menu->id;
+        $inv_men->sequence = 3;
+        $inv_men->icon = 'icon-th';
+        $inv_men->save();
+
+        $route_cat = \App\Route::where('route_name','Manage Categories')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_cat->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 1;
+        $menu->save();
+
+        $route_subc = \App\Route::where('route_name','Manage Subcategories')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 2;
+        $menu->save();
+
+
+        $route_subc = \App\Route::where('route_name','Manage Warehouses')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 3;
+        $menu->save();
+
+        //create inventory menu
+        $route_subc = \App\Route::where('route_name','Create Inventory Item')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 4;
+        $menu->save();
+
+        //all inventory items menu
+        $route_subc = \App\Route::where('route_name','All Inventory Items')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 5;
+        $menu->save();
+
+        //stock transactions
+        $route_subc = \App\Route::where('route_name','Stock Transactions')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 6;
+        $menu->save();
+
     }
 }

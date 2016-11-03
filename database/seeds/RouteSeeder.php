@@ -57,11 +57,54 @@ class RouteSeeder extends Seeder
         $inventory_id = $inventory->id;
 
         $inventory_cats = new Route();
-        $inventory_cats->route_name = 'Manage Category';
+        $inventory_cats->route_name = 'Manage Categories';
         $inventory_cats->url = 'categories';
         $inventory_cats->parent_route = $inventory_id;
         $inventory_cats->route_status = '1';
         $inventory_cats->save();
+        $inventory_cats->roles()->attach($admin);
+
+        $subcategories = new Route();
+        $subcategories-> route_name = 'Manage Subcategories';
+        $subcategories->url = 'sub-categories';
+        $subcategories->parent_route = $inventory_id;
+        $subcategories->route_status = '1';
+        $subcategories->save();
+        $subcategories->roles()->attach($admin);
+
+        $warehouses = new Route();
+        $warehouses-> route_name = 'Manage Warehouses';
+        $warehouses->url = 'warehouses';
+        $warehouses->parent_route = $inventory_id;
+        $warehouses->route_status = '1';
+        $warehouses->save();
+        $warehouses->roles()->attach($admin);
+
+        $inventory_items = new Route();
+        $inventory_items->route_name = 'All Inventory Items';
+        $inventory_items->url = 'all-items';
+        $inventory_items->route_status = '1';
+        $inventory_items->parent_route = $inventory_id;
+        $inventory_items->save();
+        $inventory_items->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'Stock Transactions';
+        $stock_transactions->url = 'stock-transactions';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $create_inv = new Route();
+        $create_inv->route_name = 'Create Inventory Item';
+        $create_inv->url = 'add-item';
+        $create_inv->parent_route = $inventory_id;
+        $create_inv->route_status = '1';
+        $create_inv->save();
+        $create_inv->roles()->attach($admin);
+
+
+
 
 
 
