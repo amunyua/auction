@@ -17,7 +17,7 @@ class RoleSeeder extends Seeder
          $this->call(RequestTypesSeeder::class);
          $this->call(transaction_categories_seeder::class);
          $this->call(transaction_types_seeder::class);
-        $this->call(RoleSeeder::class);
+         $this->call(RoleSeeder::class);
          $this->call(AddressTypeSeeder::class);
          $this->call(CountySeeder::class);
          $this->call(RouteSeeder::class);
