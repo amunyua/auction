@@ -16,9 +16,11 @@ class CreateRoutesTable extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('route_name');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->boolean('route_status')->default(1);
+            $table->bigInteger('parent_route')->nullable();
             $table->timestamps();
+
         });
     }
 
