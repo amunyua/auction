@@ -11,13 +11,16 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table('roles')->delete();
-        $admin = \App\Masterfile::where('surname', 'Admin')->first();
-        $sys_admin = new \App\Role();
-        $sys_admin->role_name = 'System Administrator';
-        $sys_admin->role_code = 'SYS_ADMIN';
-        $sys_admin->role_status = 1;
-        $sys_admin->user_mfid = $admin->id;
-        $sys_admin->save();
+        //$this->call(CustomerTypesSeeder::class);
+//         $this->call(MasterfileSeeder::class);
+//         $this->call(UserLoginSeeder::class);
+//         $this->call(RequestTypesSeeder::class);
+//         $this->call(transaction_categories_seeder::class);
+//         $this->call(transaction_types_seeder::class);
+        $this->call(RoleSeeder::class);
+//         $this->call(AddressTypeSeeder::class);
+//         $this->call(CountySeeder::class);
+//         $this->call(RouteSeeder::class);
+//         $this->call(MenuSeeder::class);
     }
 }
