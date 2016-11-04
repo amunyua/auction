@@ -197,8 +197,8 @@ class MenuSeeder extends Seeder
         $menu->sequence = 6;
         $menu->save();
 
-        #### Auction Sales
-        $auction_sale_route = \App\Route::where('route_name', 'Auction Sales')->first();
+        #### Sales
+        $auction_sale_route = \App\Route::where('route_name', 'Sales')->first();
         $auction_sales = new Menu();
         $auction_sales->icon = 'icon-money';
         $auction_sales->route_id = $auction_sale_route->id;
@@ -219,9 +219,16 @@ class MenuSeeder extends Seeder
         $buy_now->sequence = 1;
         $buy_now->save();
 
-        $online_route = \App\Route::where('route_name', 'Online Purchases')->first();
+        $ordinary_route = \App\Route::where('route_name', 'Ordinary Purchases')->first();
         $online = new Menu();
-        $online->route_id = $online_route->id;
+        $online->route_id = $ordinary_route->id;
+        $online->parent_menu = $auction_sales->id;
+        $online->sequence = 1;
+        $online->save();
+
+        $auction_purchases_route = \App\Route::where('route_name', 'Auction Purchases')->first();
+        $online = new Menu();
+        $online->route_id = $auction_purchases_route->id;
         $online->parent_menu = $auction_sales->id;
         $online->sequence = 1;
         $online->save();
