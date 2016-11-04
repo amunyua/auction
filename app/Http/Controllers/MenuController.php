@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Menu;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 class MenuController extends Controller
@@ -177,21 +179,72 @@ class MenuController extends Controller
                 $has_sub = (is_null($parent_id)) ? 'has-sub' : '';
                 $uri = \Route::getFacadeRoot()->current()->uri();
                 $active = ($uri == $url) ? 'active' : '';
+                $user = Auth::user();
 
-                echo '<li class="'.$has_sub.' '.$active.'">';
+                // get user role
+                $roles = DB::table('role_user')->where('user_id', $user->id)->get();
+                $the_roles = [];
+                if(count($roles)){
+                    foreach ($roles as $role){
+                        // get user roles
+                        $the_roles[] = $role->role_id;
+                    }
+                }
+                $allocated_routes = [];
+                $allocated_route_ids = [];
+                $the_user_routes = DB::table('role_route')->whereIn('role_id', $the_roles)->get();
+                if(count($the_user_routes)) {
+                    foreach ($the_user_routes as $alloc_route) {
+                        $allocated_routes[] = Route::find($alloc_route->route_id)->route_name;
+                        $allocated_route_ids[] = $alloc_route->route_id;
+                    }
+                }
 
-                echo '<a href="'.url($url).'">
-                    <i class="'.$menu->icon.'"></i>
-                    <span class="title">'.$route_name.'</span>';
+//                print_r($allocated_routes);
+                 $allocated_parents = $this->getAllocatedParentRoutes($allocated_route_ids);
+                 if(!is_null($parent_id)) {
+                     if (in_array($route_name, $allocated_routes)) {
+                         echo '<li class="' . $has_sub . ' ' . $active . '">';
 
-                echo (is_null($parent_id)) ? '<span class="arrow "></span>' : '';
-                echo '</a>';
+                         echo '<a href="' . url($url) . '">
+                            <i class="' . $menu->icon . '"></i>
+                            <span class="title">' . $route_name . '</span>';
 
-                $this->getSideMenu($menu->id);
-                echo '</li>';
+                         echo (is_null($parent_id)) ? '<span class="arrow "></span>' : '';
+                         echo '</a>';
+
+                         $this->getSideMenu($menu->id);
+                         echo '</li>';
+                     }
+                 }else{
+                     if(in_array($route->id, $allocated_parents)){
+                         echo '<li class="' . $has_sub . ' ' . $active . '">';
+
+                         echo '<a href="' . url($url) . '">
+                            <i class="' . $menu->icon . '"></i>
+                            <span class="title">' . $route_name . '</span>';
+
+                         echo (is_null($parent_id)) ? '<span class="arrow "></span>' : '';
+                         echo '</a>';
+
+                         $this->getSideMenu($menu->id);
+                         echo '</li>';
+                     }
+                 }
             }
 
             echo '</ul>';
         }
+    }
+
+    public function getAllocatedParentRoutes($child_routes = []){
+        $parent_routes = Route::whereIn('id', $child_routes)->get();
+        $p_route_id = [];
+        if(count($parent_routes)){
+            foreach ($parent_routes as $p_route){
+                $p_route_id[] = $p_route->parent_route;
+            }
+        }
+        return $p_route_id;
     }
 }

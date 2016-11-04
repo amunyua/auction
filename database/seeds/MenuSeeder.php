@@ -90,7 +90,7 @@ class MenuSeeder extends Seeder
         $route_user_mgt = \App\Route::where('route_name', 'User Management')->first();
         $user_mgt = new Menu();
         $user_mgt->route_id = $route_user_mgt->id;
-        $user_mgt->sequence = 5;
+        $user_mgt->sequence = 6;
         $user_mgt->icon = 'icon-user';
         $user_mgt->save();
 
@@ -202,7 +202,7 @@ class MenuSeeder extends Seeder
         $auction_sales = new Menu();
         $auction_sales->icon = 'icon-money';
         $auction_sales->route_id = $auction_sale_route->id;
-        $auction_sales->sequence = 6;
+        $auction_sales->sequence = 5;
         $auction_sales->save();
 
         $bid_sales_route = \App\Route::where('route_name', 'Bid Sales')->first();
