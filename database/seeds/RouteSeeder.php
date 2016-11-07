@@ -50,6 +50,13 @@ class RouteSeeder extends Seeder
         $all_mf->save();
         $all_mf->roles()->attach($admin);
 
+        $del_mfs = new Route();
+        $del_mfs->route_name = 'Deleted Masterfiles';
+        $del_mfs->url = 'deleted_mfs';
+        $del_mfs->parent_route = $mf_id;
+        $del_mfs->save();
+        $del_mfs->roles()->attach($admin);
+
         #### Inventory
         $inventory = new Route();
         $inventory->route_name = 'Inventory';

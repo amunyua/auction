@@ -26,6 +26,7 @@ class CreateMasterfilesTable extends Migration
             $table->string('user_role', 50);
             $table->string('email', 50);
             $table->string('customer_type_name', 50);
+            $table->boolean('status')->default('TRUE');
             $table->timestamps();
         });
     }

@@ -17,6 +17,8 @@ use App\AllMfs;
 use App\Item;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class MasterfileController extends Controller
 {
@@ -40,8 +42,15 @@ class MasterfileController extends Controller
     }
 
     public function allMfs(){
-        $mfs = Masterfile::all();
+        $mfs = Masterfile::where('status', '=', 1)->get();
         return view('masterfile.all_mfs')->withMfs($mfs);
+    }
+
+    public function loadDelMfs(){
+         $del_mfs = Masterfile::where('status', '=', 'FALSE')->get();
+        return view('masterfile.deleted_mfs', array(
+            'del_mfs' => $del_mfs
+        ));
     }
 
     public function addMf(Request $request){
@@ -127,13 +136,6 @@ class MasterfileController extends Controller
         return redirect('/masterfile');
     }
 
-    public function masterfile(){
-        $mfs = Masterfile::all();
-        return view('masterfile.all', array(
-            'mfs' => $mfs
-        ));
-    }
-
     public function updateMf(Request $request, $id){
         // validate
         $this->validate($request, array(
@@ -182,10 +184,33 @@ class MasterfileController extends Controller
         return redirect('edit_mf/'.$id);
     }
 
-    public function destroy(Request $request){
-        if(Masterfile::destroy($request->id)){
-            $request->session()->flash('Masterfile has been deleted');
-        }
+    public function softDeleteMf(Request $request, $id){
+        // update db record
+        $mf = Masterfile::find($id);
+        $mf->status = 0;
+        $mf->save();
+        Session::flash('success', 'Masterfile record has been deleted');
+        return redirect('all_mfs');
+    }
+
+    public function refreshMf(Request $request, $id){
+        return redirect('edit_mf/'.$id);
+    }
+
+    public function restoreMf(Request $request, $id){
+        $mf = Masterfile::find($id);
+        $mf->status = 1;
+        $mf->save();
+        Session::flash('success', 'Masterfile record has been RESTORED!');
+        Return redirect('deleted_mfs');
+    }
+
+    public function destroy(Request $request, $id){
+        //echo $id;die;
+        Masterfile::destroy($id);
+            Session::flash('success', 'Masterfile record has been PERMANENTLY DELETED!');
+            return redirect('deleted_mfs');
+
     }
 
     public function getMf(Request $request){

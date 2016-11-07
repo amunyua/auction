@@ -21,12 +21,17 @@ Route::get('/masterfile', 'MasterfileController@index');
 Route::post('add_mf', 'MasterfileController@addMf');
 Route::get('all_mfs', 'MasterfileController@allMfs');
 Route::get('edit_mf/{id}', 'MasterfileController@getMf');
+Route::get('refresh/{id}', 'MasterfileController@refreshMf');
+Route::get('soft-delete-mf/{id}', 'MasterfileController@softDeleteMf');
 Route::get('mf_profile/{id}', 'MasterfileController@getMfProfile');
 Route::post('edit_mf/{id}', 'MasterfileController@updateMf');
 Route::post('mf_profile/{id}', 'MasterfileController@addAddress');
 Route::get('/address_data/{id}', 'MasterfileController@getAddressData');
 Route::put('/update_address', 'MasterfileController@updateAddress');
 Route::delete('/delete_address', 'MasterfileController@deleteAddress');
+Route::get('/deleted_mfs', 'MasterfileController@loadDelMfs');
+Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
+Route::get('destroy/{id}', 'MasterfileController@destroy');
 
 #### Inventory Module
 //routes for managing category details
