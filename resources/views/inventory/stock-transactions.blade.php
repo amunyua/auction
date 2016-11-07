@@ -55,7 +55,7 @@
                     <td>{{ $transaction->warehouse_stock_level }}</td>
                     <td>{{ $transaction->new_stock_level }}</td>
                     <td>{{ date('jS M Y h:i a',strtotime($transaction->created_at)) }}</td>
-                    <td>{{ ($transaction->transacted_by != '')? $user->name : '' }}</td>
+                    <td>{{ ($transaction->transacted_by != '')? $user['name'] : '' }}</td>
                 </tr>
             @endforeach
         @endif

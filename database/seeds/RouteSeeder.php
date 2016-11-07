@@ -121,6 +121,62 @@ class RouteSeeder extends Seeder
         $man_auctions->save();
         $man_auctions->roles()->attach($admin);
 
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Get Auction Item Data';
+        $auction_manager->url = 'auction-item-data/{id}';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Add Auction Item';
+        $auction_manager->url = 'add-auction-item';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Update Auction Item';
+        $auction_manager->url = 'edit-auction-item';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Delete Auction Item';
+        $auction_manager->url = 'delete-auction-item';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Add Bid Package';
+        $auction_manager->url = 'add-bid-package';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Update Bid Package';
+        $auction_manager->url = 'update-bid-package';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Delete Bid Package';
+        $auction_manager->url = 'delete-bid-package';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Get Bid Package Data';
+        $auction_manager->url = 'bid-package-data/{id}';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
         $live_actions = new Route();
         $live_actions->route_name = 'Live Auctions';
         $live_actions->url = 'live-auction-items';

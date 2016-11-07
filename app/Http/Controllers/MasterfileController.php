@@ -139,8 +139,8 @@ class MasterfileController extends Controller
         $this->validate($request, array(
             'surname' => 'required',
             'firstname' => 'required',
-            'id_passport' => 'required|unique:masterfiles,id_passport,'.$id,
-            'email' => 'required|unique:masterfiles,email,'.$id,
+//            'id_passport' => 'required|unique:masterfiles,id_passport,'.$id,
+//            'email' => 'required|unique:masterfiles,email,'.$id,
             'reg_date' => 'required|date',
             'user_role' => 'required',
             'customer_type_name' => 'required'
@@ -168,6 +168,8 @@ class MasterfileController extends Controller
                     'b_role' => $request->b_role,
                     'surname' => $request->surname,
                     'firstname' => $request->firstname,
+                    'middlename' => $request->middlename,
+                    'email' => $request->email,
                     'gender' => $request->gender,
                     'image_path' => $path,
                     'id_passport' => $request->id_passport,

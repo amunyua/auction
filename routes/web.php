@@ -73,6 +73,9 @@ Route::post('create-transaction','NewInventoryController@createTransaction');
 Route::post('upload-inventory-pics', 'NewInventoryController@uploadInventoryPics');
 Route::get('item-details/{id}','NewInventoryController@getItemDetails');
 
+
+Route::post('filter-items','NewInventoryController@getFilteredItems');
+
 #### Auction Sales
 Route::get('/bid-sales', 'SalesController@bidSales');
 Route::get('/load-bid-sales', 'SalesController@loadBidSales');

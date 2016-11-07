@@ -9,10 +9,55 @@
         <span class="icon-angle-right"></span>
     </li>
     <li>
-        <span href="#">Masterfile</span>
+        <span href="#">Inventory</span>
         <span class="icon-angle-right"></span>
     </li>
-    <li><span>All Masterfile</span></li>
+    <li><span>All Inventory Items</span></li>
+@endsection
+@section('filter')
+    <div class="widget">
+        <div class="widget-title"><h4><i class="icon-reorder"></i> Filter By</h4>
+            <span class="tools">
+      <a href="javascript:;" class="icon-chevron-down"></a>
+    </span>
+        </div>
+        <div class="widget-body form">
+            <form action="{{ url('filter-items') }}" method="post" class="form-horizontal">
+                {{ csrf_field() }}
+                <div class="row-fluid">
+                    <div class="span4">
+                        <label for="warehouse" class="control-label">Warehouse:</label>
+                        <div class="controls">
+                            <select name="warehouse" class="live_search span10" >
+                                <option value="all">All warehouses</option>
+                                @if(count($warehouses)){
+                                    @foreach($warehouses as $warehouse)
+                                        <option value="{{ $warehouse->id }}">{{ $warehouse->warehouse_name }}</option>
+                                        @endforeach
+                                    @endif
+                            </select>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <label for="warehouse" class="control-label">Category:</label>
+                        <div class="controls">
+                            <select name="category" class="live_search span10" >
+                                <option value="all">All Categories</option>
+                                @if(count($categories)){
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                @endforeach
+                                @endif
+                            </select>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <button type="submit" class="btn btn-primary"><i class="icon-search"></i> Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 @section('widget-title', 'Manage Inventory')
 @section('actions')
@@ -20,7 +65,8 @@
 @endsection
 @section('content')
     @include('layouts.includes._messages')
-    <table class="table table-bordered" id="table1" >
+
+    <table class="table table-bordered" id="items" >
         <thead>
         <tr>
             <th>Id</th>
@@ -28,36 +74,11 @@
             <th>Category</th>
             <th>Sub Category</th>
             <th>Status</th>
-            <th>Stock level</th>
-            {{--<th>Profile</th>--}}
-            {{--<th>Edit</th>--}}
-            {{--<th>Delete</th>--}}
+            <th>Global Stock level</th>
         </tr>
         </thead>
         <tbody>
-        @if(count($items))
-            @foreach($items as $item)
-                <?php
-                    $category = \App\Category::find($item->category_id);
-                        $subcategory = \App\SubCategory::find($item->sub_category_id);
-                ?>
-                <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->item_name }}</td>
-                    <td>{{ $category->category_name }}</td>
-                    <td>{{ $subcategory->sub_category_name }}</td>
-                    <td>{{ ($item->item_status == 't') ? 'Active':'Inactive'  }}</td>
-                    <td>{{ $item->stock_level }}</td>
-                    {{--<td><a href="#view-profile" profile-id="{{ $item->id }}" class="btn btn-small btn-primary profile" data-toggle="modal">Profile</a> </td>--}}
-                    {{--<td><form method="post" action="">--}}
-                            {{--{{ csrf_field() }}--}}
-                            {{--<input type="submit" name="DELETE" value="Delete" class="btn btn-danger btn-small delete_category">--}}
-                            {{--{{ method_field('DELETE') }}--}}
-                        {{--</form>--}}
-                    {{--</td>--}}
-                </tr>
-            @endforeach
-        @endif
+
         </tbody>
 
     </table>
