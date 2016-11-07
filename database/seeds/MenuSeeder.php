@@ -50,6 +50,13 @@ class MenuSeeder extends Seeder
         $all_mfs->parent_menu = $masterfile->id;
         $all_mfs->save();
 
+        $route_del_mfs = \App\Route::where('route_name', 'Deleted Masterfiles')->first();
+        $del_mfs = new Menu();
+        $del_mfs->route_id = $route_del_mfs->id;
+        $del_mfs->sequence = 3;
+        $del_mfs->parent_menu = $masterfile->id;
+        $del_mfs->save();
+
         #### Auction
         $route_action = \App\Route::where('route_name', 'Auction Manager')->first();
         $auction = new Menu();

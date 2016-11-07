@@ -22,6 +22,7 @@
 @endsection
 
 @section('content')
+    @include('layouts.includes._messages')
     <table id="table1" class="table table-bordered">
         <thead>
             <tr>

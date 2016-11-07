@@ -167,8 +167,8 @@
 
         <div class="form-actions">
             <button class="btn btn-success button-submit">Save</button>
-            <button class="btn btn-default">Reset</button>
-            <button class="btn btn-danger">Delete</button>
+            <a href="{{ url('refresh/'.$mf->id) }}" class="btn btn-default">Reset</a>
+            <a href="{{ url('soft-delete-mf/'.$mf->id) }}" class="btn btn-danger">Delete</a>
         </div>
     </form>
 @endsection
