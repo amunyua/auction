@@ -80,6 +80,7 @@ Route::post('filter-items','NewInventoryController@getFilteredItems');
 Route::get('/bid-sales', 'SalesController@bidSales');
 Route::get('/buy-now', 'SalesController@buyNowPurchases');
 Route::get('/online-shopping', 'SalesController@onlineShopping');
+
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
 Route::post('/add-rev', 'RevenueChannelController@store');
