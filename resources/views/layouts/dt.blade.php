@@ -61,6 +61,7 @@
                 @yield('breadcrumbs')
             </ul>
             <!-- END BREADCRUMBS -->
+            @yield('filter')
             <!-- BEGIN PAGE CONTENT-->
             <div class="row-fluid">
                 <div class="span12">

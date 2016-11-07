@@ -73,6 +73,8 @@ Route::post('create-transaction','NewInventoryController@createTransaction');
 Route::post('upload-inventory-pics', 'NewInventoryController@uploadInventoryPics');
 Route::get('item-details/{id}','NewInventoryController@getItemDetails');
 
+Route::post('filter-items','NewInventoryController@getFilteredItems');
+
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
 Route::post('/add-rev', 'RevenueChannelController@store');
