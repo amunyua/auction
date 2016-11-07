@@ -83,8 +83,12 @@ Route::post('filter-items','NewInventoryController@getFilteredItems');
 
 #### Auction Sales
 Route::get('/bid-sales', 'SalesController@bidSales');
-Route::get('/buy-now', 'SalesController@buyNowPurchases');
-Route::get('/online-shopping', 'SalesController@onlineShopping');
+Route::get('/load-bid-sales', 'SalesController@loadBidSales');
+Route::get('/buy-now-purchases', 'SalesController@buyNowPurchases');
+Route::get('/load-buy-now-purchases', 'SalesController@loadBuyNowPurchases');
+Route::get('/ordinary-purchases', 'SalesController@ordinaryPurchases');
+Route::get('/load-ordinary-purchases', 'SalesController@loadOrdinaryPurchases');
+Route::get('/auction-purchases', 'SalesController@auctionPurchases');
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');

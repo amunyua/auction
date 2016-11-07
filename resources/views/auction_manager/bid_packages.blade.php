@@ -21,7 +21,7 @@
 @endsection
 
 @section('actions')
-    <a href="#add_auction_item" class="btn btn-small btn-primary" data-toggle="modal" title="Add Bid Package">
+    <a href="#add_bid_package" class="btn btn-small btn-primary" data-toggle="modal" title="Add Bid Package">
         <i class="icon-plus"></i> Add</a>
     <a href="#edit_bid_package" class="btn btn-small btn-warning" title="Update Bid Package" id="edit-bid-package">
         <i class="icon-edit"></i> Update</a>
@@ -40,6 +40,7 @@
             <th>No. of Tockens</th>
             <th>Price</th>
             <th>Service</th>
+            <th>Item</th>
         </tr>
         </thead>
         <tbody>
@@ -47,6 +48,7 @@
             @foreach($bid_packages as $package)
                 <?php
                     $service = \App\ServiceChannel::find($package->service_channel_id);
+                    $item_name = (!empty($package->item_id)) ? \App\Item::find($package->item_id)->item_name : '';
                 ?>
                 <tr>
                     <td>{{ $package->id }}</td>
@@ -54,6 +56,7 @@
                     <td>{{ $package->no_of_tockens }}</td>
                     <td>{{ $package->price }}</td>
                     <td>{{ $service->service_option }}</td>
+                    <td>{{ $item_name }}</td>
                 </tr>
             @endforeach
         @endif
@@ -88,12 +91,24 @@
                 </div>
 
                 <label for="bid_cost">Service:</label>
-                <div class="row-fluid">
+                <div class="row-fluid" style="margin-bottom: 10px;">
                     <select name="service" class="span12 live_search">
                         <option value="">--Choose Service--</option>
                         @if(count($services))
                             @foreach($services as $service)
                                 <option value="{{ $service->id }}">{{ $service->service_option }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+
+                <label for="item">Inventory Item:</label>
+                <div class="row-fluid">
+                    <select name="item" class="span12 live_search">
+                        <option value="">--Choose Item--</option>
+                        @if(count($items))
+                            @foreach($items as $item)
+                                <option value="{{ $item->id }}">{{ $item->item_name }}</option>
                             @endforeach
                         @endif
                     </select>
@@ -138,6 +153,18 @@
                         @if(count($services))
                             @foreach($services as $service)
                                 <option value="{{ $service->id }}">{{ $service->service_option }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+
+                <label for="item">Inventory Item:</label>
+                <div class="row-fluid">
+                    <select name="item" id="item" class="span12 live_search">
+                        <option value="">--Choose Item--</option>
+                        @if(count($items))
+                            @foreach($items as $item)
+                                <option value="{{ $item->id }}">{{ $item->item_name }}</option>
                             @endforeach
                         @endif
                     </select>

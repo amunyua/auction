@@ -128,6 +128,62 @@ class RouteSeeder extends Seeder
         $man_auctions->save();
         $man_auctions->roles()->attach($admin);
 
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Get Auction Item Data';
+        $auction_manager->url = 'auction-item-data/{id}';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Add Auction Item';
+        $auction_manager->url = 'add-auction-item';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Update Auction Item';
+        $auction_manager->url = 'edit-auction-item';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Delete Auction Item';
+        $auction_manager->url = 'delete-auction-item';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Add Bid Package';
+        $auction_manager->url = 'add-bid-package';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Update Bid Package';
+        $auction_manager->url = 'update-bid-package';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Delete Bid Package';
+        $auction_manager->url = 'delete-bid-package';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Get Bid Package Data';
+        $auction_manager->url = 'bid-package-data/{id}';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
         $live_actions = new Route();
         $live_actions->route_name = 'Live Auctions';
         $live_actions->url = 'live-auction-items';
@@ -307,9 +363,9 @@ class RouteSeeder extends Seeder
         $menu->save();
         $menu->roles()->attach($admin);
 
-        #### Auction Sales
+        #### Sales
         $auction_sales = new Route();
-        $auction_sales->route_name = 'Auction Sales';
+        $auction_sales->route_name = 'Sales';
         $auction_sales->save();
 
         $bid_sales = new Route();
@@ -327,8 +383,15 @@ class RouteSeeder extends Seeder
         $buy_now->roles()->attach($admin);
 
         $buy_now = new Route();
-        $buy_now->route_name = 'Online Purchases';
-        $buy_now->url = 'online-shopping';
+        $buy_now->route_name = 'Ordinary Purchases';
+        $buy_now->url = 'ordinary-purchases';
+        $buy_now->parent_route = $auction_sales->id;
+        $buy_now->save();
+        $buy_now->roles()->attach($admin);
+
+        $buy_now = new Route();
+        $buy_now->route_name = 'Auction Purchases';
+        $buy_now->url = 'auction-purchases';
         $buy_now->parent_route = $auction_sales->id;
         $buy_now->save();
         $buy_now->roles()->attach($admin);
