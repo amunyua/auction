@@ -216,21 +216,28 @@ class MenuSeeder extends Seeder
         $buy_now = new Menu();
         $buy_now->route_id = $buy_now_route->id;
         $buy_now->parent_menu = $auction_sales->id;
-        $buy_now->sequence = 1;
+        $buy_now->sequence = 2;
         $buy_now->save();
 
         $ordinary_route = \App\Route::where('route_name', 'Ordinary Purchases')->first();
         $online = new Menu();
         $online->route_id = $ordinary_route->id;
         $online->parent_menu = $auction_sales->id;
-        $online->sequence = 1;
+        $online->sequence = 3;
         $online->save();
 
         $auction_purchases_route = \App\Route::where('route_name', 'Auction Purchases')->first();
         $online = new Menu();
         $online->route_id = $auction_purchases_route->id;
         $online->parent_menu = $auction_sales->id;
-        $online->sequence = 1;
+        $online->sequence = 4;
+        $online->save();
+
+        $orders_route = \App\Route::where('route_name', 'Orders')->first();
+        $online = new Menu();
+        $online->route_id = $orders_route->id;
+        $online->parent_menu = $auction_sales->id;
+        $online->sequence = 5;
         $online->save();
     }
 }

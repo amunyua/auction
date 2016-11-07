@@ -225,6 +225,27 @@ class RouteSeeder extends Seeder
         $online_purchases->save();
         $online_purchases->roles()->attach($admin);
 
+        $online_purchases = new Route();
+        $online_purchases->route_name = 'Orders';
+        $online_purchases->url = 'orders';
+        $online_purchases->parent_route = $sales_id;
+        $online_purchases->save();
+        $online_purchases->roles()->attach($admin);
+
+        $online_purchases = new Route();
+        $online_purchases->route_name = 'Load Orders';
+        $online_purchases->url = 'load-orders';
+        $online_purchases->parent_route = $sales_id;
+        $online_purchases->save();
+        $online_purchases->roles()->attach($admin);
+
+        $online_purchases = new Route();
+        $online_purchases->route_name = 'Load Order Items';
+        $online_purchases->url = 'load-order-items/{id}     ';
+        $online_purchases->parent_route = $sales_id;
+        $online_purchases->save();
+        $online_purchases->roles()->attach($admin);
+
         #### User Management
         $user_management = new Route();
         $user_management->route_name = 'User Management';

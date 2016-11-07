@@ -84,6 +84,9 @@ Route::get('/load-buy-now-purchases', 'SalesController@loadBuyNowPurchases');
 Route::get('/ordinary-purchases', 'SalesController@ordinaryPurchases');
 Route::get('/load-ordinary-purchases', 'SalesController@loadOrdinaryPurchases');
 Route::get('/auction-purchases', 'SalesController@auctionPurchases');
+Route::get('/orders', 'OrderController@index');
+Route::get('/load-orders', 'OrderController@loadOrders');
+Route::get('/load-order-items/{id}', 'OrderController@loadOrderItems');
 
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');

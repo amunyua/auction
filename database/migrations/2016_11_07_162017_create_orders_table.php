@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
                 ->on('masterfiles')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->boolean('status')->default('1');
             $table->timestamps();
         });
     }
