@@ -21,4 +21,8 @@ class Role extends Model
     public function actions(){
         return $this->belongsToMany('App\Sys_action');
     }
+
+    public function users(){
+        return $this->belongsToMany('App\User');
+    }
 }
