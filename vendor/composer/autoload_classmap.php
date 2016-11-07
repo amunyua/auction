@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'ActionSeeder' => $baseDir . '/database/seeds/ActionSeeder.php',
     'AddBillIdFk' => $baseDir . '/database/migrations/2016_11_04_115735_add_bill_id_fk.php',
     'AddColumnTransactdbyOnStockTransactions' => $baseDir . '/database/migrations/2016_10_04_111645_add_column_transactdby_on_stock_transactions.php',
     'AddCurentStockLevel' => $baseDir . '/database/migrations/2016_10_05_154247_add_curent_stock_level.php',
