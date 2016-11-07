@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BidPackage;
+use App\Item;
 use App\ServiceChannel;
 use Illuminate\Http\Request;
 
@@ -19,10 +20,12 @@ class BidPackageController extends Controller
     public function index(){
         $services = ServiceChannel::where('service_option_type', 'Leaf')->get();
         $bid_packages = BidPackage::all();
+        $items = Item::all();
 
         return view('auction_manager.bid_packages', array(
             'services' => $services,
-            'bid_packages' => $bid_packages
+            'bid_packages' => $bid_packages,
+            'items' => $items
         ));
     }
 
@@ -39,7 +42,8 @@ class BidPackageController extends Controller
             'package_name' => $request->package_name,
             'no_of_tockens' => $request->no_of_tockens,
             'price' => $request->price,
-            'service_channel_id' => $request->service
+            'service_channel_id' => $request->service,
+            'item_id' => $request->item
         ));
         $package->save();
 
@@ -61,7 +65,8 @@ class BidPackageController extends Controller
                 'package_name' => $request->package_name,
                 'no_of_tockens' => $request->no_of_tockens,
                 'price' => $request->price,
-                'service_channel_id' => $request->service
+                'service_channel_id' => $request->service,
+                'item_id' => $request->item
             ));
 
         $request->session()->flash('status', 'Bid Package has been updated');

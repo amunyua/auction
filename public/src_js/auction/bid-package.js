@@ -33,6 +33,7 @@ $('#table1').on('click', 'tr', function() {
             $('#service').val(data['service_channel_id']);
             $('#no_of_tockens').val(data['no_of_tockens']);
             $('#price').val(data['price']);
+            $('#item').select2("val", (data['item_id']));
         }
     });
 });

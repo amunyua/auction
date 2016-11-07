@@ -15,27 +15,27 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('sale_type_id')
-                ->foreign('sales_type_id')
+            $table->bigInteger('sale_type_id');
+            $table->foreign('sales_type_id')
                 ->references('id')
                 ->on('sales_types')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->timestamp('sales_date');
-            $table->bigInteger('customer_mf_id')
-                ->foreign('customer_mf_id')
+            $table->bigInteger('customer_mf_id');
+            $table->foreign('customer_mf_id')
                 ->references('id')
                 ->on('masterfiles')
                 ->onUpdate('cascade')
                 ->onDeletet('cascade');
-            $table->bigInteger('transaction_id')
-                ->foreign('transaction_id')
+            $table->bigInteger('transaction_id');
+            $table->foreign('transaction_id')
                 ->references('transaction_id')
                 ->on('transactions')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->bigInteger('item_id')
-                ->foreign('item_id')
+            $table->bigInteger('item_id');
+            $table->foreign('item_id')
                 ->references('id')
                 ->on('items')
                 ->onUpdate('cascade')

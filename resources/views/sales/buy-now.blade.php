@@ -36,6 +36,7 @@
             <th>Sales Date</th>
             <th>Customer</th>
             <th>Transaction#</th>
+            <th>Amount</th>
             <th>Item</th>
         </tr>
         </thead>

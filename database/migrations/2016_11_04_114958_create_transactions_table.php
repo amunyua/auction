@@ -20,22 +20,22 @@ class CreateTransactionsTable extends Migration
             $table->timestamp('transaction_date');
             $table->string('service_account');
             $table->text('details')->nullable();
-            $table->bigInteger('transacted_by')
-                ->foreign('transacted_by')
+            $table->bigInteger('transacted_by');
+            $table->foreign('transacted_by')
                 ->references('id')
                 ->on('masterfiles')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->bigInteger('customer_bill_id')->nullable();
-            $table->bigInteger('service_channel_id')
-                ->foreign('service_channel_id')
+            $table->bigInteger('service_channel_id');
+            $table->foreign('service_channel_id')
                 ->references('id')
                 ->on('service_channels')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('reference_code')->nullable();
-            $table->bigInteger('masterfile_id')
-                ->foreign('masterfile_id')
+            $table->bigInteger('masterfile_id');
+            $table->foreign('masterfile_id')
                 ->references('id')
                 ->on('masterfiles')
                 ->onUpdate('cascade')
