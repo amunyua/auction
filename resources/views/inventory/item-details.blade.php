@@ -29,7 +29,7 @@
         <div class="control-group">
             <label for="purchase-price" class="control-label">Buying price</label>
             <div class="controls">
-                <input type="text" value="{{ old('purchase_price') }}"name="purchase_price" class="span12" id="purchase-price" />
+                <input type="number" value="{{ old('purchase_price') }}"name="purchase_price" autocomplete="off" class="span12" id="purchase-price" />
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
         <div class="control-group">
             <label for="item-name" class="control-label" id="variation">Name/title</label>
             <div class="controls  input-icon">
-                <input type="text" value="{{ old('item_name') }}"name="item_name" class="span12" id="item-name">
+                <input type="text" value="{{ old('item_name') }}"name="item_name" autocomplete="off" class="span12" id="item-name">
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
         <div class="control-group">
             <label class="control-label" for="item-code" id="id_pass">Item Code</label>
             <div class="controls">
-                <input type="text" value="{{ old('item_code') }}" name="item_code" class="span12" id="item-code">
+                <input type="text" value="{{ old('item_code') }}" autocomplete="off" name="item_code" class="span12" id="item-code">
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
         <div class="control-group">
             <label for="reorder-level" class="control-label">Reorder level</label>
             <div class="controls">
-                <input type="text" value="{{ old('stock_reorder_level') }}"name="stock_reorder_level" class="span12" id="reorder-level" />
+                <input type="number" value="{{ old('stock_reorder_level') }}"name="stock_reorder_level" autocomplete="off" class="span12" id="reorder-level" />
             </div>
         </div>
     </div>

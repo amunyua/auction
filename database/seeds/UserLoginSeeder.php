@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Role;
 
 class UserLoginSeeder extends Seeder
 {
@@ -13,12 +14,13 @@ class UserLoginSeeder extends Seeder
     public function run()
     {
         $mf = \App\Masterfile::where('surname', 'Admin')->first();
-        $user = new User;
-
+        $admin = Role::where('role_code', 'SYS_ADMIN')->first();
+        $user = new User();
         $user->name = 'Admin';
         $user->email = 'admin@admin.com';
         $user->password = bcrypt(123456);
         $user->masterfile_id = $mf->id;
         $user->save();
+        $user->roles()->attach($admin);
     }
 }

@@ -33,10 +33,53 @@ class NewInventoryController extends Controller
 
 
     public function index(){
-        $items = Item::all();
-        return view('inventory.all-items')->withItems($items);
+        $warehouses = Warehouse::where('warehouse_status',true)->get();
+        $categories = Category::where('category_status',true)->get();
+        $items = DB::table('warehouse_items_view')->get();
+        return view('inventory.all-items',array(
+            'items'=>$items,
+            'warehouses'=>$warehouses,
+            'categories'=>$categories
+        ));
+    }
 
-}
+    public function getFilteredItems(Request $request){
+//        var_dump($_POST);
+        if(isset($request->warehouse) && isset($request->category)){
+            if(!empty($request->warehouse) && !empty($request->category)) {
+                $warehouse = $request->warehouse;
+                $category = $request->category;
+                if ($warehouse != 'all' && $category != 'all'){
+                    $items = DB::table('warehouse_items_view')
+                        ->where([
+                            ['warehouse_id','=',$warehouse ],
+                            ['category_id','=',$category]
+                        ])->get();
+                }elseif ($warehouse == 'all' && $category != 'all'){
+                    $items = DB::table('warehouse_items_view')
+                        ->where([
+                            ['category_id','=',$category]
+                        ])->get();
+                }elseif ($warehouse != 'all' && $category == 'all'){
+                    $items = DB::table('warehouse_items_view')
+                        ->where([
+                            ['warehouse_id','=',$warehouse]
+                        ])->get();
+                }else{
+                    $items = DB::table('warehouse_items_view')->get();
+                }
+//               ;
+            }
+        }
+
+        $warehouses = Warehouse::where('warehouse_status',true)->get();
+        $categories = Category::where('category_status',true)->get();
+        return view('inventory.all-items',array(
+            'items'=>$items,
+            'warehouses'=>$warehouses,
+            'categories'=>$categories
+        ));
+    }
     public function addItem(){
 
         return view('inventory.add-items',array(
@@ -57,9 +100,7 @@ class NewInventoryController extends Controller
 //            $paths = Session::get('image_paths');
 //               var_dump($paths);
 //            $image_paths = Session::pull('image_paths',null);
-//            var_dump($image_paths);die;
-            dump(Session::all());
-            dump($request->session()->all());
+//            var_dump($image_paths);die; dump($request->session()->all());
             $image_paths = $request->session()->get('image_paths');
             foreach ($image_paths as $key => $paths){
                 $request->session()->pull('images'.$key);
@@ -67,21 +108,20 @@ class NewInventoryController extends Controller
                 unset($image_paths[$key]);
                 Session::set('image_paths', $image_paths);
             }
-            dump($request->session()->all());
-
-            dump(Session::all());
-            var_dump($image_paths);
+//
+//            dump(Session::all());
+//            var_dump($image_paths);
         }
-        die;
+
         $this->validate($request,array(
             'item_name'=>'required|min:2|unique:items,item_name',
             'purchase_price'=>'required|numeric',
-            'initial_stock'=>'required|numeric',
-            'main_image_path'=>'required|image',
+            'initial_stock'=>'required|numeric|min:1',
+//            'main_image_path'=>'required|image',
             'stock_reorder_level'=>'required|numeric',
 //            'warehouse_id'=>'required',
-            'transaction_type_id'=>'required',
-            'transaction_category_id'=>'required'
+//            'transaction_type_id'=>'required',
+//            'transaction_category_id'=>'required'
         ));
 
 
@@ -125,7 +165,7 @@ class NewInventoryController extends Controller
 
             if($count = count(Input::get('warehouse_id'))){
                 $warehouses = array();
-                echo $count;
+                $count;
                 $count = 1;
                 $count1 =0;
                 foreach (Input::get('warehouse_id') as $warehouse_id){
@@ -135,7 +175,7 @@ class NewInventoryController extends Controller
                         $count1++;
                     }
                 }
-                echo $count1;
+                $count1;
                 $warehouse_quantities = array();
                 $count_q = 1;
                 foreach(Input::get('warehouse_quantity') as $warehouse_quantity){
@@ -158,26 +198,32 @@ class NewInventoryController extends Controller
                 }
 
             }
-            session_start();
-            if(isset($_SESSION['path'])) {
-                foreach ($_SESSION['path'] as $path) {
-                    echo $path;
-                $image = new Image();
-                $image->item_id = $item_id;
-              $image->image_path = $path;
-                $image->save();
-                }
-                unset($_SESSION['path']);
+//            session_start();
+//            if(isset($_SESSION['path'])) {
+//                foreach ($_SESSION['path'] as $path) {
+//                    echo $path;
+//                $image = new Image();
+//                $image->item_id = $item_id;
+//              $image->image_path = $path;
+//                $image->save();
+//                }
+//                unset($_SESSION['path']);
+//            }
+
+            if(count(Input::get('warehouse_id'))){
+                $warehouse = Input::get('warehouse_id');
+                $warehouse_id = $warehouse[0];
+            }else{
+                $warehouse_id = 0;
             }
-
-
             $user = Auth::user();
-
+            $transaction_type = TransactionType::where('transaction_type_name','Add')->first();
+            $transaction_category = TransactionCategory::where('transaction_category_name','Purchase')->first();
             $stock_transaction = new StockTransaction();
             $stock_transaction->item_id = $item_id;
-            $stock_transaction->transaction_type_id =Input::get('transaction_type_id');
-            $stock_transaction->transaction_category_id =Input::get('transaction_category_id');
-//            $stock_transaction->warehouse_id =Input::get('warehouse_id');
+            $stock_transaction->transaction_type_id =$transaction_type->id;
+            $stock_transaction->transaction_category_id =$transaction_category->id;
+            $stock_transaction->warehouse_id =$warehouse_id;
             $stock_transaction->quantity =Input::get('initial_stock');
             $stock_transaction->new_stock_level =Input::get('initial_stock');
             $stock_transaction->transacted_by = $user->id;
@@ -224,7 +270,7 @@ class NewInventoryController extends Controller
                 ['warehouse_id', '=', $this->_request->warehouse_id],
             ])->get()->first();
 //            var_dump($warehouse_stock);die;
-            $warehouse_stock_level = $warehouse_stock->stock_level;
+            $warehouse_stock_level = $warehouse_stock['stock_level'];
 
          $transaction_t = TransactionType::find($this->_request->transaction_type_id);
             $transaction_type = strtolower($transaction_t->transaction_type_name);
@@ -309,5 +355,7 @@ class NewInventoryController extends Controller
         $results = Item::find($id);
         return json_encode($results);
     }
+
+
 
 }

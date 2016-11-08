@@ -13,14 +13,14 @@ class AddParentRoute extends Migration
      */
     public function up()
     {
-        Schema::table('routes', function (Blueprint $table) {
-            $table->bigInteger('parent_route');
-            $table->foreign('parent_route')
-                ->references('id')
-                ->on('routes')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-        });
+//        Schema::table('routes', function (Blueprint $table) {
+//            $table->bigInteger('parent_route');
+//            $table->foreign('parent_route')
+//                ->references('id')
+//                ->on('routes')
+//                ->onUpdate('cascade')
+//                ->onDelete('cascade');
+//        });
     }
 
     /**

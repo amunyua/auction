@@ -13,8 +13,6 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('menus')->delete();
-
         #### Dashboard
         $route_dashboard = \App\Route::where('route_name', 'Dashboard')->first();
         $dashboard = new Menu();
@@ -52,11 +50,18 @@ class MenuSeeder extends Seeder
         $all_mfs->parent_menu = $masterfile->id;
         $all_mfs->save();
 
+        $route_del_mfs = \App\Route::where('route_name', 'Deleted Masterfiles')->first();
+        $del_mfs = new Menu();
+        $del_mfs->route_id = $route_del_mfs->id;
+        $del_mfs->sequence = 3;
+        $del_mfs->parent_menu = $masterfile->id;
+        $del_mfs->save();
+
         #### Auction
         $route_action = \App\Route::where('route_name', 'Auction Manager')->first();
         $auction = new Menu();
         $auction->route_id = $route_action->id;
-        $auction->sequence = 3;
+        $auction->sequence = 4;
         $auction->icon = 'icon-list';
         $auction->save();
 
@@ -92,7 +97,7 @@ class MenuSeeder extends Seeder
         $route_user_mgt = \App\Route::where('route_name', 'User Management')->first();
         $user_mgt = new Menu();
         $user_mgt->route_id = $route_user_mgt->id;
-        $user_mgt->sequence = 4;
+        $user_mgt->sequence = 6;
         $user_mgt->icon = 'icon-user';
         $user_mgt->save();
 
@@ -117,10 +122,11 @@ class MenuSeeder extends Seeder
         $roles->sequence = 3;
         $roles->save();
 
+        #### System Manager
         $route_system = \App\Route::where('route_name', 'System Manager')->first();
         $system = new Menu();
         $system->route_id = $route_system->id;
-        $system->sequence = 5;
+        $system->sequence = 7;
         $system->icon = 'icon-cogs';
         $system->save();
 
@@ -144,5 +150,101 @@ class MenuSeeder extends Seeder
         $menu->parent_menu = $system->id;
         $menu->sequence = 3;
         $menu->save();
+
+        #### Inventory
+        $inventory_menu = \App\Route::where('route_name','Inventory')->first();
+        $inv_men =new Menu();
+        $inv_men->route_id = $inventory_menu->id;
+        $inv_men->sequence = 3;
+        $inv_men->icon = 'icon-th';
+        $inv_men->save();
+
+        $route_cat = \App\Route::where('route_name','Manage Categories')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_cat->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 1;
+        $menu->save();
+
+        $route_subc = \App\Route::where('route_name','Manage Subcategories')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 2;
+        $menu->save();
+
+        $route_subc = \App\Route::where('route_name','Manage Warehouses')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 3;
+        $menu->save();
+
+        //create inventory menu
+        $route_subc = \App\Route::where('route_name','Create Inventory Item')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 4;
+        $menu->save();
+
+        //all inventory items menu
+        $route_subc = \App\Route::where('route_name','All Inventory Items')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 5;
+        $menu->save();
+
+        //stock transactions
+        $route_subc = \App\Route::where('route_name','Stock Transactions')->first();
+        $menu = new Menu();
+        $menu->route_id = $route_subc->id;
+        $menu->parent_menu = $inv_men->id;
+        $menu->sequence = 6;
+        $menu->save();
+
+        #### Sales
+        $auction_sale_route = \App\Route::where('route_name', 'Sales')->first();
+        $auction_sales = new Menu();
+        $auction_sales->icon = 'icon-money';
+        $auction_sales->route_id = $auction_sale_route->id;
+        $auction_sales->sequence = 5;
+        $auction_sales->save();
+
+        $bid_sales_route = \App\Route::where('route_name', 'Bid Sales')->first();
+        $bid_sales = new Menu();
+        $bid_sales->route_id = $bid_sales_route->id;
+        $bid_sales->parent_menu = $auction_sales->id;
+        $bid_sales->sequence = 1;
+        $bid_sales->save();
+
+        $buy_now_route = \App\Route::where('route_name', 'Buy Now Purchases')->first();
+        $buy_now = new Menu();
+        $buy_now->route_id = $buy_now_route->id;
+        $buy_now->parent_menu = $auction_sales->id;
+        $buy_now->sequence = 2;
+        $buy_now->save();
+
+        $ordinary_route = \App\Route::where('route_name', 'Ordinary Purchases')->first();
+        $online = new Menu();
+        $online->route_id = $ordinary_route->id;
+        $online->parent_menu = $auction_sales->id;
+        $online->sequence = 3;
+        $online->save();
+
+        $auction_purchases_route = \App\Route::where('route_name', 'Auction Purchases')->first();
+        $online = new Menu();
+        $online->route_id = $auction_purchases_route->id;
+        $online->parent_menu = $auction_sales->id;
+        $online->sequence = 4;
+        $online->save();
+
+        $orders_route = \App\Route::where('route_name', 'Orders')->first();
+        $online = new Menu();
+        $online->route_id = $orders_route->id;
+        $online->parent_menu = $auction_sales->id;
+        $online->sequence = 5;
+        $online->save();
     }
 }

@@ -183,6 +183,9 @@ $('#delete-role-btn').on('click', function(){
 
 // manage
 $(document).on('click', 'button.manage-btn', function(){
+    // reset the checkboxes
+    $('input:checkbox').removeAttr('checked').parent().removeClass('checked');
+
     var role_id = $(this).attr('role-id');
     // set the role id as then next role to be allocated views
     $('#nxt_role').val(role_id);

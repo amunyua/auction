@@ -26,7 +26,7 @@ body {
 }
 
 /* general typography*/
-h3 small, h small, h5 small {
+h3 small, h4 small, h5 small {
   color: #444;
 }
 

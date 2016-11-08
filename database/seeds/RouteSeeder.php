@@ -50,6 +50,13 @@ class RouteSeeder extends Seeder
         $all_mf->save();
         $all_mf->roles()->attach($admin);
 
+        $del_mfs = new Route();
+        $del_mfs->route_name = 'Deleted Masterfiles';
+        $del_mfs->url = 'deleted_mfs';
+        $del_mfs->parent_route = $mf_id;
+        $del_mfs->save();
+        $del_mfs->roles()->attach($admin);
+
         #### Inventory
         $inventory = new Route();
         $inventory->route_name = 'Inventory';
@@ -57,11 +64,54 @@ class RouteSeeder extends Seeder
         $inventory_id = $inventory->id;
 
         $inventory_cats = new Route();
-        $inventory_cats->route_name = 'Manage Category';
+        $inventory_cats->route_name = 'Manage Categories';
         $inventory_cats->url = 'categories';
         $inventory_cats->parent_route = $inventory_id;
         $inventory_cats->route_status = '1';
         $inventory_cats->save();
+        $inventory_cats->roles()->attach($admin);
+
+        $subcategories = new Route();
+        $subcategories-> route_name = 'Manage Subcategories';
+        $subcategories->url = 'sub-categories';
+        $subcategories->parent_route = $inventory_id;
+        $subcategories->route_status = '1';
+        $subcategories->save();
+        $subcategories->roles()->attach($admin);
+
+        $warehouses = new Route();
+        $warehouses-> route_name = 'Manage Warehouses';
+        $warehouses->url = 'warehouses';
+        $warehouses->parent_route = $inventory_id;
+        $warehouses->route_status = '1';
+        $warehouses->save();
+        $warehouses->roles()->attach($admin);
+
+        $inventory_items = new Route();
+        $inventory_items->route_name = 'All Inventory Items';
+        $inventory_items->url = 'all-items';
+        $inventory_items->route_status = '1';
+        $inventory_items->parent_route = $inventory_id;
+        $inventory_items->save();
+        $inventory_items->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'Stock Transactions';
+        $stock_transactions->url = 'stock-transactions';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $create_inv = new Route();
+        $create_inv->route_name = 'Create Inventory Item';
+        $create_inv->url = 'add-item';
+        $create_inv->parent_route = $inventory_id;
+        $create_inv->route_status = '1';
+        $create_inv->save();
+        $create_inv->roles()->attach($admin);
+
+
+
 
 
 
@@ -78,6 +128,62 @@ class RouteSeeder extends Seeder
         $man_auctions->save();
         $man_auctions->roles()->attach($admin);
 
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Get Auction Item Data';
+        $auction_manager->url = 'auction-item-data/{id}';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Add Auction Item';
+        $auction_manager->url = 'add-auction-item';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Update Auction Item';
+        $auction_manager->url = 'edit-auction-item';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Delete Auction Item';
+        $auction_manager->url = 'delete-auction-item';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Add Bid Package';
+        $auction_manager->url = 'add-bid-package';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Update Bid Package';
+        $auction_manager->url = 'update-bid-package';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Delete Bid Package';
+        $auction_manager->url = 'delete-bid-package';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
+        $auction_manager = new Route();
+        $auction_manager->route_name = 'Get Bid Package Data';
+        $auction_manager->url = 'bid-package-data/{id}';
+        $auction_manager->parent_route = $am_id;
+        $auction_manager->save();
+        $auction_manager->roles()->attach($admin);
+
         $live_actions = new Route();
         $live_actions->route_name = 'Live Auctions';
         $live_actions->url = 'live-auction-items';
@@ -87,7 +193,7 @@ class RouteSeeder extends Seeder
 
         $ended_actions = new Route();
         $ended_actions->route_name = 'Ended Auction Items';
-        $ended_actions->url = 'live-auction-items';
+        $ended_actions->url = 'ended-auction-items';
         $ended_actions->parent_route = $am_id;
         $ended_actions->save();
         $ended_actions->roles()->attach($admin);
@@ -122,6 +228,27 @@ class RouteSeeder extends Seeder
         $online_purchases = new Route();
         $online_purchases->route_name = 'Online Purchases';
         $online_purchases->url = 'online-purchases';
+        $online_purchases->parent_route = $sales_id;
+        $online_purchases->save();
+        $online_purchases->roles()->attach($admin);
+
+        $online_purchases = new Route();
+        $online_purchases->route_name = 'Orders';
+        $online_purchases->url = 'orders';
+        $online_purchases->parent_route = $sales_id;
+        $online_purchases->save();
+        $online_purchases->roles()->attach($admin);
+
+        $online_purchases = new Route();
+        $online_purchases->route_name = 'Load Orders';
+        $online_purchases->url = 'load-orders';
+        $online_purchases->parent_route = $sales_id;
+        $online_purchases->save();
+        $online_purchases->roles()->attach($admin);
+
+        $online_purchases = new Route();
+        $online_purchases->route_name = 'Load Order Items';
+        $online_purchases->url = 'load-order-items/{id}     ';
         $online_purchases->parent_route = $sales_id;
         $online_purchases->save();
         $online_purchases->roles()->attach($admin);
@@ -162,22 +289,132 @@ class RouteSeeder extends Seeder
         $routes = new Route();
         $routes->route_name = 'Routes';
         $routes->url = 'routes';
-        $routes->parent_route = $user_mgt_id;
+        $routes->parent_route = $sys_id;
         $routes->save();
         $routes->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Load Routes';
+        $route->url = 'load-routes';
+        $route->parent_route = $sys_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Add Route';
+        $route->url = 'add-route';
+        $route->parent_route = $sys_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Get System Routes';
+        $route->url = 'get-routes';
+        $route->parent_route = $sys_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Get Route';
+        $route->url = 'get-route/{id}';
+        $route->parent_route = $sys_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Update System Route';
+        $route->url = 'update-route';
+        $route->parent_route = $sys_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
+        $route = new Route();
+        $route->route_name = 'Delete System Route';
+        $route->url = 'delete-route';
+        $route->parent_route = $sys_id;
+        $route->save();
+        $route->roles()->attach($admin);
 
         $menu = new Route();
         $menu->route_name = 'Menu';
         $menu->url = 'menu';
-        $menu->parent_route = $user_mgt_id;
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Add Menu Item';
+        $menu->url = 'add-menu';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Arrange Menu';
+        $menu->url = 'arrange-menu';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Get Menu Item';
+        $menu->url = 'get-menu/{id}';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Edit Menu Item';
+        $menu->url = 'edit-menu';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Delete Menu Item';
+        $menu->url = 'delete-menu';
+        $menu->parent_route = $sys_id;
         $menu->save();
         $menu->roles()->attach($admin);
 
         $menu = new Route();
         $menu->route_name = 'System Actions';
         $menu->url = 'sys-actions';
-        $menu->parent_route = $user_mgt_id;
+        $menu->parent_route = $sys_id;
         $menu->save();
         $menu->roles()->attach($admin);
+
+        #### Sales
+        $auction_sales = new Route();
+        $auction_sales->route_name = 'Sales';
+        $auction_sales->save();
+
+        $bid_sales = new Route();
+        $bid_sales->route_name = 'Bid Sales';
+        $bid_sales->url = 'bid-sales';
+        $bid_sales->parent_route = $auction_sales->id;
+        $bid_sales->save();
+        $bid_sales->roles()->attach($admin);
+
+        $buy_now = new Route();
+        $buy_now->route_name = 'Buy Now Purchases';
+        $buy_now->url = 'bid-sales';
+        $buy_now->parent_route = $auction_sales->id;
+        $buy_now->save();
+        $buy_now->roles()->attach($admin);
+
+        $buy_now = new Route();
+        $buy_now->route_name = 'Ordinary Purchases';
+        $buy_now->url = 'ordinary-purchases';
+        $buy_now->parent_route = $auction_sales->id;
+        $buy_now->save();
+        $buy_now->roles()->attach($admin);
+
+        $buy_now = new Route();
+        $buy_now->route_name = 'Auction Purchases';
+        $buy_now->url = 'auction-purchases';
+        $buy_now->parent_route = $auction_sales->id;
+        $buy_now->save();
+        $buy_now->roles()->attach($admin);
     }
 }

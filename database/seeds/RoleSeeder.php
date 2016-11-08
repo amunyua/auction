@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class RoleSeeder extends Seeder
     {
         \Illuminate\Support\Facades\DB::table('roles')->delete();
         $admin = \App\Masterfile::where('surname', 'Admin')->first();
-        $sys_admin = new \App\Role();
+        $sys_admin = new Role();
         $sys_admin->role_name = 'System Administrator';
         $sys_admin->role_code = 'SYS_ADMIN';
         $sys_admin->role_status = 1;

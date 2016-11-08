@@ -21,17 +21,17 @@ Route::get('/masterfile', 'MasterfileController@index');
 Route::post('add_mf', 'MasterfileController@addMf');
 Route::get('all_mfs', 'MasterfileController@allMfs');
 Route::get('edit_mf/{id}', 'MasterfileController@getMf');
+Route::get('refresh/{id}', 'MasterfileController@refreshMf');
+Route::get('soft-delete-mf/{id}', 'MasterfileController@softDeleteMf');
 Route::get('mf_profile/{id}', 'MasterfileController@getMfProfile');
 Route::post('edit_mf/{id}', 'MasterfileController@updateMf');
 Route::post('mf_profile/{id}', 'MasterfileController@addAddress');
 Route::get('/address_data/{id}', 'MasterfileController@getAddressData');
 Route::put('/update_address', 'MasterfileController@updateAddress');
 Route::delete('/delete_address', 'MasterfileController@deleteAddress');
-
-### Crm Module
-Route::get('all_customers', 'CrmController@getAllCustomers');
-Route::get('all_staff', 'CrmController@getAllStaffs');
-Route::get('all_suppliers', 'CrmController@getAllSuppliers');
+Route::get('/deleted_mfs', 'MasterfileController@loadDelMfs');
+Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
+Route::get('destroy/{id}', 'MasterfileController@destroy');
 
 #### Inventory Module
 //routes for managing category details
@@ -78,6 +78,21 @@ Route::post('create-transaction','NewInventoryController@createTransaction');
 Route::post('upload-inventory-pics', 'NewInventoryController@uploadInventoryPics');
 Route::get('item-details/{id}','NewInventoryController@getItemDetails');
 
+
+Route::post('filter-items','NewInventoryController@getFilteredItems');
+
+#### Auction Sales
+Route::get('/bid-sales', 'SalesController@bidSales');
+Route::get('/load-bid-sales', 'SalesController@loadBidSales');
+Route::get('/buy-now-purchases', 'SalesController@buyNowPurchases');
+Route::get('/load-buy-now-purchases', 'SalesController@loadBuyNowPurchases');
+Route::get('/ordinary-purchases', 'SalesController@ordinaryPurchases');
+Route::get('/load-ordinary-purchases', 'SalesController@loadOrdinaryPurchases');
+Route::get('/auction-purchases', 'SalesController@auctionPurchases');
+Route::get('/orders', 'OrderController@index');
+Route::get('/load-orders', 'OrderController@loadOrders');
+Route::get('/load-order-items/{id}', 'OrderController@loadOrderItems');
+
 #### Revenue Manager Module
 Route::get('/revenue-channels', 'RevenueChannelController@revenueChannels');
 Route::post('/add-rev', 'RevenueChannelController@store');
@@ -117,8 +132,7 @@ Route::get('/load-actions/{id}/{role_id}','UserRoleController@loadRouteActions')
 Route::post('/attach-action','UserRoleController@attachAction');
 Route::post('/detach-action','UserRoleController@detachAction');
 
-
-#### System Manager Module
+#### System Manager  Module
 Route::get('/routes', 'RoutesController@index');
 Route::get('/load-routes', 'RoutesController@loadRoutes');
 Route::post('/add-route', 'RoutesController@store');
@@ -139,3 +153,8 @@ Route::post('/update-action', 'SysActionsController@update');
 Route::post('/delete-action', 'SysActionsController@destroy');
 Route::get('/get-child-routes', 'SysActionsController@getChildRoutes');
 Route::get('/get-action/{id}', 'SysActionsController@getAction');
+
+#### Access Denied
+Route::get('/access-denied', function(){
+    return view('pages.access_denied');
+});
