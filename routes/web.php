@@ -94,9 +94,11 @@ Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 ### User Management Module
 Route::get('/all-users', 'Manage_userController@index');
 Route::get('/load-users','Manage_userController@loadAllusers');
-Route::post('/reset_pass', 'Manage_userController@update');
+Route::post('/reset-pass', 'Manage_userController@updateUser');
 Route::delete('/delete-user', 'Manage_userController@destroy');
 Route::get('/user-data/{id}', 'Manage_userController@getUserData');
+Route::post('/block-user', 'Manage_userController@blockUser');
+Route::post('/unblock-user', 'Manage_userController@unblockUser');
 
 //Route::post('add_user_role','UserRoleController@addUserRole');
 //Route::post('audit_trail','UserRoleController@auditTrail');
@@ -110,7 +112,7 @@ Route::post('/attach-to-role', 'UserRoleController@attachToRole');
 Route::post('/detach-from-role', 'UserRoleController@detachFromRole');
 Route::get('/get-role-routes/{role_id}', 'UserRoleController@getRoleRoutes');
 Route::get('/audit_trails','Audit_trailController@index');
-Route::get('/load_audit','Audit_trailController@loadAudit');
+Route::get('/load-audit','Audit_trailController@loadAudit');
 Route::get('/load-actions/{id}/{role_id}','UserRoleController@loadRouteActions');
 Route::post('/attach-action','UserRoleController@attachAction');
 Route::post('/detach-action','UserRoleController@detachAction');

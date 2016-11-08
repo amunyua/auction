@@ -1,4 +1,4 @@
-var User = {
+var users = {
     splash: function(type, content, modal){
         switch(type){
             case 'success':
@@ -36,7 +36,7 @@ var User = {
     },
     resetFields: function(){
         $('input[type="number"], input[type="text"], input[type="email"], textarea').val('');
-        $("#sysaction").select2("val", "");
+        $("#all_users").select2("val", "");
     }
 };
 
@@ -50,13 +50,15 @@ var User = $('#all_users').DataTable({
         { data: 'user_name', 'name': 'user_name' },
         { data: 'email', 'name': 'email' },
         { data: 'status', 'name': 'status' },
+        { data: 'user_role', 'name': 'user_role' },
         { data: 'created_at', 'name': 'created_at' },
-        { data: 'manage', 'name': 'manage' }
+        { data: 'manage', 'name': 'manage', orderable: false, searchable: false},
+        { data: 'profile', 'name': 'profile', orderable: false, searchable: false}
     ]
 });
 
 $('#refresh-btn').click(function(){
-    users.ajax.reload();
+    User.ajax.reload();
 });
 
 $('#all_users > tbody > tr').live('click', function(event){
@@ -74,33 +76,8 @@ $('#all_users > tbody > tr').live('click', function(event){
     }
 });
 
-$('#reset-pass-btn').on('click', function(){
-    var records = $('tr.info').length;
-
-    if(records == 1){
-        $(this).attr('data-toggle', 'modal');
-        var edit_id = $('tr.info').find('td:first').text();
-
-        if(edit_id){
-            $.ajax({
-                url: 'user-data/'+edit_id,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data){
-                    $('#status').val(data['status']);
-                }
-            });
-        }
-    }else if(records > 1) {
-        $(this).removeAttr('data-toggle');
-        alert('You can only edit one record at a time!');
-    }else{
-        $(this).removeAttr('data-toggle');
-        alert('You must select a record first!');
-    }
-});
-
-$('#delete-user-btn').on('click', function(){
+$('#delete-user-btn').on('click', function(e){
+    e.preventDefault();
     var records = $('tr.info').length;
     if(records) {
         if (confirm('Are you sure you want to delete the selected record(s)?')) {
@@ -121,18 +98,18 @@ $('#delete-user-btn').on('click', function(){
                     success: function (data) {
                         if (data.success) {
                             // alert success
-                            var success = User.splash('success', 'Successfully deleted!');
+                            var success = users.splash('success', 'Successfully deleted!');
                             $('#feedback').html(success);
 
                             // reload grid
-                            users.ajax.reload();
+                            User.ajax.reload();
 
                             //remove alert after 3 seconds
                             setTimeout(function(){
                                 $('#feedback').slideUp('slow');
                             }, 3000);
                         } else if (!data.success) {
-                            var error = User.splash('warnings', 'Failed to delete the selected record(s)');
+                            var error = users.splash('warnings', 'Failed to delete the selected record(s)');
                             $('#feedback').html(error);
                         }
                     }
@@ -141,5 +118,127 @@ $('#delete-user-btn').on('click', function(){
         }
     }else{
         alert('You must select at least one record!');
+    }
+});
+
+$('#reset-pass-btn').on('click', function(e){
+    e.preventDefault();
+    var records = $('tr.info').length;
+
+    if(records == 1){
+        if (confirm('Are you sure you want to Reset the Password?')) {
+            $(this).attr('data-toggle', 'modal');
+            var edit_id = $('tr.info').find('td:first').text();
+            //alert(edit_id);
+            if (edit_id) {
+                $.ajax({
+                    url: 'reset-pass',
+                    type: 'POST',
+                    data: {
+                        id: edit_id,
+                        _token: $('input[name="_token"]').val()
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        //alert(data.success);
+                        if (data.success) {
+                            // alert success
+                            var success = users.splash('success', 'Password Reset Successfully!please check your email for your new credentials');
+                             $('#feedback').html(success);
+                            // reload grid
+                            User.ajax.reload();
+
+                            //remove alert after 3 seconds
+                            setTimeout(function(){
+                                $('#feedback').slideUp('slow');
+                            }, 4000);
+                        } else if (!data.success) {
+                            var error = users.splash('warnings', 'Failed to reset the password');
+                            $('#feedback').html(error);
+                        }
+                    }
+                });
+            }
+        }
+    }else{
+        alert('You must select at least one record!');
+    }
+});
+
+$(document).on('click', '#block', function(){
+    var user_id = $(this).attr('user-id');
+    $status = '0';
+    // alert($status);
+    var this_data = $(this);
+    if(user_id != ''){
+        $.ajax({
+            url: 'block-user',
+            type: 'POST',
+            data: {
+                _token: $('input[name="_token"]').val(),
+                id: user_id,
+                status: $status
+            },
+            dataType: 'json',
+            success: function (data) {
+                if(data.success){
+                    //alert(data.success);
+                    if (data.success) {
+                        // alert success
+                        var success = users.splash('success', 'User Account has been  Deactivated Successfully!');
+                        $('#feedback').html(success);
+                        // reload grid
+                        User.ajax.reload();
+
+                        //remove alert after 3 seconds
+                        setTimeout(function(){
+                            $('#feedback').slideUp('slow');
+                        }, 4000);
+                    } else if (!data.success) {
+                        var error = users.splash('warnings', 'Failed to Deactivate the User account');
+                        $('#feedback').html(error);
+                    }
+                }
+            }
+        });
+    }
+});
+
+$(document).on('click', '#unblock', function(){
+    var user_id = $(this).attr('user-id');
+    $status = '1';
+    // alert($status);
+    var this_data = $(this);
+    if(user_id != ''){
+        $.ajax({
+            url: 'unblock-user',
+            type: 'POST',
+            data: {
+                _token: $('input[name="_token"]').val(),
+                id: user_id,
+                status: $status
+            },
+            dataType: 'json',
+            success: function (data) {
+                if(data.success){
+                    //alert(data.success);
+                    if (data.success) {
+                        // alert success
+                        var success = users.splash('success', 'User Account has been Activated Successfully!');
+                        $('#feedback').html(success);
+                        // reload grid
+                        User.ajax.reload();
+
+                        //remove alert after 3 seconds
+                        setTimeout(function(){
+                            $('#feedback').slideUp('slow');
+                        }, 4000);
+                    } else if (!data.success) {
+                        var error = users.splash('warnings', 'Failed to activate the User account');
+                        $('#feedback').html(error);
+                    }
+                }
+            }
+        });
     }
 });
