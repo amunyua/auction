@@ -132,7 +132,7 @@
     </a>
     <ul class="dropdown-menu">
         <li><a href="{{ url('/settings') }}"><i class="icon-cogs"></i> Settings</a></li>
-        <li><a href="{{ url('/my-profile') }}"><i class="icon-user"></i> Profile</a></li>
+        <li><a href="{{ url('/profile-settings') }}"><i class="icon-user"></i> Profile</a></li>
         {{--<li><a href="#"><i class="icon-tasks"></i> Tasks</a></li>--}}
         {{--<li><a href="#"><i class="icon-ok"></i> Calendar</a></li>--}}
         <li class="divider"></li>

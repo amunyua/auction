@@ -6,6 +6,7 @@ use App\User;
 use App\Message;
 use App\MessageType;
 use App\MessageContent;
+use App\Masterfile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,7 @@ class Manage_userController extends Controller
 
             })
             ->addColumn('profile', function ($users){
-                return '<a href="#edit-'.$users->id.'" class="btn btn-xs btn-info"><i class="icon-user"></i> My Profile</a>';
+                return '<a href="user_profile/'.$users->id.'" class="btn btn-xs btn-info"><i class="icon-user"></i> View Profile</a>';
             })
             ->make(true);
     }
@@ -181,5 +182,56 @@ class Manage_userController extends Controller
             $return = [ 'success' => true ];
         }
         return Response::json($return);
+    }
+
+    public function getUsProfile(Request $request){
+        // get user id
+        $us_id = $request->id;
+        $us = User::find($us_id);
+        // get user mf details
+        $mf = Masterfile::find($us->masterfile_id);
+        // get user Audit Trail Record
+        $at = DB::table('audit_view')->where('mf_id', $us->masterfile_id)->get();
+        return view('users.user_profile', array(
+            'us' => $us,
+            'mf'=>$mf,
+            'at' => $at
+        ));
+    }
+    
+    public function getUsAudit(Request $request){
+        $us_id = $request->id;
+        $us = User::find($us_id);
+        return Datatables::queryBuilder(DB::table('audit_view')->where('mf_id', $us->masterfile_id))->make(true);
+    }
+    
+    public function changePassword(Request $request){
+        // check for existing password
+        $old_pass = $request->oldpassword;
+        $mf_id = $request->id;
+        
+    }
+
+    public function getProfile(){
+        // get user id
+        $user = Auth::user();
+        $us_id = $user->id;
+        $us = User::find($us_id);
+//        var_dump($us);
+        // get user mf details
+        $mf = Masterfile::find($us->masterfile_id);
+        // get user Audit Trail Record
+        $at = DB::table('audit_view')->where('mf_id', $us->masterfile_id)->get();
+        return view('users.profile', array(
+            'us' => $us,
+            'mf'=>$mf,
+            'at' => $at
+        ));
+    }
+
+    public function getAudit(Request $request){
+        $us_id = $request->id;
+        $us = User::find($us_id);
+        return Datatables::queryBuilder(DB::table('audit_view')->where('mf_id', $us->masterfile_id))->make(true);
     }
 }
