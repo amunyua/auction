@@ -32,6 +32,8 @@ Route::delete('/delete_address', 'MasterfileController@deleteAddress');
 Route::get('/deleted_mfs', 'MasterfileController@loadDelMfs');
 Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
 Route::get('destroy/{id}', 'MasterfileController@destroy');
+Route::get('/mf_profile/my-bids/{id}', 'MasterfileController@myBids');
+Route::get('/mf_profile/my-purchase/{id}', 'MasterfileController@myPurchase');
 
 #### Inventory Module
 //routes for managing category details

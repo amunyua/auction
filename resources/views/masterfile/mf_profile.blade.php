@@ -30,16 +30,15 @@
                         <!--BEGIN TABS-->
                         <div class="tabbable tabbable-custom">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab_1_1" data-toggle="tab"><i class="icon-user"></i> Profile Info</a></li>
+                                <li class="active"><a href="#tab_1_1" data-toggle="tab"><i class="icon-user"></i> Account Details</a></li>
                                 <li class=""><a href="#tab_1_2" data-toggle="tab"><i class="icon-map-marker"></i> Manage Addresses</a></li>
                                 <?php
                                     if($mf['b_role'] == 'Client'){
                                 ?>
                                 <li class=""><a href="#tab_1_3" data-toggle="tab"><i class="icon-dashboard"></i> My Bids</a></li>
-                                <li class=""><a href="#tab_1_4" data-toggle="tab"><i class="icon-credit-card"></i> My Purchase</a></li>
+                                {{--<li class=""><a href="#tab_1_4" data-toggle="tab"><i class="icon-credit-card"></i> My Purchase</a></li>--}}
                                 <li class=""><a href="#tab_1_5" data-toggle="tab"><i class="icon-trophy"></i> My Wins</a></li>
-                                <li class=""><a href="#tab_1_6" data-toggle="tab"><i class="icon-briefcase"></i> Account Details</a></li>
-                                <li class=""><a href="#tab_1_7" data-toggle="tab"><i class="icon-folder-open"></i> Bid Wallet</a></li>
+                                <li class=""><a href="#tab_1_7" data-toggle="tab"><i class="icon-folder-open"></i> Bid Tokens</a></li>
                                 <?php
                                     }
                                 if($mf['b_role'] == 'Supplier'){
@@ -61,16 +60,12 @@
                                     @include('masterfile.my_bids_info')
                                 </div>
 
-                                <div class="tab-pane profile-classic row-fluid" id="tab_1_4">
-                                    @include('masterfile.my_purchase_info')
-                                </div>
+                                {{--<div class="tab-pane profile-classic row-fluid" id="tab_1_4">--}}
+                                    {{--@include('masterfile.my_purchase_info')--}}
+                                {{--</div>--}}
 
                                 <div class="tab-pane profile-classic row-fluid" id="tab_1_5">
                                     @include('masterfile.my_wins')
-                                </div>
-
-                                <div class="tab-pane profile-classic row-fluid" id="tab_1_6">
-                                    @include('masterfile.acc_details_info')
                                 </div>
 
                                 <div class="tab-pane profile-classic row-fluid" id="tab_1_7">

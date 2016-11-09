@@ -17,15 +17,15 @@ class CreateSaleView extends Migration
             \Illuminate\Support\Facades\DB::statement("
                 CREATE OR REPLACE VIEW sales_view AS
                 SELECT
-  s.*,
-  st.sale_type_name,
-  CONCAT(m.surname,' ',m.firstname,' ',m.middlename) AS customer_name,
-  it.item_name
-FROM sales s
-LEFT JOIN sales_types st ON s.sale_type_id = st.id
-LEFT JOIN masterfiles m ON s.customer_mf_id = m.id
-LEFT JOIN items it ON s.item_id = it.id
-            ");
+                  s.*,
+                  st.sale_type_name,
+                  CONCAT(m.surname,' ',m.firstname,' ',m.middlename) AS customer_name,
+                  it.item_name
+                FROM sales s
+                LEFT JOIN sales_types st ON s.sales_type_id = st.id
+                LEFT JOIN masterfiles m ON s.customer_mf_id = m.id
+                LEFT JOIN items it ON s.item_id = it.id
+                            ");
         });
     }
 
