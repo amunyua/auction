@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Auction;
+use App\AuctionBid;
 use App\Warehouse;
 use Illuminate\Http\Request;
 
@@ -17,8 +19,10 @@ use App\AllMfs;
 use App\Item;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
+use Yajra\Datatables\Facades\Datatables;
 
 class MasterfileController extends Controller
 {
@@ -245,13 +249,15 @@ class MasterfileController extends Controller
         $addr_types = AddressType::all();
         $addr = AddressType::all();
         $items = Item::where('masterfile_id', $mf_id)->get();
+        $bids = AuctionBid::all();
         return view('masterfile.mf_profile')->with(array(
             'mf' => $mf,
             'addresses'=>$addresses,
             'counties' => $counties,
             'addr_types' => $addr_types,
             'addr' => $addr,
-            'items' => $items
+            'items' => $items,
+            'bids' => $bids
         ));
     }
 
@@ -329,4 +335,11 @@ class MasterfileController extends Controller
         return redirect()->route('mf_profile');
     }
 
+    public function myBids(Request $request){
+        return Datatables::queryBuilder(DB::table('mybids')->where('mf_id', $request->id))->make(true);
+    }
+
+    public function myPurchase(Request $request){
+        return Datatables::queryBuilder(DB::table('mypurchases')->where('win_mf_id', $request->id))->make(true);
+    }
 }

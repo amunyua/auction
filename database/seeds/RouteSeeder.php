@@ -391,6 +391,62 @@ class RouteSeeder extends Seeder
         $all_users->save();
         $all_users->roles()->attach($admin);
 
+        $all_users = new Route();
+        $all_users->route_name = 'Load all Users';
+        $all_users->url = 'load-users';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
+        $all_users = new Route();
+        $all_users->route_name = 'Reset User Password';
+        $all_users->url = 'reset-pass';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
+        $all_users = new Route();
+        $all_users->route_name = 'Delete User Account';
+        $all_users->url = 'delete-user';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
+        $all_users = new Route();
+        $all_users->route_name = 'Get User data records';
+        $all_users->url = 'user-data/{id}';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
+        $all_users = new Route();
+        $all_users->route_name = 'Deactivate User Account';
+        $all_users->url = 'block-user';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
+        $all_users = new Route();
+        $all_users->route_name = 'Activate User Account';
+        $all_users->url = 'unblock-user';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
+        $all_users = new Route();
+        $all_users->route_name = 'User Account Profile';
+        $all_users->url = 'user_profile/{id}';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
+        $all_users = new Route();
+        $all_users->route_name = 'User Account Audit Trail';
+        $all_users->url = 'user_profile/user-audit/{id}';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
         $roles = new Route();
         $roles->route_name = 'Roles';
         $roles->url = 'user-roles';
@@ -401,6 +457,13 @@ class RouteSeeder extends Seeder
         $audit_trail = new Route();
         $audit_trail->route_name = 'Audit Trail';
         $audit_trail->url = 'audit_trails';
+        $audit_trail->parent_route = $user_mgt_id;
+        $audit_trail->save();
+        $audit_trail->roles()->attach($admin);
+
+        $audit_trail = new Route();
+        $audit_trail->route_name = 'Get Audit Trail';
+        $audit_trail->url = 'load-audit';
         $audit_trail->parent_route = $user_mgt_id;
         $audit_trail->save();
         $audit_trail->roles()->attach($admin);
@@ -460,6 +523,13 @@ class RouteSeeder extends Seeder
         $route->save();
         $route->roles()->attach($admin);
 
+        $route = new Route();
+        $route->route_name = 'Load Routes';
+        $route->url = 'load-routes';
+        $route->parent_route = $sys_id;
+        $route->save();
+        $route->roles()->attach($admin);
+
         $menu = new Route();
         $menu->route_name = 'Menu';
         $menu->url = 'menu';
@@ -509,6 +579,48 @@ class RouteSeeder extends Seeder
         $menu->save();
         $menu->roles()->attach($admin);
 
+        $menu = new Route();
+        $menu->route_name = 'Load System Actions';
+        $menu->url = 'load-action';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Add System Actions';
+        $menu->url = 'add-action';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Update System Actions';
+        $menu->url = 'update-action';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Delete System Actions';
+        $menu->url = 'delete-action';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Get Child Routes';
+        $menu->url = 'get-child-routes';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
+        $menu = new Route();
+        $menu->route_name = 'Get Actions';
+        $menu->url = 'get-action/{id}';
+        $menu->parent_route = $sys_id;
+        $menu->save();
+        $menu->roles()->attach($admin);
+
         #### Sales
         $auction_sales = new Route();
         $auction_sales->route_name = 'Sales';
@@ -541,5 +653,88 @@ class RouteSeeder extends Seeder
         $buy_now->parent_route = $auction_sales->id;
         $buy_now->save();
         $buy_now->roles()->attach($admin);
+
+        #### Revenue Manager
+        $rev_man = new Route();
+        $rev_man->route_name = 'Revenue Manager';
+        $rev_man->save();
+        $rev_id = $rev_man->id;
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Revenue Channels';
+        $rev_man->url = 'revenue-channels';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Add Revenue Channel';
+        $rev_man->url = 'add-rev';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Get Revenue Channel';
+        $rev_man->url = 'rev-data/{id}';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Update Revenue Channel';
+        $rev_man->url = 'update-rev';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Delete Revenue Channel';
+        $rev_man->url = 'delete-rev';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Service Channels';
+        $rev_man->url = 'service-channels';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Add Service Channel';
+        $rev_man->url = 'add-sc';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Get Service Channel';
+        $rev_man->url = 'service-data/{id}';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Update Service Channel';
+        $rev_man->url = 'update-sc';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Delete Service Channel';
+        $rev_man->url = 'delete-sc';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Service Bills';
+        $rev_man->url = 'service-bills';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
     }
 }
