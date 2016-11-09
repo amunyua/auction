@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Manageuser;
+use App\Message;
+use App\MessageType;
+use App\MessageContent;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 use Yajra\Datatables\Facades\Datatables;
 use Illuminate\Http\Request;
 
@@ -27,12 +30,24 @@ class Manage_userController extends Controller
     }
 
     public function loadAllusers(){
-        return Datatables::queryBuilder(DB::table('users_view'))->editColumn('status',
+        $users =DB::table('users_view');
+        return Datatables::queryBuilder($users)
+            ->editColumn('status',
             '@if($status)
-                    Active
+                  <label class="label label-success"> Active</label>
                 @else
-                    Blocked
-                @endif')->make(true);
+                   <label class="label label-inverse"> Blocked</label>
+                @endif')
+            ->addColumn('manage', function ($users){
+
+                return ($users->status)? '<button class="btn btn-mini btn-warning" id="block" user-id="'.$users->id.'"><i class="icon-user-md"></i> Deactivate User</button>'
+                    :'<button class="btn btn-mini btn-success" id="unblock" user-id="'.$users->id.'"><i class="icon-user-md"></i> Activate User</button>';
+
+            })
+            ->addColumn('profile', function ($users){
+                return '<a href="#edit-'.$users->id.'" class="btn btn-xs btn-info"><i class="icon-user"></i> My Profile</a>';
+            })
+            ->make(true);
     }
 
     public function getUserData(Request $request){
@@ -46,6 +61,124 @@ class Manage_userController extends Controller
             $return = [ 'success' => true ];
         }else{
             $return = [ 'success' => false ];
+        }
+        return Response::json($return);
+    }
+
+    public function updateUser(Request $request ){
+        $validator = Validator::make($request->all(), [
+
+        ]);
+
+        $return = [];
+        if($validator->fails()){
+            $return = [
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+            ];
+        }else {
+
+            DB::transaction(function(){
+            //generate random number as password
+            $pass = str_random(8);
+            //hash the password
+            $password = bcrypt($pass);
+                $id = Input::get('id');
+
+            User::where('id', $id)
+                ->update(array(
+                    'password' => $password
+                ));
+            $user = Auth::user();
+            $suser = $user->masterfile_id;
+            // message type
+            $messcode = 'EMAIL';
+            $mest = MessageType::where('message_type_code', $messcode)->first();
+            $mtid = $mest->id;
+            //content type
+            $content = 'AUTH';
+            $mescont = MessageContent::where('content_name', $content)->first();
+            $mct = $mescont->id;
+            $status = '0';
+            $uid = Input::get('id');
+            $user_updata = User::find($uid);
+            $cuser = $user_updata->masterfile_id;
+            $name = $user_updata->name;
+            $email = $user_updata->email;
+            $subject = 'New Login Credential';
+            $message = "Dear '$name',\r\n";
+            $message .= "Your New Login Credentails are as below:\r\n";
+            $message .= "Your Username: '$email'\r\n";
+            $message .= "Your Password: '$pass'\r\n\r\n";
+            $message .= "Thanks,\r\n";
+            $message .= "Oriems Madeals";
+            $reciever = '[' . $cuser . ']';
+            $messtype = '[' . $mtid . ']';
+            $sender = $suser;
+
+            // add to db
+            $action = Message::create(array(
+                'body' => $message,
+                'sender' => $sender,
+                'recipients' => $reciever,
+                'message_status' => $status,
+                'message_type' => $messtype,
+                'content_type' => $mct,
+                'subject' => $subject
+
+            ));
+                $action->save();
+
+
+            });
+            $return = [ 'success' => true ];
+        }
+
+        return Response::json($return);
+    }
+
+    public function blockUser(Request $request){
+        $validator = Validator::make($request->all(), [
+
+        ]);
+
+        $return = [];
+        if($validator->fails()){
+            $return = [
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+            ];
+        }else{
+            // block User account
+            User::where('id', $request->id)
+                ->update([
+                    'status' => $request->status
+                ]);
+
+            $return = [ 'success' => true ];
+        }
+        return Response::json($return);
+    }
+
+    public function unblockUser(Request $request){
+        $validator = Validator::make($request->all(), [
+
+        ]);
+
+        $return = [];
+        if($validator->fails()){
+            $return = [
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+            ];
+        }else{
+            // block User account
+            User::where('id', $request->id)
+                ->update([
+                    'status' => $request->status
+                ]);
+
+            $return = [ 'success' => true ];
         }
         return Response::json($return);
     }

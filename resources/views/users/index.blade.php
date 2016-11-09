@@ -54,7 +54,6 @@
     </table>
     <div class="clearfix"></div>
 @endsection
-
 @section('modals')
     {{--Add Modal--}}
     <form action="{{ url('/update-user') }}" method="post">

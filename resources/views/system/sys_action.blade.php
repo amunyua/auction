@@ -24,7 +24,7 @@
 <button class="btn btn-primary btn-small" title="Add Sys Action" data-toggle="modal" data-target="#add-sysaction">
     <i class="icon-plus"></i> Add
 </button>
-<button id="edit-action-btn" class="btn btn-warning btn-small" title="Edit Sys Action" data-toggl data-target="#edit-sysaction">
+<button id="edit-action-btn" class="btn btn-warning btn-small" title="Edit Sys Action" data-toggle data-target="#edit-sysaction">
     <i class="icon-edit"></i> Edit
 </button>
 <button id="delete-action-btn" class="btn btn-danger btn-small" title="Delete Sys Action">
