@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
 
-class AllUsersview extends Migration
+class Updateduserview extends Migration
 {
     /**
      * Run the migrations.
@@ -21,6 +20,7 @@ class AllUsersview extends Migration
     u.updated_at,
     u.masterfile_id,
     u.status,
+    m.user_role,
     concat(m.surname, \' \', m.firstname) AS user_name
    FROM users u
      LEFT JOIN masterfiles m ON u.masterfile_id = m.id;');

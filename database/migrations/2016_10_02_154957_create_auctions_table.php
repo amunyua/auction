@@ -24,6 +24,11 @@ class CreateAuctionsTable extends Migration
             $table->double('buy_now_price')->nullable();
             $table->date('start_date');
             $table->boolean('status');
+            $table->bigInteger('win_mf_id')->nullable()
+                ->foreign('win_mf_id')
+                ->refrence('id')
+                ->on('masterfile')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }
