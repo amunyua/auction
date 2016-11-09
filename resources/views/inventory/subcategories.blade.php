@@ -62,7 +62,7 @@
         <div id="add_subcategory" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel1">Add A Category</h3>
+                <h3 id="myModalLabel1">Add sub Category</h3>
             </div>
             <div class="modal-body">
                 <label for="group_name">Sub Category name:</label>
@@ -107,10 +107,10 @@
         <div id="edit-subcategory" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel1">Add A Category</h3>
+                <h3 id="myModalLabel1">Edit sub category</h3>
             </div>
             <div class="modal-body">
-                <label for="group_name">Sub Category name:</label>
+                <label for="group_name">Category:</label>
                 <div class="row-fluid">
                     <select class="span12 " id="sub-cat-id" name="category_id" select2>
                         <option value="">--Select a category--</option>

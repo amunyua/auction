@@ -72,7 +72,7 @@
                 <div class="fileupload-new thumbnail" style="width: 100px; height: 100px;"><img src="assets/img/items.png" style="width: 100%; height: 100%" /></div>
                 <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 100px; max-height: 100px; line-height: 20px;"></div>
                 <div>
-                    <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input class="span12" type="file" name="main_image_path"/></span>
+                    <label class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><input class="span12 block" type="file" style="display: none" name="main_image_path"/></label>
                     <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
                 </div>
             </div>

@@ -39,7 +39,7 @@
             <td>{{ $category->category_name }}</td>
             <td>{{ $category->category_code }}</td>
             <td>{{ ($category->category_status == 1) ? 'Active':'Inactive'  }}</td>
-            <td><a href="#edit_category" edit-id="{{ $category->id }}" class="btn btn-small btn-success edit_cat" data-toggle="modal">Edit</a> </td>
+            <td><a href="#edit_category" action ="{{ url('update-category/'.$category->id) }}" edit-id="{{ $category->id }}" class="btn btn-small btn-success edit_cat" data-toggle="modal">Edit</a> </td>
             <td><form method="post" action="{{ url('/delete-category/'.$category->id) }}">
                     {{ csrf_field() }}
                     <input type="submit" name="DELETE" value="Delete" class="btn btn-danger btn-small delete_category">
@@ -62,7 +62,7 @@
         <div id="add_category" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel1">Add A Category</h3>
+                <h3 id="myModalLabel1">Add Category</h3>
             </div>
             <div class="modal-body">
 
@@ -91,12 +91,12 @@
     </form>
 
     {{--modal for edit--}}
-    <form action="{{ url('/update-category/') }}" id="edit-cat-form" method="post">
+    <form action="" id="edit-cat-form" method="post">
         {{ csrf_field() }}
         <div id="edit_category" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel1">Add A Category</h3>
+                <h3 id="myModalLabel1">Edit Category</h3>
             </div>
             <div class="modal-body">
 
@@ -118,7 +118,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="text" id="route-id">
+                <input type="hidden" id="route-id">
                 <input type="button" class="btn btn-default" value="Close" data-dismiss="modal">
                 <input type="submit" class="btn btn-primary" value="Save">
             </div>
