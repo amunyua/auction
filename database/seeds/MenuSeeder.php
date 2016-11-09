@@ -97,7 +97,7 @@ class MenuSeeder extends Seeder
         $route_user_mgt = \App\Route::where('route_name', 'User Management')->first();
         $user_mgt = new Menu();
         $user_mgt->route_id = $route_user_mgt->id;
-        $user_mgt->sequence = 6;
+        $user_mgt->sequence = 7;
         $user_mgt->icon = 'icon-user';
         $user_mgt->save();
 
@@ -126,7 +126,7 @@ class MenuSeeder extends Seeder
         $route_system = \App\Route::where('route_name', 'System Manager')->first();
         $system = new Menu();
         $system->route_id = $route_system->id;
-        $system->sequence = 7;
+        $system->sequence = 8;
         $system->icon = 'icon-cogs';
         $system->save();
 
@@ -251,21 +251,29 @@ class MenuSeeder extends Seeder
         $rev = new Menu();
         $rev->icon = 'icon-money';
         $rev->route_id = $rev_route_id->id;
-        $rev->sequence = 8;
+        $rev->sequence = 6;
+        $rev->save();
+        $rev_id = $rev->id;
+
+        $rc_route_id = \App\Route::where('route_name', 'Revenue Channels')->first();
+        $rev = new Menu();
+        $rev->route_id = $rc_route_id->id;
+        $rev->parent_menu = $rev_id;
+        $rev->sequence = 1;
         $rev->save();
 
         $serv_route_id = \App\Route::where('route_name', 'Service Channels')->first();
         $rev = new Menu();
         $rev->route_id = $serv_route_id->id;
-        $rev->parent_menu = $rev->id;
-        $rev->sequence = 8;
+        $rev->parent_menu = $rev_id;
+        $rev->sequence = 2;
         $rev->save();
 
         $sb_route_id = \App\Route::where('route_name', 'Service Bills')->first();
         $rev = new Menu();
         $rev->route_id = $sb_route_id->id;
-        $rev->parent_menu = $rev->id;
-        $rev->sequence = 8;
+        $rev->parent_menu = $rev_id;
+        $rev->sequence = 3;
         $rev->save();
     }
 }
