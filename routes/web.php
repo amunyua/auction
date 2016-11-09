@@ -32,6 +32,8 @@ Route::delete('/delete_address', 'MasterfileController@deleteAddress');
 Route::get('/deleted_mfs', 'MasterfileController@loadDelMfs');
 Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
 Route::get('destroy/{id}', 'MasterfileController@destroy');
+Route::get('/mf_profile/my-bids/{id}', 'MasterfileController@myBids');
+Route::get('/mf_profile/my-purchase/{id}', 'MasterfileController@myPurchase');
 
 #### Inventory Module
 //routes for managing category details
@@ -40,20 +42,6 @@ Route::post('add-category','InventoryController@addCategory');
 Route::get('category-details/{id}','InventoryController@getAilments');
 Route::post('update-category/{id}',['uses'=>'InventoryController@updateCategory','as'=>'category.update']);
 Route::delete('delete-category/{id}','InventoryController@destroyCategory');
-
-#### Auction Module
-Route::get('auction-items', 'AuctionController@index');
-Route::get('auction-item-data/{id}', 'AuctionController@getAuctionItemData');
-Route::get('live-auction-items', 'AuctionController@liveAuctions');
-Route::get('ended-auction-items', 'AuctionController@endedAuctions');
-Route::post('add-auction-item', 'AuctionController@store');
-Route::post('edit-auction-item', 'AuctionController@update');
-Route::delete('delete-auction-item', 'AuctionController@destroy');
-Route::get('bid-packages', 'BidPackageController@index');
-Route::post('add-bid-package', 'BidPackageController@store');
-Route::post('update-bid-package', 'BidPackageController@update');
-Route::delete('delete-bid-package', 'BidPackageController@destroy');
-Route::get('bid-package-data/{id}', 'BidPackageController@getBidPackage');
 
 //routes for managing sub category details
 Route::get('sub-categories',array('uses'=>'InventoryController@getSubCategories','as'=>'sub_category.index') );
@@ -80,6 +68,21 @@ Route::get('item-details/{id}','NewInventoryController@getItemDetails');
 
 
 Route::post('filter-items','NewInventoryController@getFilteredItems');
+
+
+#### Auction Module
+Route::get('auction-items', 'AuctionController@index');
+Route::get('auction-item-data/{id}', 'AuctionController@getAuctionItemData');
+Route::get('live-auction-items', 'AuctionController@liveAuctions');
+Route::get('ended-auction-items', 'AuctionController@endedAuctions');
+Route::post('add-auction-item', 'AuctionController@store');
+Route::post('edit-auction-item', 'AuctionController@update');
+Route::delete('delete-auction-item', 'AuctionController@destroy');
+Route::get('bid-packages', 'BidPackageController@index');
+Route::post('add-bid-package', 'BidPackageController@store');
+Route::post('update-bid-package', 'BidPackageController@update');
+Route::delete('delete-bid-package', 'BidPackageController@destroy');
+Route::get('bid-package-data/{id}', 'BidPackageController@getBidPackage');
 
 #### Auction Sales
 Route::get('/bid-sales', 'SalesController@bidSales');

@@ -15,7 +15,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('sale_type_id');
+            $table->bigInteger('sales_type_id');
             $table->foreign('sales_type_id')
                 ->references('id')
                 ->on('sales_types')

@@ -63,6 +63,7 @@ class RouteSeeder extends Seeder
         $inventory->save();
         $inventory_id = $inventory->id;
 
+
         $inventory_cats = new Route();
         $inventory_cats->route_name = 'Manage Categories';
         $inventory_cats->url = 'categories';
@@ -110,8 +111,132 @@ class RouteSeeder extends Seeder
         $create_inv->save();
         $create_inv->roles()->attach($admin);
 
+        //other routes
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'add-category';
+        $stock_transactions->url = 'add-category';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'category-details/{id}';
+        $stock_transactions->url = 'category-details/{id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'update-category';
+        $stock_transactions->url = 'update-category/{id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'delete-category';
+        $stock_transactions->url = 'delete-category/{id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'add-subcategory';
+        $stock_transactions->url = 'add-subcategory';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'get-subcategory-ailments/{id}';
+        $stock_transactions->url = 'get-subcategory-ailments/{id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'update-subcategory/{id}';
+        $stock_transactions->url = 'update-subcategory/{id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'delete-subcategory/{id}';
+        $stock_transactions->url = 'delete-subcategory/{id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'warehouse-data/{warehouse_id}';
+        $stock_transactions->url = 'warehouse-data/{warehouse_id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
 
 
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'add-warehouse';
+        $stock_transactions->url = 'add-warehouse';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'update-warehouse/{id}';
+        $stock_transactions->url = 'update-warehouse/{id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'delete-warehouse/{id}';
+        $stock_transactions->url = 'delete-warehouse/{id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'store-item';
+        $stock_transactions->url = 'store-item';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'create-transaction';
+        $stock_transactions->url = 'create-transaction';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'upload-inventory-pics';
+        $stock_transactions->url = 'upload-inventory-pics';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'item-details/{id}';
+        $stock_transactions->url = 'item-details/{id}';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
+
+        $stock_transactions = new Route();
+        $stock_transactions->route_name = 'filter-items';
+        $stock_transactions->url = 'filter-items';
+        $stock_transactions->parent_route = $inventory_id;
+        $stock_transactions->save();
+        $stock_transactions->roles()->attach($admin);
 
 
 
@@ -528,5 +653,88 @@ class RouteSeeder extends Seeder
         $buy_now->parent_route = $auction_sales->id;
         $buy_now->save();
         $buy_now->roles()->attach($admin);
+
+        #### Revenue Manager
+        $rev_man = new Route();
+        $rev_man->route_name = 'Revenue Manager';
+        $rev_man->save();
+        $rev_id = $rev_man->id;
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Revenue Channels';
+        $rev_man->url = 'revenue-channels';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Add Revenue Channel';
+        $rev_man->url = 'add-rev';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Get Revenue Channel';
+        $rev_man->url = 'rev-data/{id}';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Update Revenue Channel';
+        $rev_man->url = 'update-rev';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Delete Revenue Channel';
+        $rev_man->url = 'delete-rev';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Service Channels';
+        $rev_man->url = 'service-channels';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Add Service Channel';
+        $rev_man->url = 'add-sc';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Get Service Channel';
+        $rev_man->url = 'service-data/{id}';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Update Service Channel';
+        $rev_man->url = 'update-sc';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Delete Service Channel';
+        $rev_man->url = 'delete-sc';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Service Bills';
+        $rev_man->url = 'service-bills';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
     }
 }

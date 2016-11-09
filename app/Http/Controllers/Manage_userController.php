@@ -19,7 +19,8 @@ class Manage_userController extends Controller
 {
     public function __construct()
     {
-        return $this->middleware('auth');
+        $this->middleware('auth');
+        $this->middleware('validateroutes');
     }
 
     public function index(){

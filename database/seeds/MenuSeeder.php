@@ -246,5 +246,26 @@ class MenuSeeder extends Seeder
         $online->parent_menu = $auction_sales->id;
         $online->sequence = 5;
         $online->save();
+
+        $rev_route_id = \App\Route::where('route_name', 'Revenue Manager')->first();
+        $rev = new Menu();
+        $rev->icon = 'icon-money';
+        $rev->route_id = $rev_route_id->id;
+        $rev->sequence = 8;
+        $rev->save();
+
+        $serv_route_id = \App\Route::where('route_name', 'Service Channels')->first();
+        $rev = new Menu();
+        $rev->route_id = $serv_route_id->id;
+        $rev->parent_menu = $rev->id;
+        $rev->sequence = 8;
+        $rev->save();
+
+        $sb_route_id = \App\Route::where('route_name', 'Service Bills')->first();
+        $rev = new Menu();
+        $rev->route_id = $sb_route_id->id;
+        $rev->parent_menu = $rev->id;
+        $rev->sequence = 8;
+        $rev->save();
     }
 }
