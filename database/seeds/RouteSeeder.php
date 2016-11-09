@@ -416,5 +416,88 @@ class RouteSeeder extends Seeder
         $buy_now->parent_route = $auction_sales->id;
         $buy_now->save();
         $buy_now->roles()->attach($admin);
+
+        #### Revenue Manager
+        $rev_man = new Route();
+        $rev_man->route_name = 'Revenue Manager';
+        $rev_man->save();
+        $rev_id = $rev_man->id;
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Revenue Channels';
+        $rev_man->url = 'revenue-channels';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Add Revenue Channel';
+        $rev_man->url = 'add-rev';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Get Revenue Channel';
+        $rev_man->url = 'rev-data/{id}';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Update Revenue Channel';
+        $rev_man->url = 'update-rev';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Delete Revenue Channel';
+        $rev_man->url = 'delete-rev';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Service Channels';
+        $rev_man->url = 'service-channels';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Add Service Channel';
+        $rev_man->url = 'add-sc';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Get Service Channel';
+        $rev_man->url = 'service-data/{id}';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Update Service Channel';
+        $rev_man->url = 'update-sc';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Delete Service Channel';
+        $rev_man->url = 'delete-sc';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
+
+        $rev_man = new Route();
+        $rev_man->route_name = 'Service Bills';
+        $rev_man->url = 'service-bills';
+        $rev_man->parent_route = $rev_id;
+        $rev_man->save();
+        $rev_man->roles()->attach($admin);
     }
 }
