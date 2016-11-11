@@ -38,6 +38,11 @@ Route::get('/mf_profile/my-wallet/{id}', 'MasterfileController@myWallet');
 
 ###CRM MODULE
 Route::get('/all-staff', 'MasterfileController@allStaff');
+Route::get('/stuffs-all','MasterfileController@loadStaff');
+Route::get('/all-customer', 'MasterfileController@allCustomers');
+Route::get('/load-customer','MasterfileController@loadCustomers');
+Route::get('/all-supplier', 'MasterfileController@allSuppliers');
+Route::get('/load-suppliers','MasterfileController@loadSuppliers');
 
 #### Inventory Module
 //routes for managing category details

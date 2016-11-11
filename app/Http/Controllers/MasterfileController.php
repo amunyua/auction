@@ -346,14 +346,33 @@ class MasterfileController extends Controller
         return Datatables::queryBuilder(DB::table('mypurchases')->where('win_mf_id', $request->id))->make(true);
     }
 
-//    public function allStaff(){
-//        return Datatables::queryBuilder(DB::table('all_staff')->where('b_role', '=', 'Staff'))->make(true);
-//    }
-
     public function allStaff(){
-        $staff =DB::table('all_masterfile')->where('b_role', '=', 'Staff')->get();
-        return view('crm.all_staff')->with(array(
-            'staff' => $staff
-        ));
+        $staff = DB::table('all_masterfile')->where('b_role', '=', 'Staff')->get();
+        return view('crm.all_staff')->with(array('staff' => $staff ));
+    }
+
+    public function loadStaff(){
+        $staff = DB::table('all_masterfile')->where('b_role', '=', 'Staff')->get();
+        return Datatables::of($staff)->make(true);
+    }
+
+    public function allCustomers(){
+        $client = DB::table('all_masterfile')->where('b_role', '=', 'Client')->get();
+        return view('crm.all_customers')->with(array('client' => $client ));
+    }
+
+    public function loadCustomers(){
+        $client = DB::table('all_masterfile')->where('b_role', '=', 'Client')->get();
+        return Datatables::of($client)->make(true);
+    }
+
+    public function allSuppliers(){
+        $supplier = DB::table('all_masterfile')->where('b_role', '=', 'Client')->get();
+        return view('crm.all_suppliers')->with(array('supplier' => $supplier ));
+    }
+
+    public function loadSuppliers(){
+        $supplier = DB::table('all_masterfile')->where('b_role', '=', 'Supplier')->get();
+        return Datatables::of($supplier)->make(true);
     }
 }

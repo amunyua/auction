@@ -1,11 +1,11 @@
 /**
- * Created by joel on 11/10/16.
+ * Created by joel on 11/11/16.
  */
-var staff = $('#all_staff').DataTable({
+var customer = $('#all_customers').DataTable({
     processing: true,
     serverProcessing: true,
     order: [[0, 'desc']],
-    ajax: 'stuffs-all', //loads data
+    ajax: 'load-customer', //loads data
     columns: [
         { data: 'id', 'name': 'id' },
         { data: 'full_name', 'name': 'full_name' },
@@ -15,4 +15,3 @@ var staff = $('#all_staff').DataTable({
         { data: 'reg_date', 'name': 'reg_date' }
     ]
 });
-
