@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Auction;
 use App\AuctionBid;
+use App\TokenJournal;
 use App\Warehouse;
 use Illuminate\Http\Request;
 
@@ -105,7 +106,8 @@ class MasterfileController extends Controller
                 'user_role' => Input::get('user_role'),
                 'reg_date' => Input::get('reg_date'),
                 'customer_type_name' => Input::get('customer_type_name'),
-                'image_path' => $path
+                'image_path' => $path,
+                'status' => 1
             ));
             $mf->save();
             $mf_id = $mf->id;
@@ -249,7 +251,8 @@ class MasterfileController extends Controller
         $addr_types = AddressType::all();
         $addr = AddressType::all();
         $items = Item::where('masterfile_id', $mf_id)->get();
-        $bids = AuctionBid::all();
+        $tokens = DB::table('token_journal')->where('token_mf_id', '=', $mf_id)->get();
+
         return view('masterfile.mf_profile')->with(array(
             'mf' => $mf,
             'addresses'=>$addresses,
@@ -257,7 +260,7 @@ class MasterfileController extends Controller
             'addr_types' => $addr_types,
             'addr' => $addr,
             'items' => $items,
-            'bids' => $bids
+            'tokens' => $tokens
         ));
     }
 
@@ -341,5 +344,16 @@ class MasterfileController extends Controller
 
     public function myPurchase(Request $request){
         return Datatables::queryBuilder(DB::table('mypurchases')->where('win_mf_id', $request->id))->make(true);
+    }
+
+//    public function allStaff(){
+//        return Datatables::queryBuilder(DB::table('all_staff')->where('b_role', '=', 'Staff'))->make(true);
+//    }
+
+    public function allStaff(){
+        $staff =DB::table('all_masterfile')->where('b_role', '=', 'Staff')->get();
+        return view('crm.all_staff')->with(array(
+            'staff' => $staff
+        ));
     }
 }

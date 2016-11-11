@@ -1,49 +1,36 @@
 @extends('layouts.dt')
-@section('title','All Staff')
-@section('page-title','CRM')
-@section('page-title-small', 'Staff Records')
+@section('title', 'All Staff')
+@section('page-title', 'CRM')
+@section('widget-title', 'All Staff')
+
+@push('js')
+    <script src="{{ URL::asset('src_js/crm/all_staff.js') }}"></script>
+@endpush
+
 @section('breadcrumbs')
-    <li >
+    <li>
         <i class="icon-home"></i>
-        <a href="{{ url('/home') }}">Home</a>
-        <span class="icon-angle-right"></span>
+        <a href="index.php">Home</a>
+        <span class="icon-right-angle"></span>
     </li>
     <li>
         <span href="#">CRM</span>
-        <span class="icon-angle-right"></span>
+        <span class="icon-right-angle"></span>
     </li>
-    <li><span>All Customers</span></li>
+    <li><span>All Staff</span></li>
 @endsection
-@section('widget-title', 'Staff Records')
+
 @section('content')
-    <table id="table1" class="table table-bordered">
+    <table id="all_staff" class="table table-bordered">
         <thead>
         <tr>
-            <th>MF#</th>
-            <th>Created Date</th>
-            <th>Surname</th>
-            <th>Firstname</th>
-            <th>Customer Type</th>
+            <th>Id#</th>
+            <th>Full Name</th>
             <th>E-mail</th>
+            <th>Buss Role</th>
+            <th>Masterfile Type</th>
+            <th>Reg Date</th>
         </tr>
         </thead>
-        <tbody>
-        @if(count($staffs))
-            @foreach($staffs as $staff)
-                <tr>
-                    <td>{{ $staff->id }}</td>
-                    <td>{{ $staff->reg_date }}</td>
-                    <td>{{ $staff->surname }}</td>
-                    <td>{{ $staff->firstname }}</td>
-                    <td>{{ $staff->customer_type_name }}</td>
-                    <td>{{ $staff->email }}</td>
-                </tr>
-            @endforeach
-        @endif
-        </tbody>
     </table>
 @endsection
-
-@push('js')
-
-@endpush

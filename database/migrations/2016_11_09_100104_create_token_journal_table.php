@@ -15,7 +15,7 @@ class CreateTokenJournalTable extends Migration
     {
         Schema::create('token_journal', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('token_mf_id')
+            $table->bigInteger('token_mf_id')
                 ->foreign('token_mf_id')
                 ->refrences('id')
                 ->on('masterfiles')
@@ -29,7 +29,7 @@ class CreateTokenJournalTable extends Migration
             $table->double('token_amount');
             $table->double('running_balance');
             $table->string('description', 200);
-            $table->boolean('dr_cr');
+            $table->string('dr_cr', 10);
             $table->timestamps();
         });
     }

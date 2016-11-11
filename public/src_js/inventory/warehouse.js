@@ -22,6 +22,7 @@ $('#table1 > tbody > tr').live('click', function(event){
 });
 
 $('.edit_warehouse').on('click', function(){
+    $('#edit-warehouse-form').attr('action','');
     var edit_id = $(this).attr('edit-id');
     var action = $(this).attr('action');
     if(edit_id != ''){

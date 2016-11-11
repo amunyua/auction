@@ -34,6 +34,8 @@ Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
 Route::get('destroy/{id}', 'MasterfileController@destroy');
 Route::get('/mf_profile/my-bids/{id}', 'MasterfileController@myBids');
 Route::get('/mf_profile/my-purchase/{id}', 'MasterfileController@myPurchase');
+Route::get('/mf_profile/my-wallet/{id}', 'MasterfileController@myWallet');
+Route::get('/all-staff', 'MasterfileController@allStaff');
 
 #### Inventory Module
 //routes for managing category details
