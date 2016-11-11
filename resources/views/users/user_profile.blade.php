@@ -46,7 +46,7 @@
 
                         <div class="tab-pane profile-classic row-fluid" id="tab_1_2">
                             @include('users.my_audit_trail')
-                            <input type="hidden" id="us_id" value="{{$us->masterfile_id }}">
+                            <input type="hidden" id="us_id" value="{{$us->id }}">
                         </div>
 
                         {{--<div class="tab-pane profile-classic row-fluid" id="tab_1_3">--}}
