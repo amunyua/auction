@@ -13,6 +13,8 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('menus')->delete();
+
         #### Dashboard (1)
         $route_dashboard = \App\Route::where('route_name', 'Dashboard')->first();
         $dashboard = new Menu();

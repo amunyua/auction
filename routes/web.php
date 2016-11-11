@@ -35,6 +35,8 @@ Route::get('destroy/{id}', 'MasterfileController@destroy');
 Route::get('/mf_profile/my-bids/{id}', 'MasterfileController@myBids');
 Route::get('/mf_profile/my-purchase/{id}', 'MasterfileController@myPurchase');
 Route::get('/mf_profile/my-wallet/{id}', 'MasterfileController@myWallet');
+
+###CRM MODULE
 Route::get('/all-staff', 'MasterfileController@allStaff');
 
 #### Inventory Module
