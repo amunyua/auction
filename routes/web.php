@@ -117,7 +117,7 @@ Route::get('/service-bills', 'RevenueChannelController@serviceBills');
 Route::get('/all-users', 'Manage_userController@index');
 Route::get('/load-users','Manage_userController@loadAllusers');
 Route::post('/reset-pass', 'Manage_userController@updateUser');
-Route::delete('/delete-user', 'Manage_userController@destroy');
+Route::post('/delete-user', 'Manage_userController@destroy');
 Route::get('/user-data/{id}', 'Manage_userController@getUserData');
 Route::post('/block-user', 'Manage_userController@blockUser');
 Route::post('/unblock-user', 'Manage_userController@unblockUser');

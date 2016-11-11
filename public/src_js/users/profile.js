@@ -3,7 +3,7 @@ var Audit_trail = $('#my_audits').DataTable({
     processing: true,
     serverProcessing: true,
     order: [[0, 'desc']],
-    ajax: '/user_profile/user-audit/'+$('#us_id').val(),
+    ajax: 'user-audit/'+$('#us_id').val(),
     columns: [
         { data: 'id', 'name': 'id' },
         { data: 'case_name', 'name': 'case_name' },
@@ -13,3 +13,6 @@ var Audit_trail = $('#my_audits').DataTable({
     ]
 });
 
+$('#refresh-btn').click(function(){
+    Audit_trail.ajax.reload();
+});

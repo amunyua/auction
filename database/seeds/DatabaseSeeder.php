@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
 //         $this->call(CountySeeder::class);
          $this->call(RouteSeeder::class);
          $this->call(MenuSeeder::class);
+//         $this->call(MessageContentSeeder::class);
+//         $this->call(MessageTypeSeeder::class);
 //         $this->call(SalesTypeSeeder::class);
     }
 }

@@ -85,7 +85,7 @@ $('#delete-user-btn').on('click', function(e){
             $('tr.info').each(function () {
                 ids.push($(this).find('td:first').text());
             });
-
+               
             if (ids.length) {
                 $.ajax({
                     url: 'delete-user',

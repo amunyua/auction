@@ -468,6 +468,20 @@ class RouteSeeder extends Seeder
         $all_users->save();
         $all_users->roles()->attach($admin);
 
+        $all_users = new Route();
+        $all_users->route_name = 'My Profile Settings';
+        $all_users->url = 'profile-settings';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
+        $all_users = new Route();
+        $all_users->route_name = 'My Profile Audit';
+        $all_users->url = 'profile-settings/profile-audit/{id}';
+        $all_users->parent_route = $user_mgt_id;
+        $all_users->save();
+        $all_users->roles()->attach($admin);
+
         $roles = new Route();
         $roles->route_name = 'Roles';
         $roles->url = 'user-roles';
