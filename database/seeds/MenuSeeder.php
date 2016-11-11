@@ -13,7 +13,7 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
-        #### Dashboard
+        #### Dashboard (1)
         $route_dashboard = \App\Route::where('route_name', 'Dashboard')->first();
         $dashboard = new Menu();
         $dashboard->icon = 'icon-home';
@@ -28,7 +28,7 @@ class MenuSeeder extends Seeder
         $analytics->parent_menu = $dashboard->id;
         $analytics->save();
 
-        #### Masterfile
+        #### Masterfile (2)
         $route_masterfile = \App\Route::where('route_name', 'Masterfile')->first();
         $masterfile = new Menu();
         $masterfile->route_id = $route_masterfile->id;
@@ -57,7 +57,8 @@ class MenuSeeder extends Seeder
         $del_mfs->parent_menu = $masterfile->id;
         $del_mfs->save();
 
-        #### CRM
+
+        #### CRM (3)
         $route_crm = \App\Route::where('route_name', 'CRM')->first();
         $crm = new Menu();
         $crm->route_id = $route_crm->id;
@@ -82,11 +83,11 @@ class MenuSeeder extends Seeder
         $route_supplier = \App\Route::where('route_name', 'All Supplier')->first();
         $all_supplier = new Menu();
         $all_supplier->route_id = $route_supplier->id;
-        $all_supplier->sequence = 2;
+        $all_supplier->sequence = 3;
         $all_supplier->parent_menu = $crm->id;
         $all_supplier->save();
 
-        #### Inventory
+        #### Inventory (4)
         $inventory_menu = \App\Route::where('route_name','Inventory')->first();
         $inv_men =new Menu();
         $inv_men->route_id = $inventory_menu->id;
@@ -139,11 +140,11 @@ class MenuSeeder extends Seeder
         $menu->sequence = 6;
         $menu->save();
 
-        #### Auction
+        #### Auction (5)
         $route_action = \App\Route::where('route_name', 'Auction Manager')->first();
         $auction = new Menu();
         $auction->route_id = $route_action->id;
-        $auction->sequence = 5;
+        $auction->sequence = 4;
         $auction->icon = 'icon-list';
         $auction->save();
 
@@ -175,12 +176,12 @@ class MenuSeeder extends Seeder
         $bid_packages->sequence = 4;
         $bid_packages->save();
 
-        #### Sales
+        #### Sales (6)
         $auction_sale_route = \App\Route::where('route_name', 'Sales')->first();
         $auction_sales = new Menu();
         $auction_sales->icon = 'icon-money';
         $auction_sales->route_id = $auction_sale_route->id;
-        $auction_sales->sequence = 6;
+        $auction_sales->sequence = 5;
         $auction_sales->save();
 
         $bid_sales_route = \App\Route::where('route_name', 'Bid Sales')->first();
@@ -218,7 +219,7 @@ class MenuSeeder extends Seeder
         $online->sequence = 5;
         $online->save();
 
-        #### User Management
+        #### User Management (7)
         $route_user_mgt = \App\Route::where('route_name', 'User Management')->first();
         $user_mgt = new Menu();
         $user_mgt->route_id = $route_user_mgt->id;
@@ -247,7 +248,7 @@ class MenuSeeder extends Seeder
         $roles->sequence = 3;
         $roles->save();
 
-        #### System Manager
+        #### System Manager (8)
         $route_system = \App\Route::where('route_name', 'System Manager')->first();
         $system = new Menu();
         $system->route_id = $route_system->id;
@@ -275,6 +276,5 @@ class MenuSeeder extends Seeder
         $menu->parent_menu = $system->id;
         $menu->sequence = 3;
         $menu->save();
-
     }
 }

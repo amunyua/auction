@@ -21,14 +21,18 @@ $('#table1 > tbody > tr').live('click', function(event){
 //     edit_id = $(this).children('td:first').text();
 //
 // });
-$('.edit_cat').on('click',function () {
-    var id = $(this).attr('edit-id');
 
+
+
+$('.edit_cat').on('click',function () {
+    var action = $(this).attr('action');
+    var id = $(this).attr('edit-id');
+    $('#edit-cat-form').attr('action','');
     if( id != '') {
         $('#route-id').val(id);
-        var e_id = $('#route-id').val();
-        var action = $('#edit-cat-form').attr('action');
-        $('#edit-cat-form').attr('action',action+'/'+e_id);
+        // var e_id = $('#route-id').val();
+        // alert(action);
+        $('#edit-cat-form').attr('action', action);
 
         $.ajax({
             url: 'category-details/' + id,

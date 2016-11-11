@@ -119,6 +119,11 @@ Route::delete('/delete-user', 'Manage_userController@destroy');
 Route::get('/user-data/{id}', 'Manage_userController@getUserData');
 Route::post('/block-user', 'Manage_userController@blockUser');
 Route::post('/unblock-user', 'Manage_userController@unblockUser');
+Route::get('/user_profile/{id}', 'Manage_userController@getUsProfile');
+Route::get('/user_profile/user-audit/{id}', 'Manage_userController@getUsAudit');
+Route::get('/profile-settings', 'Manage_userController@getProfile');
+Route::get('/profile-settings/profile-audit/{id}', 'Manage_userController@getAudit');
+//Route::post('/change-password/{id}', 'Manage_userController@changePassword');
 
 //Route::post('add_user_role','UserRoleController@addUserRole');
 //Route::post('audit_trail','UserRoleController@auditTrail');

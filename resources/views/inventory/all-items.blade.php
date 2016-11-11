@@ -66,19 +66,49 @@
 @section('content')
     @include('layouts.includes._messages')
 
-    <table class="table table-bordered" id="items" >
+    <table class="table table-bordered" id="table1" >
         <thead>
         <tr>
             <th>Id</th>
             <th>Item</th>
             <th>Category</th>
             <th>Sub Category</th>
+            <th>Warehouse</th>
             <th>Status</th>
-            <th>Global Stock level</th>
+            <th>Global Stock</th>
+            <th>Warehouse Stock</th>
+            {{--<th>Profile</th>--}}
+            {{--<th>Edit</th>--}}
+            {{--<th>Delete</th>--}}
         </tr>
         </thead>
         <tbody>
-
+        @if(count($items))
+            @foreach($items as $item)
+                <?php
+                    $category = \App\Category::find($item->category_id);
+                        $subcategory = \App\SubCategory::find($item->sub_category_id);
+                        $warehouse = \App\Warehouse::find($item->warehouse_id);
+                ?>
+                <tr>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->item_name }}</td>
+                    <td>{{ $category->category_name }}</td>
+                    <td>{{ $subcategory->sub_category_name }}</td>
+                    <td>{{ (!empty($warehouse->warehouse_name ))? $warehouse->warehouse_name : ''}}</td>
+                    <td>{{ ($item->item_status == 't') ? 'Active':'Inactive'  }}</td>
+                    <td>{{ $item->stock_level }}</td>
+                    <td>{{ $item->warehouse_stock_level }}</td>
+                    {{--<td><a href="#view-profile" profile-id="{{ $item->id }}" class="btn btn-small btn-primary profile" data-toggle="modal">Profile</a> </td>--}}
+                    {{--<td><form method="post" action="">--}}
+                            {{--{{ csrf_field() }}--}}
+                            {{--<input type="submit" name="DELETE" value="Delete" class="btn btn-danger btn-small delete_category">--}}
+                            {{--{{ method_field('DELETE') }}--}}
+                        {{--</form>--}}
+                    {{--</td>--}}
+                </tr>
+            @endforeach
+        @endif
         </tbody>
 
     </table>
