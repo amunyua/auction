@@ -57,6 +57,33 @@ class RouteSeeder extends Seeder
         $del_mfs->save();
         $del_mfs->roles()->attach($admin);
 
+        #### CRM
+        $crm = new Route();
+        $crm->route_name = 'CRM';
+        $crm->save();
+        $crm_id = $crm->id;
+
+        $all_staff = new Route();
+        $all_staff->route_name = 'All Staff';
+        $all_staff->url = 'all-staff';
+        $all_staff->parent_route = $crm_id;
+        $all_staff->save();
+        $all_staff->roles()->attach($admin);
+
+        $all_customers = new Route();
+        $all_customers->route_name = 'All Customer';
+        $all_customers->url = 'all-customer';
+        $all_customers->parent_route = $crm_id;
+        $all_customers->save();
+        $all_customers->roles()->attach($admin);
+
+        $all_supplier = new Route();
+        $all_supplier->route_name = 'All Supplier';
+        $all_supplier->url = 'all-supplier';
+        $all_supplier->parent_route = $crm_id;
+        $all_supplier->save();
+        $all_supplier->roles()->attach($admin);
+
         #### Inventory
         $inventory = new Route();
         $inventory->route_name = 'Inventory';
