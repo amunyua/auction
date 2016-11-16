@@ -153,11 +153,11 @@
                         </div>
                         <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 120px; max-height: 120px; line-height: 20px;"></div>
                         <div>
-                        <span class="btn btn-file" style="width: 103px;">
+                        <label class="btn btn-file" style="width: 103px;">
                             <span class="fileupload-new">Select image</span>
                             <span class="fileupload-exists">Change</span>
                             <input class="span12" type="file" name="image_path"/>
-                        </span>
+                        </label>
                             <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
                         </div>
                     </div>

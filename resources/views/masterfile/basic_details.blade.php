@@ -6,6 +6,7 @@
                 <div class="controls">
                     <select name="b_role" class="span12" id="b_role">
                         <option value="">--Choose Business Role--</option>
+                        <option value="Administrator" {{ (old('b_role') == 'Administrator') ? 'selected' : '' }}>System Administrator</option>
                         <option value="Client" {{ (old('b_role') == 'Client') ? 'selected' : '' }}>Client</option>
                         <option value="Staff" {{ (old('b_role') == 'Staff' ? 'selected' : '') }}>Staff</option>
                         <option value="Supplier" {{ (old('b_role') == 'Supplier' ? 'selected' : '') }}>Supplier</option>
@@ -17,11 +18,11 @@
             <div class="control-group">
                 <label for="reg_date" class="control-label">Start Date<span>*</span></label>
                 <div class="controls">
-                    <input type="text" class="date-picker span12" name="reg_date" value="<?php
+                    <input type="text" class="date-picker span12" name="reg_date" readonly value="<?php
                     if(isset($_POST['reg_date'])){
                         echo $_POST['reg_date'];
                     }else{
-                        echo date('m-d-Y');
+                        echo date('d/m/Y');
                     }
                     ?>" />
                 </div>
@@ -33,7 +34,7 @@
         <div class="span6">
             <div class="control-group">
                 <label for="surname" class="control-label">Surname</label>
-                <div class="controls  input-icon">
+                <div class="controls">
                     <input type="text" name="surname" class="span12" maxlength="20" value="{{ (old('surname')) }}" id="surname" placeholder="Surname"/>
                 </div>
             </div>
@@ -63,8 +64,8 @@
                 <div class="controls">
                     <select name="gender" class="span12" id="gender">
                         <option value="">--Choose Gender--</option>
-                        <option value="1" {{ (old('Male') == 'Male') ? 'selected' : '' }}>Male</option>
-                        <option value="0" {{ (old('Female') == 'Female') ? 'selected' : '' }}>Female</option>
+                        <option value="0" {{ (old('0') == 'Male') ? 'selected' : '' }}>Male</option>
+                        <option value="1" {{ (old('1') == 'Female') ? 'selected' : '' }}>Female</option>
                     </select>
                 </div>
             </div>
@@ -100,9 +101,12 @@
                 <div class="controls">
                     <select name="customer_type_name" class="span12 live_search" id="customer_type_name">
                         <option value="">--Select Masterfile Type--</option>
-                        @if(count($cts))
-                            @foreach($cts as $ct)
-                                <option value="{{ $ct->customer_type_code }}" {{ (old('customer_type') == $ct->customer_type_code) ? 'selected': '' }}>{{ $ct->customer_type_name }}</option>
+                        @if(count($customers))
+                            @foreach($customers as $customer)
+                                <option value="{{ $customer->customer_type_code }}"
+                                    {{ (old('customer_type') == $customer->customer_type_code) ? 'selected': '' }}>
+                                    {{ $customer->customer_type_name }}
+                                </option>
                             @endforeach
                         @endif
                     </select>
@@ -113,7 +117,7 @@
             <div class="control-group">
                 <label for="user_role" class="control-label">User Roles</label>
                 <div class="controls">
-                    <select name="user_role" class="span12 live_search" id="user_role">
+                    <select name="user_role" class="span12" id="user_role">
                         <option value="">--Select User Role--</option>
                         @if(count($roles))
                             @foreach($roles as $role)

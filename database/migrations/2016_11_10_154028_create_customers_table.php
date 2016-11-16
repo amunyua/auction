@@ -15,7 +15,7 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('mastefile_id')
+            $table->bigInteger('masterfile_id')
                 ->foreign('masterfile_id')
                 ->refrence('id')
                 ->on('masterfiles')

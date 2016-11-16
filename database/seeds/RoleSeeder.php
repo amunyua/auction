@@ -20,5 +20,26 @@ class RoleSeeder extends Seeder
         $sys_admin->role_status = 1;
         $sys_admin->user_mfid = $admin->id;
         $sys_admin->save();
+
+        $staff = new Role();
+        $staff->role_name = 'Staff';
+        $staff->role_code = 'STAFF';
+        $staff->role_status = 1;
+        $staff->user_mfid = $admin->id;
+        $staff->save();
+
+        $client = new Role();
+        $client->role_name = 'Client';
+        $client->role_code = 'CLIENT';
+        $client->role_status = 1;
+        $client->user_mfid = $admin->id;
+        $client->save();
+
+        $supplier = new Role();
+        $supplier->role_name = 'Supplier';
+        $supplier->role_code = 'SUPPLIER';
+        $supplier->role_status = 1;
+        $supplier->user_mfid = $admin->id;
+        $supplier->save();
     }
 }

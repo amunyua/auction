@@ -17,28 +17,28 @@ Route::get('/home', 'DashboardController@index');
 Route::get('/', 'DashboardController@index');
 
 #### Masterfile Module
-Route::get('/masterfile', 'MasterfileController@index');
+Route::get('masterfile', 'MasterfileController@index');
 Route::post('add_mf', 'MasterfileController@addMf');
 Route::get('all_mfs', 'MasterfileController@allMfs');
 Route::get('edit_mf/{id}', 'MasterfileController@getMf');
 Route::get('refresh/{id}', 'MasterfileController@refreshMf');
 Route::get('soft-delete-mf/{id}', 'MasterfileController@softDeleteMf');
-Route::get('mf_profile/{id}', 'MasterfileController@getMfProfile');
+Route::get('mf-profile/{id}', 'MasterfileController@getMfProfile');
 Route::post('edit_mf/{id}', 'MasterfileController@updateMf');
 Route::post('mf_profile/{id}', 'MasterfileController@addAddress');
-Route::get('/address_data/{id}', 'MasterfileController@getAddressData');
-Route::put('/update_address', 'MasterfileController@updateAddress');
-Route::delete('/delete_address', 'MasterfileController@deleteAddress');
+Route::get('mf-profile/address-data/{id}', 'MasterfileController@getAddressData');
+Route::post('update-address/{id}', 'MasterfileController@updateAddress');
+Route::delete('delete-address/{id}', 'MasterfileController@deleteAddress');
 Route::get('/deleted_mfs', 'MasterfileController@loadDelMfs');
 Route::get('restore-mf/{id}', 'MasterfileController@restoreMf');
 Route::get('destroy/{id}', 'MasterfileController@destroy');
-Route::get('/mf_profile/my-bids/{id}', 'MasterfileController@myBids');
-Route::get('/mf_profile/my-purchase/{id}', 'MasterfileController@myPurchase');
-Route::get('/mf_profile/my-wallet/{id}', 'MasterfileController@myWallet');
+Route::get('/mf-profile/my-bids/{id}', 'MasterfileController@myBids');
+Route::get('/mf-profile/my-purchase/{id}', 'MasterfileController@myPurchase');
+Route::get('/mf-profile/my-wallet/{id}', 'MasterfileController@myWallet');
 
 ###CRM MODULE
 Route::get('/all-staff', 'MasterfileController@allStaff');
-Route::get('/stuffs-all','MasterfileController@loadStaff');
+Route::get('/staffs-all','MasterfileController@loadStaff');
 Route::get('/all-customer', 'MasterfileController@allCustomers');
 Route::get('/load-customer','MasterfileController@loadCustomers');
 Route::get('/all-supplier', 'MasterfileController@allSuppliers');

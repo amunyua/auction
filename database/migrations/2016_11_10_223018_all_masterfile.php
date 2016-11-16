@@ -24,8 +24,7 @@ class AllMasterfile extends Migration
                 masterfiles.email,
                 masterfiles.customer_type_name,
                 concat(masterfiles.surname, ' ', masterfiles.firstname, ' ', masterfiles.middlename) AS full_name
-               FROM masterfiles
-              WHERE masterfiles.b_role::text = 'Staff'::text "
+               FROM masterfiles "
         );
     }
 

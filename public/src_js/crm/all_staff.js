@@ -5,7 +5,7 @@ var staff = $('#all_staff').DataTable({
     processing: true,
     serverProcessing: true,
     order: [[0, 'desc']],
-    ajax: 'stuffs-all', //loads data
+    ajax: 'staffs-all', //loads data
     columns: [
         { data: 'id', 'name': 'id' },
         { data: 'full_name', 'name': 'full_name' },

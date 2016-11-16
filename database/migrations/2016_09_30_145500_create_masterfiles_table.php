@@ -18,8 +18,8 @@ class CreateMasterfilesTable extends Migration
             $table->string('surname', 30);
             $table->string('firstname', 30);
             $table->string('middlename', 30)->nullable();
-            $table->string('id_passport', 20);
-            $table->boolean('gender');
+            $table->string('id_passport', 20)->nullable();
+            $table->boolean('gender')->nullable();
             $table->text('image_path')->nullable();
             $table->date('reg_date');
             $table->string('b_role', 50);

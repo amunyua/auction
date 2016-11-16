@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Auction;
-use App\AuctionBid;
-use App\TokenJournal;
-use App\Warehouse;
+use App\Customers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,6 +17,7 @@ use App\AllMfs;
 use App\Item;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
@@ -34,12 +32,12 @@ class MasterfileController extends Controller
     public function index(){
         // fetch data
         $roles = Role::all();
-        $cts = CustomerType::all();
+        $customers = CustomerType::all();
         $addresses = AddressType::all();
         $counties = County::all();
 
         return view('masterfile.index', array(
-            'cts' => $cts,
+            'customers' => $customers,
             'roles' => $roles,
             'addresses' => $addresses,
             'counties' => $counties,
@@ -58,8 +56,8 @@ class MasterfileController extends Controller
         ));
     }
 
-    public function addMf(Request $request){
-//        var_dump($_POST);exit;
+    public function addMf(Request $request)
+    {
         // validate
         $this->validate($request, array(
             'surname' => 'required|max:255',
@@ -78,7 +76,29 @@ class MasterfileController extends Controller
             'address_type_name' => 'required'
         ));
 
-        DB::transaction(function($path){
+            switch ($request->b_role) {
+                case 'Administrator':
+                    $this->addAdmin();
+                    break;
+
+                case 'Staff':
+                    $this->addStaff();
+                    break;
+
+                case 'Client':
+                    //var_dump($_POST);exit;
+                    $this->addClient($request);
+                    break;
+
+                case 'Supplier':
+                    $this->addSupplier();
+                    break;
+            }
+        return redirect('masterfile');
+    }
+
+    public function addAdmin(){
+        DB::transaction(function(){
             // upload image if exists
             $path = '';
             if(Input::hasFile('image_path')){
@@ -92,7 +112,7 @@ class MasterfileController extends Controller
                     $path = 'uploads/images/'.$new_name;
                 }
             }
-//            var_dump($path);exit;
+            //var_dump($path);exit;
 
             // add to db
             $mf = Masterfile::create(array(
@@ -109,6 +129,221 @@ class MasterfileController extends Controller
                 'image_path' => $path,
                 'status' => 1
             ));
+            //var_dump($mf);exit;
+            $mf->save();
+            $mf_id = $mf->id;
+
+            // add address details
+            $address = Address::create(array(
+                'county' => Input::get('county'),
+                'town' => Input::get('town'),
+                'masterfile_id' => $mf_id,
+                'ward' => Input::get('ward'),
+                'street' => Input::get('street'),
+                'building' => Input::get('building'),
+                'phone' => Input::get('phone'),
+                'postal_address' => Input::get('postal_address'),
+                'postal_code' => Input::get('postal_code'),
+                'address_type_name' => Input::get('address_type_name')
+            ));
+            $address->save();
+
+            //create
+
+            // create user login account
+            $password = sha1(123456);
+            $login = User::create(array (
+                'masterfile_id' => $mf_id,
+                'email' => Input::get('email'),
+                'password' => $password
+            ));
+//            var_dump($login);exit;
+            $login->save();
+        });
+
+        Session::flash('success', 'Administrator '.$_POST['surname'].' '.$_POST['firstname'].' has been added');
+    }
+
+    public function addStaff(){
+        DB::transaction(function(){
+            // upload image if exists
+            $path = '';
+            if(Input::hasFile('image_path')){
+                $prefix = uniqid();
+                $image = Input::file('image_path');
+                $filename = $image->getClientOriginalName();
+                $new_name = $prefix.$filename;
+
+                if($image->isValid()) {
+                    $image->move('uploads/images', $new_name);
+                    $path = 'uploads/images/'.$new_name;
+                }
+            }
+            //var_dump($path);exit;
+
+            // add to db
+            $mf = Masterfile::create(array(
+                'surname' => Input::get('surname'),
+                'firstname' => Input::get('firstname'),
+                'middlename' => Input::get('middlename'),
+                'email' => Input::get('email'),
+                'id_passport' => Input::get('id_passport'),
+                'b_role' => Input::get('b_role'),
+                'gender' => Input::get('gender'),
+                'user_role' => Input::get('user_role'),
+                'reg_date' => Input::get('reg_date'),
+                'customer_type_name' => Input::get('customer_type_name'),
+                'image_path' => $path,
+                'status' => 1
+            ));
+
+            $mf->save();
+            $mf_id = $mf->id;
+
+            // add address details
+            $address = Address::create(array(
+                'county' => Input::get('county'),
+                'town' => Input::get('town'),
+                'masterfile_id' => $mf_id,
+                'ward' => Input::get('ward'),
+                'street' => Input::get('street'),
+                'building' => Input::get('building'),
+                'phone' => Input::get('phone'),
+                'postal_address' => Input::get('postal_address'),
+                'postal_code' => Input::get('postal_code'),
+                'address_type_name' => Input::get('address_type_name')
+            ));
+            $address->save();
+
+            //create
+
+            // create user login account
+            $password = sha1(123456);
+            $full_name = $mf->surname.' '.$mf->firstname;
+            //$token = rememberToken();
+            $login = User::create(array (
+                'masterfile_id' => $mf_id,
+                'email' => Input::get('email'),
+                'password' => $password,
+                'name' => $full_name
+                //'remember_token' => $token
+            ));
+            //print_r($login);exit;
+            $login->save();
+        });
+
+        Session::flash('success', 'Staff '.$_POST['surname'].' '.$_POST['firstname'].' has been added');
+    }
+
+    public function addClient(){
+        DB::transaction(function(){
+            // upload image if exists
+            $path = '';
+            if(Input::hasFile('image_path')){
+                $prefix = uniqid();
+                $image = Input::file('image_path');
+                $filename = $image->getClientOriginalName();
+                $new_name = $prefix.$filename;
+
+                if($image->isValid()) {
+                    $image->move('uploads/images', $new_name);
+                    $path = 'uploads/images/'.$new_name;
+                }
+            }
+            //var_dump($path);exit;
+
+            // add to db
+            $mf = Masterfile::create(array(
+                'surname' => Input::get('surname'),
+                'firstname' => Input::get('firstname'),
+                'middlename' => Input::get('middlename'),
+                'email' => Input::get('email'),
+                'id_passport' => Input::get('id_passport'),
+                'b_role' => Input::get('b_role'),
+                'gender' => Input::get('gender'),
+                'user_role' => Input::get('user_role'),
+                'reg_date' => Input::get('reg_date'),
+                'customer_type_name' => Input::get('customer_type_name'),
+                'image_path' => $path,
+                'status' => 1
+
+            ));
+
+            //var_dump($mf);exit;
+            $mf->save();
+            $mf_id = $mf->id;
+
+            //insert client data
+            $client = Customers::create(array(
+                'masterfile_id' => $mf_id,
+                'token_balance' => 0
+            ));
+            //var_dump($client);exit;
+            $client->save();
+
+            // add address details
+            $address = Address::create(array(
+                'county' => Input::get('county'),
+                'town' => Input::get('town'),
+                'masterfile_id' => $mf_id,
+                'ward' => Input::get('ward'),
+                'street' => Input::get('street'),
+                'building' => Input::get('building'),
+                'phone' => Input::get('phone'),
+                'postal_address' => Input::get('postal_address'),
+                'postal_code' => Input::get('postal_code'),
+                'address_type_name' => Input::get('address_type_name')
+            ));
+            // var_dump($address);exit;
+            $address->save();
+
+            // create user login account
+            $password = sha1(123456);
+            $login = User::create(array (
+                'masterfile_id' => $mf_id,
+                'email' => Input::get('email'),
+                'password' => $password
+            ));
+           // var_dump($login);exit;
+            $login->save();
+        });
+
+        Session::flash('success', 'Client '.$_POST['surname'].' '.$_POST['firstname'].' has been added!');
+    }
+
+    public function addSupplier(){
+        DB::transaction(function($path){
+            // upload image if exists
+            $path = '';
+            if(Input::hasFile('image_path')){
+                $prefix = uniqid();
+                $image = Input::file('image_path');
+                $filename = $image->getClientOriginalName();
+                $new_name = $prefix.$filename;
+
+                if($image->isValid()) {
+                    $image->move('uploads/images', $new_name);
+                    $path = 'uploads/images/'.$new_name;
+                }
+            }
+            //var_dump($path);exit;
+
+            // add to db
+            $mf = Masterfile::create(array(
+                'surname' => Input::get('surname'),
+                'firstname' => Input::get('firstname'),
+                'middlename' => Input::get('middlename'),
+                'email' => Input::get('email'),
+                'id_passport' => Input::get('id_passport'),
+                'b_role' => Input::get('b_role'),
+                'gender' => Input::get('gender'),
+                'user_role' => Input::get('user_role'),
+                'reg_date' => Input::get('reg_date'),
+                'customer_type_name' => Input::get('customer_type_name'),
+                'image_path' => $path,
+                'status' => 1
+            ));
+            //var_dump($mf);exit;
             $mf->save();
             $mf_id = $mf->id;
 
@@ -134,12 +369,10 @@ class MasterfileController extends Controller
                 'email' => Input::get('email'),
                 'password' => $password
             ));
-//            var_dump($login);exit;
             $login->save();
         });
 
-        $request->session()->flash('success', 'The Masterfile has been added');
-        return redirect('/masterfile');
+        Session::flash('success', 'Supplier '.$_POST['surname'].' '.$_POST['firstname'].' has been added');
     }
 
     public function updateMf(Request $request, $id){
@@ -265,7 +498,6 @@ class MasterfileController extends Controller
     }
 
     public function addAddress(Request $request){
-        // var_dump($_POST);die;
         $this->validate($request, array(
             'county'=> 'required',
             'town'=> 'required',
@@ -286,56 +518,65 @@ class MasterfileController extends Controller
         $address->ward =$request->ward;
         $address->street =$request->street;
         $address->building =$request->building;
-        $address->house_no =$request->house_no;
         $address->phone =$request->phone;
 
         $address->save();
 
-        $request->session()->flash('success', 'New Address has been added has been updated');
-         return redirect()->route('masterfile.mf_profile');
+        $request->session()->flash('success', 'New Address has been added');
+        return redirect('mf-profile/'.$request->masterfile_id);
 
     }
 
     public function getAddressData(Request $request){
         $id = $request->id;
         $address = Address::find($id);
-        return Response::json($address);
+        return \Illuminate\Support\Facades\Response::json($address);
     }
 
-    public function updateAddress(Request $request){
-        // validation
-        $this->validate($request, array(
-            'county' => 'required',
-            'town' => 'required',
-            'postal_address' => 'required|unique:addresses,postal_address,'.$request->edit_id,
-            'address_type_name' => 'required|unique:addresses,address_type_name,'.$request->edit_id,
-            'postal_code' => 'required',
-            'phone' => 'required'
-        ));
-
-        Address::where('id', $request->edit_id)
-            ->update(array(
-                'county' => $request->county,
-                'town' => $request->town,
-                'address_type_name' => $request->address_type_name,
-                'postal_address' => $request->postal_address,
-                'postal_code' => $request->postal_code,
-                'ward' => $request->ward,
-                'street' => $request->street,
-                'building' => $request->building,
-                'phone' => $request->phone
+    public function updateAddress(Request $request, $id){
+        //var_dump($_POST);
+        $address = Address::find($id);
+        if($address->county != $request->input('county')) {
+            $this->validate($request, array(
+                'county' => 'required',
+                'town' => 'required',
+                'postal_address' => 'required',
+                'address_type_name' => 'required',
+                'postal_code' => 'required',
+                'phone' => 'required'
             ));
+        }else{
+            $this->validate($request, array(
+                'county' => 'required',
+                'town' => 'required',
+                'postal_address' => 'required',
+                'address_type_name' => 'required',
+                'postal_code' => 'required',
+                'phone' => 'required'
+            ));
+        }
+        $address->county = $request->input('county');
+        $address->town = $request->input('town');
+        $address->postal_address =$request->input('postal_address');
+        $address->postal_code =$request->input('postal_code');
+        $address->ward =$request->input('ward');
+        $address->street =$request->input('street');
+        $address->building =$request->input('building');
+        $address->phone =$request->input('phone');
 
-        $request->session()->flash('status', 'Address Details has been updated.');
-//        return redirect('mf_profile');
+        $address->save();
+
+        Session::flash('success','Address Details Has Been Updated');
+        return redirect('mf-profile/'.+$request->masterfile_id);
     }
 
-    public function deleteAddress(Request $request){
-//        var_dump($_POST);exit;
-        if(Address::destroy($request->delete_id)){
-            $request->session()->flash('success', 'Address Details have been removed');
+    public function deleteAddress(Request $request, $id){
+        //var_dump($_POST);exit;
+        if(Address::destroy($id)){
+            Session::flash('success','Address Details has been deleted');
+            return redirect('mf-profile/'.+$request->masterfile_id);
+//            return redirect('mf-profile/'.+$request->masterfile_id)->with('status', 'Address Details has been deleted!');
         }
-        return redirect()->route('mf_profile');
     }
 
     public function myBids(Request $request){

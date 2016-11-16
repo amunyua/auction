@@ -201,7 +201,7 @@ class InventoryController extends Controller
     }
 
     public function updateWarehouse(Request $request, $id){
-        var_dump($_POST);
+        //var_dump($_POST);
         $warehouse = Warehouse::find($id);
         if($warehouse->warehouse_name != $request->input('warehouse_name')) {
             $this->validate($request, array(

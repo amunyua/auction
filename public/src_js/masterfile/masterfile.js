@@ -117,6 +117,33 @@ var Masterfile = {
 
         var b_role = $('#b_role').val();
         switch(b_role){
+            case 'Administrator':
+                // validation
+                if($('#surname').val() == ''){
+                    alert('You Must Provide Surname!');
+                    $('#surname').focus();
+                    return false;
+                }else if($('#firstname').val() == ''){
+                    alert('You Must Provide First Name!');
+                    $('#firstname').focus();
+                    return false;
+                }else if($('#email').val() == ''){
+                    alert('You Must Provide Email!');
+                    $('#email').focus();
+                    return false;
+                }else if($('#user_role').val() == ''){
+                    alert('You Must Provide User Role!');
+                    $('#user_role').focus();
+                    return false;
+                }else if($('#customer_type_name').val() == ''){
+                    alert('You Must Provide Masterfile Type!');
+                    $('#customer_type_name').focus();
+                    return false;
+                }else{
+                    return true;
+                }
+                break;
+
             case 'Client':
                 // validation
                 if($('#surname').val() == ''){
@@ -263,3 +290,18 @@ var Masterfile2 = {
         }
     },
 }
+
+$('#b_role').on('change', function(){
+    var role = $(this).val();
+
+    if(role == 'Client'){
+        // alert('working');
+        $('#user_role').attr('readonly', 'readonly').val('CLIENT');
+    }else if(role == 'Staff'){
+        $('#user_role').attr('readonly', 'readonly').val('STAFF');
+    }else if(role == 'Supplier'){
+        $('#user_role').attr('readonly', 'readonly').val('SUPPLIER');
+    }else if(role == 'Administrator'){
+        $('#user_role').attr('readonly', 'readonly').val('SYS_ADMIN');
+    }
+});

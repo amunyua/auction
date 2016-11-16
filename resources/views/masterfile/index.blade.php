@@ -32,13 +32,13 @@
                         <li class="span3">
                             <a href="#tab1" data-toggle="tab" class="step active">
                                 <span class="number">1</span>
-                                <span class="desc"><i class="icon-ok"></i> Account Setup</span>
+                                <span class="desc"><i class="icon-ok"></i> Basic Details</span>
                             </a>
                         </li>
                         <li class="span3">
                             <a href="#tab2" data-toggle="tab" class="step">
                                 <span class="number">2</span>
-                                <span class="desc"><i class="icon-ok"></i> Profile Setup</span>
+                                <span class="desc"><i class="icon-ok"></i> Address Details</span>
                             </a>
                         </li>
                         {{--<li class="span3">--}}
